@@ -1,0 +1,13 @@
+node_modules/
+build/
+.react-router/
+*.log
+
+vite.config.ts.timestamp-*
+.env
+.env.local
+.DS_Store
+
+# Source brand artwork containing personal contact details — kept locally,
+# never committed. The logo is already extracted to app/assets/logo-mark.png.
+documentation/*.pdf

@@ -1,0 +1,110 @@
+import type { ReactNode } from 'react';
+import {
+  Links,
+  Meta,
+  Outlet,
+  Scripts,
+  ScrollRestoration,
+  isRouteErrorResponse,
+  Link,
+} from 'react-router';
+import type { Route } from './+types/root';
+
+import './styles/index.css';
+import './styles/components.css';
+import './styles/motion.css';
+
+import Header from './components/Header';
+import Footer from './components/Footer';
+import ScrollMotion from './components/ScrollMotion';
+
+export const links: Route.LinksFunction = () => [
+  { rel: 'icon', href: `${import.meta.env.BASE_URL}favicon.png`, type: 'image/png' },
+  { rel: 'apple-touch-icon', href: `${import.meta.env.BASE_URL}apple-touch-icon.png` },
+  { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
+  { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossOrigin: 'anonymous' },
+  {
+    rel: 'stylesheet',
+    href: 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap',
+  },
+];
+
+export const meta: Route.MetaFunction = () => [
+  { title: 'Real Good Social — Building practical systems for social good' },
+  {
+    name: 'description',
+    content:
+      'Real Good Social develops ventures, technologies, and partnerships that help people and organisations translate good intentions into effective, durable action.',
+  },
+];
+
+/** The HTML document shell. Wraps every route — and the error boundary. */
+export function Layout({ children }: { children: ReactNode }) {
+  return (
+    <html lang="en-AU">
+      <head>
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="theme-color" content="#14213D" />
+        <Meta />
+        <Links />
+      </head>
+      <body>
+        {children}
+        <ScrollRestoration />
+        <Scripts />
+      </body>
+    </html>
+  );
+}
+
+export default function App() {
+  return (
+    <>
+      <a href="#main" className="skip-link">
+        Skip to main content
+      </a>
+      <ScrollMotion />
+      <Header />
+      <main id="main">
+        <Outlet />
+      </main>
+      <Footer />
+    </>
+  );
+}
+
+export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
+  const isNotFound = isRouteErrorResponse(error) && error.status === 404;
+
+  return (
+    <>
+      <a href="#main" className="skip-link">
+        Skip to main content
+      </a>
+      <Header />
+      <main id="main">
+        <section className="section section--surface">
+          <div className="container container-narrow center" style={{ paddingBlock: '3rem' }}>
+            <p className="eyebrow">{isNotFound ? '404' : 'Something went wrong'}</p>
+            <h1>{isNotFound ? 'We couldn’t find that page' : 'An unexpected error occurred'}</h1>
+            <p className="lead mx-auto">
+              {isNotFound
+                ? 'The page may have moved, or the link may be out of date. Let’s get you back on track.'
+                : 'Please try again in a moment. If it keeps happening, let us know.'}
+            </p>
+            <div className="btn-row" style={{ justifyContent: 'center', marginTop: '1.5rem' }}>
+              <Link to="/" className="btn">
+                Return home
+              </Link>
+              <Link to="/initiatives" className="btn btn--secondary">
+                View our initiatives
+              </Link>
+            </div>
+          </div>
+        </section>
+      </main>
+      <Footer />
+    </>
+  );
+}

@@ -1,0 +1,592 @@
+/* =========================================================================
+   Real Good Social — design system
+   An editorial, institutional system with restrained warmth. Craft comes from
+   typography, spacing rhythm, and hairline detailing rather than ornament.
+   Palette and pairings follow the design brief (sections 6–8).
+   ========================================================================= */
+
+:root {
+  /* --- Brand palette (brief §7) --- */
+  --rg-blue: #2457d6;
+  --rg-blue-deep: #1b429f;
+  --rg-blue-tint: #dde8fa;
+  --rg-ink: #14213d;
+  --rg-green: #2f7d61;
+  --rg-gold: #d6a84b;
+  --rg-stone: #687080;
+
+  /* --- Paper & surfaces ---
+     Warm, layered neutrals. The page is paper; cards sit on it quietly. */
+  --paper: #f8f7f3;
+  --paper-sunk: #f2f0e9;
+  --surface: #fffefb;
+  --surface-raised: #ffffff;
+
+  /* --- Rules ---
+     Warm hairlines read as printed rules; the cool border is kept for inputs. */
+  --rule: #e5e1d7;
+  --rule-strong: #d3cec1;
+  --rule-cool: #d9dce2;
+  --rule-ink: rgba(255, 255, 255, 0.14);
+
+  /* --- Text --- */
+  --text: #1b2947;
+  --text-strong: #14213d;
+  --text-muted: #646c7e;
+  --text-faint: #8a91a0;
+  --text-on-ink: #cdd7ea;
+  --text-on-ink-muted: #8fa0c1;
+
+  /* --- Functional (brief §7.3) --- */
+  --success: #2f7d61;
+  --warning: #b7791f;
+  --error: #b64242;
+
+  /* --- Type --- */
+  --font-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+
+  /* Fluid scale — a considered ratio rather than arbitrary sizes. */
+  --step--2: 0.75rem;
+  --step--1: 0.8125rem;
+  --step-0: 1.0625rem;
+  --step-1: clamp(1.15rem, 0.4vw + 1.05rem, 1.3rem);
+  --step-2: clamp(1.35rem, 0.8vw + 1.15rem, 1.6rem);
+  --step-3: clamp(1.6rem, 1.6vw + 1.25rem, 2.15rem);
+  --step-4: clamp(1.95rem, 2.6vw + 1.35rem, 2.9rem);
+  --step-5: clamp(2.4rem, 4.4vw + 1.4rem, 4.1rem);
+
+  /* --- Spacing rhythm --- */
+  --space-2xs: 0.375rem;
+  --space-xs: 0.625rem;
+  --space-s: 1rem;
+  --space-m: 1.5rem;
+  --space-l: 2.25rem;
+  --space-xl: 3.5rem;
+  --space-2xl: clamp(4rem, 8vw, 7rem);
+
+  /* --- Geometry ---
+     Small radii read as architectural/printed; large radii read as consumer app. */
+  --radius: 4px;
+  --radius-lg: 6px;
+  --radius-pill: 999px;
+
+  --maxw: 1180px;
+  --maxw-narrow: 44rem;
+  --measure: 68ch;
+
+  /* --- Elevation — used sparingly; hairlines do most of the work. --- */
+  --shadow-sm: 0 1px 2px rgba(20, 33, 61, 0.04);
+  --shadow-md: 0 10px 30px -12px rgba(20, 33, 61, 0.18);
+
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+/* --- Reset / base --- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Note: no global `scroll-behavior: smooth`. It makes the scroll reset on
+   route change animate all the way up through the page, which reads as the
+   page "scrolling itself" on every navigation. Landing at the top of a new
+   page should be instant. */
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: var(--step-0);
+  line-height: 1.7;
+  color: var(--text);
+  background: var(--paper);
+  font-feature-settings: 'kern' 1, 'liga' 1, 'calt' 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+::selection {
+  background: rgba(36, 87, 214, 0.15);
+  color: var(--text-strong);
+}
+
+/* --- Headings: confident humanist sans.
+   The editorial serif is reserved for long-form reading (Insights articles). --- */
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-sans);
+  color: var(--text-strong);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+  margin: 0 0 0.5em;
+}
+
+h1 {
+  font-size: var(--step-5);
+  line-height: 1.03;
+  letter-spacing: -0.038em;
+}
+
+h2 {
+  font-size: var(--step-4);
+  line-height: 1.1;
+  letter-spacing: -0.032em;
+}
+
+h3 {
+  font-size: var(--step-2);
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+}
+
+h4 {
+  font-size: var(--step-1);
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+p {
+  margin: 0 0 1.1em;
+  text-wrap: pretty;
+}
+
+ul,
+ol {
+  margin: 0 0 1.1rem;
+  padding-left: 1.15rem;
+}
+
+li + li {
+  margin-top: 0.3rem;
+}
+
+a {
+  color: var(--rg-blue);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+  transition: color 0.15s var(--ease);
+}
+a:hover {
+  color: var(--rg-blue-deep);
+}
+
+strong {
+  font-weight: 600;
+  color: var(--text-strong);
+}
+
+hr {
+  border: none;
+  border-top: 1px solid var(--rule);
+  margin-block: var(--space-l);
+}
+
+/* Numerals in metadata should align. */
+.meta,
+.badge,
+time,
+.process__num,
+.area-card__num {
+  font-variant-numeric: tabular-nums;
+}
+
+/* --- Accessibility --- */
+:where(a, button, input, textarea, select, [tabindex]):focus-visible {
+  outline: 2px solid var(--rg-blue);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -3.5rem;
+  background: var(--rg-ink);
+  color: #fff;
+  padding: 0.7rem 1.1rem;
+  border-radius: var(--radius);
+  z-index: 100;
+  font-weight: 500;
+  transition: top 0.18s var(--ease);
+}
+.skip-link:focus {
+  top: 1rem;
+}
+
+/* --- Layout primitives --- */
+.container {
+  width: 100%;
+  max-width: var(--maxw);
+  margin-inline: auto;
+  padding-inline: clamp(1.25rem, 5vw, 3rem);
+}
+
+/* A narrow reading measure that stays on the main container's left edge, so
+   headings and prose align with full-width sections above and below them.
+   Centred blocks (statements, CTAs) opt back into optical centring. */
+.container-narrow > * {
+  max-width: var(--maxw-narrow);
+}
+.container-narrow.center > * {
+  margin-inline: auto;
+}
+
+.section {
+  padding-block: var(--space-2xl);
+}
+.section--tight {
+  padding-block: var(--space-xl);
+}
+.section--surface {
+  background: var(--surface);
+  border-block: 1px solid var(--rule);
+}
+.section--sky {
+  background: var(--rg-blue-tint);
+}
+.section--ink {
+  background: var(--rg-ink);
+  color: var(--text-on-ink);
+}
+.section--ink h2,
+.section--ink h3 {
+  color: #fff;
+}
+.section--ink .lead {
+  color: var(--text-on-ink);
+}
+
+/* --- Editorial section marker: small caps label with a hairline lead-in --- */
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  font-family: var(--font-sans);
+  font-size: var(--step--2);
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--rg-blue);
+  margin: 0 0 var(--space-s);
+}
+.eyebrow::before {
+  content: '';
+  width: 1.6rem;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.55;
+  flex: none;
+}
+/* Centred sections get a rule on both sides so the marker reads as symmetrical. */
+.center .eyebrow {
+  justify-content: center;
+}
+.center .eyebrow::after {
+  content: '';
+  width: 1.6rem;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.55;
+  flex: none;
+}
+.section--ink .eyebrow {
+  color: var(--rg-gold);
+}
+
+.lead {
+  font-size: var(--step-1);
+  line-height: 1.6;
+  color: var(--text-muted);
+  max-width: 58ch;
+}
+
+/* A lede/pull-quote voice — large, light sans with generous leading. */
+.statement {
+  font-family: var(--font-sans);
+  font-size: var(--step-3);
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: -0.025em;
+  color: var(--text-strong);
+  text-wrap: pretty;
+}
+.center .statement {
+  max-width: 42ch;
+  margin-inline: auto;
+}
+.section--ink .statement {
+  color: #fff;
+}
+
+/* --- Buttons --- */
+.btn {
+  --btn-bg: var(--rg-blue);
+  --btn-fg: #fff;
+  --btn-border: var(--rg-blue);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 0.95rem;
+  line-height: 1;
+  padding: 0.9rem 1.4rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--btn-border);
+  background: var(--btn-bg);
+  color: var(--btn-fg);
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.16s var(--ease), border-color 0.16s var(--ease),
+    color 0.16s var(--ease);
+}
+.btn:hover {
+  --btn-bg: var(--rg-blue-deep);
+  --btn-border: var(--rg-blue-deep);
+  color: #fff;
+  text-decoration: none;
+}
+.btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+.btn--secondary {
+  --btn-bg: transparent;
+  --btn-fg: var(--text-strong);
+  --btn-border: var(--rule-strong);
+}
+.btn--secondary:hover {
+  --btn-bg: transparent;
+  --btn-border: var(--rg-ink);
+  color: var(--text-strong);
+}
+.btn--on-ink {
+  --btn-bg: #fff;
+  --btn-fg: var(--rg-ink);
+  --btn-border: #fff;
+}
+.btn--on-ink:hover {
+  --btn-bg: #eef2fa;
+  --btn-border: #eef2fa;
+  color: var(--rg-ink);
+}
+.btn--on-ink.btn--secondary {
+  --btn-bg: transparent;
+  --btn-fg: #fff;
+  --btn-border: rgba(255, 255, 255, 0.32);
+}
+.btn--on-ink.btn--secondary:hover {
+  --btn-bg: rgba(255, 255, 255, 0.07);
+  --btn-border: #fff;
+  color: #fff;
+}
+.btn--sm {
+  padding: 0.65rem 1rem;
+  font-size: 0.875rem;
+}
+
+.btn-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+/* --- Arrow link --- */
+.text-link {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.45rem;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--rg-blue);
+  text-decoration: none;
+  width: fit-content;
+}
+.text-link::after {
+  content: '→';
+  transition: transform 0.18s var(--ease);
+}
+.text-link:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.22em;
+  text-decoration-thickness: 1px;
+}
+.text-link:hover::after {
+  transform: translateX(4px);
+}
+
+/* --- Grids --- */
+.grid {
+  display: grid;
+  gap: var(--space-m);
+}
+.grid-2 {
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+.grid-3 {
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+}
+.grid-4 {
+  grid-template-columns: repeat(auto-fit, minmax(225px, 1fr));
+}
+
+/* --- Card: paper with a hairline, not a floating panel --- */
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: var(--surface-raised);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-lg);
+  padding: var(--space-m);
+  transition: border-color 0.2s var(--ease), box-shadow 0.2s var(--ease);
+}
+.card h3 {
+  margin-bottom: 0.35rem;
+}
+.card p:last-child {
+  margin-bottom: 0;
+}
+.card--interactive:hover {
+  border-color: var(--rule-strong);
+  box-shadow: var(--shadow-md);
+}
+
+.card__icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  display: grid;
+  place-items: center;
+  border-radius: var(--radius);
+  background: var(--rg-blue-tint);
+  color: var(--rg-blue);
+  margin-bottom: var(--space-s);
+}
+
+/* --- Stage badges: typographic, not chunky --- */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: var(--step--2);
+  font-weight: 600;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  padding: 0.28rem 0.55rem;
+  border-radius: var(--radius);
+  border: 1px solid currentColor;
+  white-space: nowrap;
+  line-height: 1;
+}
+.badge::before {
+  content: '';
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: currentColor;
+  flex: none;
+}
+.badge--exploring {
+  color: var(--text-muted);
+  background: color-mix(in srgb, var(--text-muted) 7%, transparent);
+}
+.badge--researching {
+  color: #5a4bb3;
+  background: color-mix(in srgb, #5a4bb3 7%, transparent);
+}
+.badge--designing {
+  color: var(--rg-blue);
+  background: color-mix(in srgb, var(--rg-blue) 7%, transparent);
+}
+.badge--prototyping {
+  color: var(--warning);
+  background: color-mix(in srgb, var(--warning) 8%, transparent);
+}
+.badge--piloting {
+  color: #1f6f8b;
+  background: color-mix(in srgb, #1f6f8b 8%, transparent);
+}
+.badge--operating {
+  color: var(--success);
+  background: color-mix(in srgb, var(--success) 8%, transparent);
+}
+
+/* --- Meta & labels --- */
+.meta {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+.label {
+  font-size: var(--step--2);
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+
+.divider {
+  border: none;
+  border-top: 1px solid var(--rule);
+  margin-block: var(--space-l);
+}
+
+.motif-rule {
+  height: 1px;
+  border: none;
+  margin: 0;
+  background: linear-gradient(90deg, transparent, var(--rule) 15%, var(--rule) 85%, transparent);
+}
+
+/* --- Utilities --- */
+.center {
+  text-align: center;
+}
+.mx-auto {
+  margin-inline: auto;
+}
+.mt-0 {
+  margin-top: 0;
+}
+.muted {
+  color: var(--text-muted);
+}
+.stack > * + * {
+  margin-top: var(--stack-gap, 1rem);
+}

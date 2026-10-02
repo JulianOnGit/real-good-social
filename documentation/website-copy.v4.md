@@ -34,8 +34,6 @@ We create technology, ventures, communities and organisational systems that expa
 
 # We expand the capacity to do good.
 
-We build practical systems that help people and organisations turn good intentions into effective action.
-
 ### Social ventures
 Creating sustainable new ways to deliver social good.
 
@@ -62,8 +60,6 @@ Many people and organisations want to produce meaningful social good but lack th
 
 # What we’re building
 
-Practical initiatives across community, support, technology and social infrastructure.
-
 ### Real Good Communities
 A growing community for connection, participation, practical support and contribution.
 
@@ -82,33 +78,70 @@ Building stronger community capacity for care, guidance and practical support.
 
 ## How we work
 
-# Understand. Build. Learn.
+# From understanding to durable capability
 
-We start with the whole situation, build what appears useful, then refine it through practice.
+**01 · Understand the problem**
+Start from the real situation and let the response follow from it.
+
+**02 · Develop a practical response**
+Design something concrete that can be built and tested.
+
+**03 · Build with relevant partners**
+Work with those closest to the problem and build on what already exists.
+
+**04 · Test, learn, and improve**
+Treat evidence and reflection as part of the work.
+
+**05 · Establish durable capability**
+Aim for reusable systems that keep creating value.
 
 ---
 
-## Insights
+## Who we work with
 
-# Ideas for building a better world
+**Eyebrow:** Who we work with
 
-Essays on agency, community, social infrastructure and the systems that shape what people can do.
+# Good work is built in good company.
+
+We’re always glad to meet people and organisations who bring places, tools, know-how or time to the work.
+
+- Venues & spaces
+- AI & technology
+- Skills & knowledge sharing
+- Community organisations
+- Researchers & specialists
+- Government & institutions
+- Funders & supporters
+
+**Explore ways to work with us →**
+
+---
+
+## Latest insight
+
+**Eyebrow:** Latest insight
+
+Community & Capability
 
 ### What capabilities does a community build through engagement and participation?
 
-A community may accumulate capabilities that are not visible in attendance figures alone: knowledge of who can do what, trusted relationships, coordination capacity and the ability to initiate activity independently.
+By Julian Knowles · 30 June 2026 · {N} min read
 
-**Read Insights →**
+Participation can leave a community with more than stronger relationships. It can also build shared knowledge, coordination capacity and the ability to initiate activity without relying on a central organiser.
+
+**Read the insight →**
 
 ---
 
 ## Closing
 
+**Eyebrow:** Work with Real Good Social
+
 # Build something good with us.
 
-Bring an idea, opportunity, capability or area of shared interest.
+Bring the change you want to see. We’ll bring the systems, tools and people to make it happen.
 
-**Start a conversation**
+**Propose a partnership** · **Contact us →**
 
 ---
 
@@ -119,14 +152,6 @@ Bring an idea, opportunity, capability or area of shared interest.
 **About**
 
 # Expanding our capacity to do good.
-
-Real Good builds practical systems that strengthen our ability to create positive change.
-
----
-
-## Our purpose
-
-# We expand the capacity to do good.
 
 Real Good builds the practical conditions that help people and organisations turn good intentions into effective action.
 
@@ -142,13 +167,17 @@ The answer may be a venture, community, technology, programme, partnership or or
 
 ---
 
-## Why Real Good works across different areas
+## Why we work across areas
 
-Social problems rarely respect organisational boundaries. Real Good combines community, technology, research, ventures and partnerships where that combination creates a stronger response.
+# Social problems rarely respect organisational boundaries.
+
+Real Good combines community, technology, research, ventures and partnerships where that combination creates a stronger response.
 
 ---
 
 ## Principles
+
+# What guides the work
 
 ### Expand agency
 Increase people’s practical ability to understand, choose and act.
@@ -157,7 +186,7 @@ Increase people’s practical ability to understand, choose and act.
 Turn worthwhile ideas into useful capability.
 
 ### Look at the whole situation
-Understand relationships and systems, not only isolated symptoms.
+Understand the relationships and systems around each problem.
 
 ### Learn through action
 Use evidence and experience to improve what we build.
@@ -176,10 +205,10 @@ Create capability that can support further positive action.
 
 Julian’s background spans technology strategy, enterprise architecture, software development and public-sector transformation.
 
+Founder & CEO
+
 Real Good brings those disciplines into social-good work: understanding complex situations, designing practical systems and building the capabilities needed to make positive change possible.
 
-**Julian Knowles**  
-Founder & CEO  
 julian@realgoodnetwork.org
 
 ---
@@ -228,9 +257,13 @@ We help organisations see how people, processes and technology fit together, the
 
 ---
 
-## Research & frameworks
+## Underpinning the work
 
-# Developing the thinking behind the work
+**Eyebrow:** Underpinning the work
+
+# Research & frameworks
+
+### Developing the thinking behind the work
 
 We develop practical frameworks around agency, capability, community, social infrastructure, flourishing, power and organisational systems.
 
@@ -248,9 +281,9 @@ They help us ask better questions, design better interventions and identify what
 
 Real Good develops initiatives where there is an opportunity to create useful new capability — by building something that is missing, connecting capabilities that already exist, or strengthening the infrastructure through which people and organisations can act.
 
-The initiatives below are at different stages of development. Some are already taking practical form; others are still being designed, tested and refined.
+Initiatives are at different stages of development. Some are already taking practical form; others are still being designed, tested and refined.
 
-`EXPLORING` · `RESEARCHING` · `DESIGNING` · `PROTOTYPING` · `PILOTING` · `OPERATING`
+*Filter by stage: All · and each stage in use (Exploring · Researching · Designing · Prototyping · Piloting · Early operation · Operating).*
 
 ---
 
@@ -279,7 +312,7 @@ Canberra is the first local community and the initial environment in which the m
 
 The city contains a dense concentration of public servants, researchers, technologists, community organisations, social enterprises, advocates, cultural institutions and people with specialist knowledge across a wide range of social issues. Real Good Canberra creates opportunities for those capabilities to encounter one another outside their usual organisational boundaries.
 
-The programme will include a mix of social gatherings, discussions, learning activities, cultural experiences, practical projects and opportunities to contribute. The intention is not to push everyone through the same participation pathway, but to create enough variety that different forms of involvement can emerge naturally.
+The programme will include a mix of social gatherings, discussions, learning activities, cultural experiences, practical projects and opportunities to contribute. The intention is to create enough variety that different forms of involvement can emerge naturally, so each person can find the kind of participation that suits them.
 
 For one person, useful participation may mean meeting people they enjoy spending time with. For another, it may mean finding collaborators around a project. Someone else may contribute specialist knowledge, facilitate an activity, help another participant navigate a problem, or form a relationship with an organisation they would not otherwise have encountered.
 
@@ -287,7 +320,7 @@ For one person, useful participation may mean meeting people they enjoy spending
 >
 > **What capabilities does a community build through engagement and participation?**
 
-Attendance matters, but it is not enough to tell us whether the community is becoming more capable. We also want to understand whether people are forming useful relationships, whether knowledge is becoming easier to find, whether participants are initiating activities themselves, whether contribution becomes more accessible, and whether the network is developing durable connections with organisations outside it.
+Attendance is one signal of whether the community is becoming more capable. We also want to understand whether people are forming useful relationships, whether knowledge is becoming easier to find, whether participants are initiating activities themselves, whether contribution becomes more accessible, and whether the network is developing durable connections with organisations outside it.
 
 ### What we’re building
 
@@ -357,7 +390,7 @@ The Collaborative develops more precise models for those differences and tests w
 
 **Elevate** concerns strengthening the wider social infrastructure from which further capability can emerge.
 
-> **The model is a working architecture, not a claim that social development follows a universal linear sequence.**
+> **The model is a working architecture: a map of distinct capabilities that can develop in many orders, and often alongside one another.**
 
 Its purpose is analytical: to make different kinds of capability visible enough to design for, compare and evaluate.
 
@@ -367,7 +400,7 @@ Its purpose is analytical: to make different kinds of capability visible enough 
 How different activities contribute to different forms of capability.
 
 **Measurement**  
-How connection, participation, agency and collective capability can be examined without reducing them to simplistic engagement metrics.
+How connection, participation, agency and collective capability can be examined in ways that capture the full depth of what they produce.
 
 **Community insight**  
 How distributed experience can be synthesised into useful social knowledge.
@@ -405,11 +438,7 @@ A work problem may depend on housing instability. Financial pressure may be down
 
 Pathways Support is being developed for that space.
 
-Its starting point is not:
-
-**Which service category does this belong to?**
-
-It is:
+Its starting point is a wider question:
 
 **What is happening across the situation as a whole, and what would make progress more achievable?**
 
@@ -421,7 +450,7 @@ That means developing a coherent view of the relevant parts of the situation, ho
 
 Whole-situation modelling can reveal dependencies that are difficult to see when each issue is treated separately. Several apparent problems may share one underlying constraint. One intervention may need to happen before several others become useful. Two issues may be reinforcing one another. A relatively small change may unlock progress across several domains.
 
-The objective is not to construct an exhaustive theory of someone’s life. It is to widen the frame enough to identify relationships that materially affect the next decision.
+The objective is to widen the frame just enough to identify the relationships that materially affect the next decision.
 
 ### What Pathways Support may involve
 
@@ -434,7 +463,7 @@ The objective is not to construct an exhaustive theory of someone’s life. It i
 - documenting important information;
 - maintaining continuity while multiple organisations are involved.
 
-Pathways Support is not intended to replace specialist professional services. Its role sits around those functions: helping make the wider situation more intelligible and helping people move through it with greater coherence.
+Pathways Support works alongside specialist professional services, helping make the wider situation more intelligible and helping people move through it with greater coherence.
 
 ---
 
@@ -454,11 +483,11 @@ People help one another in that space constantly. They listen, explain something
 
 Communities already produce many of these forms of care informally. The Real Good Care Collective asks what becomes possible when a community develops that capability more deliberately.
 
-The objective is not to professionalise ordinary human support or blur the distinction between community care and specialist practice. It is to make those distinctions clearer while strengthening the forms of support that legitimately sit around them.
+The objective is to strengthen the everyday forms of support that sit around specialist practice, while keeping the distinction between community care and specialist practice clear.
 
 That means developing people who are good at welcoming participants, facilitating conversations, providing practical guidance, helping organise next steps, recognising when a person may need something more specialised, and making an appropriate connection when they do.
 
-It also means maintaining relationships with people and organisations that hold capabilities the community should not attempt to reproduce internally.
+It also means maintaining relationships with people and organisations that hold specialist capabilities the community can draw on.
 
 Over time, the Care Collective could become a connective layer around Real Good Communities: people who know how to help within their role, understand where that role ends, and know how to bring in additional capability when it is needed.
 
@@ -482,7 +511,7 @@ Building connections with specialist organisations and practitioners.
 **Peer and group formats**  
 Exploring where support is best provided through one-to-one interaction, peer connection or structured group activity.
 
-The aim is to strengthen the community’s capacity to care without pretending that community care can or should substitute for every other form of support.
+The aim is to strengthen the community’s capacity to care, as one valued part of a wider network of support.
 
 ---
 
@@ -500,7 +529,7 @@ Real Good Digital Spaces begins with a practical question: what useful functions
 
 Some interactions begin in person but need somewhere to continue. People meet someone useful and later struggle to find them again. A conversation produces knowledge that disappears into chat history. Someone would contribute to a project if the opportunity were visible. A person cannot attend locally but could participate in work that is naturally digital.
 
-These are different requirements, and they do not necessarily imply the same technological solution.
+These are different requirements, and each may be best served by a different technological solution.
 
 The immediate approach is to use existing platforms where they already work well and allow the community’s needs to become clearer before committing to purpose-built technology.
 
@@ -522,11 +551,11 @@ Retaining useful information that would otherwise disappear across conversations
 Making it easier for people to see where their skills, knowledge or time could be useful.
 
 **Distributed participation**  
-Creating meaningful ways to participate across geography rather than treating digital involvement as a secondary version of local participation.
+Creating meaningful ways to participate across geography, with digital involvement valued as fully as local participation.
 
-The long-term digital architecture should be determined by demonstrated community requirements rather than by a predetermined idea of what a social platform ought to look like.
+The long-term digital architecture will be shaped by demonstrated community requirements, growing from what people actually use and value.
 
-Real Good Digital Spaces is therefore not primarily a software project. It is part of the wider question of how digital infrastructure can support a functioning social system without replacing the relationships and practices that make the system valuable.
+Real Good Digital Spaces is therefore part of a wider social question: how digital infrastructure can support a functioning social system by strengthening the relationships and practices that make the system valuable.
 
 ---
 
@@ -534,15 +563,26 @@ Real Good Digital Spaces is therefore not primarily a software project. It is pa
 
 ## Ideas for building a better world
 
-Real Good Insights develops ideas arising from the practical and conceptual work behind the organisation. Some concern questions of agency and capability; others concern communities, institutions, coordination, social infrastructure and the design of organisations capable of producing sustained social value.
+Real Good Insights develops ideas arising from the practical and conceptual work behind the organisation.
 
-I am interested particularly in places where familiar categories become insufficiently precise. What does it mean for a programme to increase agency rather than merely provide a service? What capabilities can exist at the level of a community rather than an individual? How does the representation of a problem change when we model the wider situation around it? What kinds of knowledge can communities produce that organisations struggle to generate internally?
+*[Topic filter and list of insights]*
 
-These articles are intended to develop those questions rather than prematurely resolve them. Where an idea is provisional, I treat it as such. Where a concept is useful only under certain conditions, those conditions matter. The aim is to make the reasoning behind Real Good more explicit and, over time, to subject more of it to practical and empirical scrutiny.
+## About Real Good Insights
+
+Some of these essays are about agency and capability. Others are about communities, institutions and the organisations people build together: how they coordinate, what holds them up, and how they can keep doing good over time.
+
+We're most interested in the places where the usual words stop working. What's the difference between a programme that gives someone a service and one that leaves them more able to act for themselves? Can a community have capabilities that none of its members have alone? What changes when you stop looking at a problem by itself and start looking at everything around it? What can communities know that organisations can't work out from the inside?
+
+Real Good Social is still working through these questions, and writing is one of the ways we do it. Some of the ideas here are early. We share them anyway, because thinking in the open is how our ideas get sharper, and how they eventually get tested against what actually happens.
 
 ---
 
+**Eyebrow:** Real Good Insights
+
 # What capabilities does a community build through engagement and participation?
+
+By Julian Knowles, Founder, Real Good Social  
+Community & Capability · 30 June 2026 · {N} min read
 
 I became interested in this question because the usual measures of community activity tell us surprisingly little about what a community has become capable of doing. Attendance, membership, retention and frequency of participation are useful indicators of activity, but they are not measures of collective capability. A community can attract large numbers of people while remaining heavily dependent on a small number of organisers, poor at circulating knowledge, and unable to initiate much beyond its established programme.
 
@@ -814,7 +854,9 @@ Sometimes the answer will be nothing beyond the immediate outcome, and that may 
 
 ---
 
-# Partner With Us
+# Work With Us
+
+> **Draft for review:** "Ways to work together", "Suited to" lines and "What happens next" are new copy describing how Real Good engages. Check they match what you're prepared to commit to.
 
 ## Hero
 
@@ -826,39 +868,70 @@ We work with people and organisations that can contribute something useful — e
 
 ---
 
-## Community organisations
+## Ways to work together
 
-Develop programmes, strengthen community capability or collaborate around shared opportunities.
+# Choose a starting point.
+
+### Share a problem or opportunity
+Bring a situation you are close to — a gap in support, a community need, or an idea that hasn’t found a home. We’ll look at it with you and see whether there is a practical response we could build together.
+
+**Suited to** Community organisations · Government & institutions · Contributors & community members
+
+**Share a problem →**
+
+### Propose a partnership
+Collaborate on a pilot, programme, service or piece of shared infrastructure, with clear roles on both sides.
+
+**Suited to** Community organisations · Government & institutions · Researchers & specialists
+
+**Propose a partnership →**
+
+### Contribute expertise
+Lend knowledge or skills: research and evaluation, design, technology, operations, communications, or lived experience of the problem.
+
+**Suited to** Researchers & specialists · Builders & practitioners · Contributors & community members
+
+**Offer expertise →**
+
+### Support an initiative
+Back a specific piece of work through funding, sponsorship, resources, introductions or strategic advice.
+
+**Suited to** Funders & supporters · Government & institutions
+
+**Support an initiative →**
 
 ---
 
-## Government & institutions
+## Where help is needed
 
-Work with us on community participation, social infrastructure, programme design, technology and organisational capability.
+# Initiatives open to partners
 
----
+*[Each initiative: area, stage, name, link]*
 
-## Researchers & specialists
-
-Contribute evidence, evaluation, specialist knowledge or research collaboration.
+**View all initiatives →**
 
 ---
 
-## Builders & contributors
+## What happens next
 
-Help create technology, programmes, communities and new initiatives.
+# From a conversation to shared work
 
----
+**01 · A first conversation**
+Tell us what you have in mind. We’ll reply personally and find a time to talk it through.
 
-## Funders & supporters
+**02 · Shaping it together**
+We work out whether there is a good fit, what each side brings, and what a sensible first step looks like.
 
-Support the work through funding, sponsorship, resources, introductions or commissioned delivery.
+**03 · Building momentum**
+We move quickly to something concrete — a pilot, a piece of research, the right introduction — then build on what works until it becomes lasting capability.
 
 ---
 
 ## Closing
 
-# What could we build together?
+# Not sure which fits?
+
+Start with a conversation and we’ll work it out together.
 
 **Start a conversation**
 

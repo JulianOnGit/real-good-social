@@ -28,16 +28,6 @@ export interface Initiative {
   sections: Section[];
 }
 
-/** The public development labels, in order. */
-export const developmentLabels: Stage[] = [
-  'Exploring',
-  'Researching',
-  'Designing',
-  'Prototyping',
-  'Piloting',
-  'Operating',
-];
-
 /** Every stage, in order — used to order the stage filter. */
 export const stageOrder: Stage[] = [
   'Exploring',
@@ -74,13 +64,13 @@ export const initiatives: Initiative[] = [
         blocks: [
           'Canberra is the first local community and the initial environment in which the model will be developed.',
           'The city contains a dense concentration of public servants, researchers, technologists, community organisations, social enterprises, advocates, cultural institutions and people with specialist knowledge across a wide range of social issues. Real Good Canberra creates opportunities for those capabilities to encounter one another outside their usual organisational boundaries.',
-          'The programme will include a mix of social gatherings, discussions, learning activities, cultural experiences, practical projects and opportunities to contribute. The intention is not to push everyone through the same participation pathway, but to create enough variety that different forms of involvement can emerge naturally.',
+          'The programme will include a mix of social gatherings, discussions, learning activities, cultural experiences, practical projects and opportunities to contribute. The intention is to create enough variety that different forms of involvement can emerge naturally, so each person can find the kind of participation that suits them.',
           'For one person, useful participation may mean meeting people they enjoy spending time with. For another, it may mean finding collaborators around a project. Someone else may contribute specialist knowledge, facilitate an activity, help another participant navigate a problem, or form a relationship with an organisation they would not otherwise have encountered.',
           {
             label: 'Working question',
             callout: 'What capabilities does a community build through engagement and participation?',
           },
-          'Attendance matters, but it is not enough to tell us whether the community is becoming more capable. We also want to understand whether people are forming useful relationships, whether knowledge is becoming easier to find, whether participants are initiating activities themselves, whether contribution becomes more accessible, and whether the network is developing durable connections with organisations outside it.',
+          'Attendance is one signal of whether the community is becoming more capable. We also want to understand whether people are forming useful relationships, whether knowledge is becoming easier to find, whether participants are initiating activities themselves, whether contribution becomes more accessible, and whether the network is developing durable connections with organisations outside it.',
         ],
       },
       {
@@ -159,7 +149,7 @@ export const initiatives: Initiative[] = [
           '**Elevate** concerns strengthening the wider social infrastructure from which further capability can emerge.',
           {
             callout:
-              'The model is a working architecture, not a claim that social development follows a universal linear sequence.',
+              'The model is a working architecture: a map of distinct capabilities that can develop in many orders, and often alongside one another.',
           },
           'Its purpose is analytical: to make different kinds of capability visible enough to design for, compare and evaluate.',
         ],
@@ -175,7 +165,7 @@ export const initiatives: Initiative[] = [
               },
               {
                 title: 'Measurement',
-                text: 'How connection, participation, agency and collective capability can be examined without reducing them to simplistic engagement metrics.',
+                text: 'How connection, participation, agency and collective capability can be examined in ways that capture the full depth of what they produce.',
               },
               {
                 title: 'Community insight',
@@ -218,9 +208,7 @@ export const initiatives: Initiative[] = [
           'That model works well when the problem fits the service architecture. It becomes less useful when several parts of a situation are interacting at once.',
           'A work problem may depend on housing instability. Financial pressure may be downstream of reduced capacity elsewhere. Someone may technically have access to several services while lacking the time, knowledge or administrative capacity to navigate them. Resolving one issue in isolation may produce little improvement because another part of the situation continues to constrain what can happen.',
           'Pathways Support is being developed for that space.',
-          'Its starting point is not:',
-          '**Which service category does this belong to?**',
-          'It is:',
+          'Its starting point is a wider question:',
           '**What is happening across the situation as a whole, and what would make progress more achievable?**',
           'That means developing a coherent view of the relevant parts of the situation, how they interact, what matters most, what is urgent, what depends on what, and where an additional capability or intervention could make the greatest difference.',
           {
@@ -228,7 +216,7 @@ export const initiatives: Initiative[] = [
             callout: 'What becomes visible when you model the whole situation?',
           },
           'Whole-situation modelling can reveal dependencies that are difficult to see when each issue is treated separately. Several apparent problems may share one underlying constraint. One intervention may need to happen before several others become useful. Two issues may be reinforcing one another. A relatively small change may unlock progress across several domains.',
-          'The objective is not to construct an exhaustive theory of someone’s life. It is to widen the frame enough to identify relationships that materially affect the next decision.',
+          'The objective is to widen the frame just enough to identify the relationships that materially affect the next decision.',
         ],
       },
       {
@@ -246,7 +234,7 @@ export const initiatives: Initiative[] = [
               'maintaining continuity while multiple organisations are involved.',
             ],
           },
-          'Pathways Support is not intended to replace specialist professional services. Its role sits around those functions: helping make the wider situation more intelligible and helping people move through it with greater coherence.',
+          'Pathways Support works alongside specialist professional services, helping make the wider situation more intelligible and helping people move through it with greater coherence.',
         ],
       },
     ],
@@ -267,9 +255,9 @@ export const initiatives: Initiative[] = [
           'There is a substantial range of useful support that sits between handling something entirely alone and entering a formal specialist service.',
           'People help one another in that space constantly. They listen, explain something unfamiliar, make an introduction, help organise a task, share relevant experience, accompany someone through a difficult process, or notice that another person could use support.',
           'Communities already produce many of these forms of care informally. The Real Good Care Collective asks what becomes possible when a community develops that capability more deliberately.',
-          'The objective is not to professionalise ordinary human support or blur the distinction between community care and specialist practice. It is to make those distinctions clearer while strengthening the forms of support that legitimately sit around them.',
+          'The objective is to strengthen the everyday forms of support that sit around specialist practice, while keeping the distinction between community care and specialist practice clear.',
           'That means developing people who are good at welcoming participants, facilitating conversations, providing practical guidance, helping organise next steps, recognising when a person may need something more specialised, and making an appropriate connection when they do.',
-          'It also means maintaining relationships with people and organisations that hold capabilities the community should not attempt to reproduce internally.',
+          'It also means maintaining relationships with people and organisations that hold specialist capabilities the community can draw on.',
           'Over time, the Care Collective could become a connective layer around Real Good Communities: people who know how to help within their role, understand where that role ends, and know how to bring in additional capability when it is needed.',
         ],
       },
@@ -304,7 +292,7 @@ export const initiatives: Initiative[] = [
               },
             ],
           },
-          'The aim is to strengthen the community’s capacity to care without pretending that community care can or should substitute for every other form of support.',
+          'The aim is to strengthen the community’s capacity to care, as one valued part of a wider network of support.',
         ],
       },
     ],
@@ -323,7 +311,7 @@ export const initiatives: Initiative[] = [
         blocks: [
           'Real Good Digital Spaces begins with a practical question: what useful functions should a digital layer perform for the community that is actually developing?',
           'Some interactions begin in person but need somewhere to continue. People meet someone useful and later struggle to find them again. A conversation produces knowledge that disappears into chat history. Someone would contribute to a project if the opportunity were visible. A person cannot attend locally but could participate in work that is naturally digital.',
-          'These are different requirements, and they do not necessarily imply the same technological solution.',
+          'These are different requirements, and each may be best served by a different technological solution.',
           'The immediate approach is to use existing platforms where they already work well and allow the community’s needs to become clearer before committing to purpose-built technology.',
         ],
       },
@@ -354,12 +342,12 @@ export const initiatives: Initiative[] = [
               },
               {
                 title: 'Distributed participation',
-                text: 'Creating meaningful ways to participate across geography rather than treating digital involvement as a secondary version of local participation.',
+                text: 'Creating meaningful ways to participate across geography, with digital involvement valued as fully as local participation.',
               },
             ],
           },
-          'The long-term digital architecture should be determined by demonstrated community requirements rather than by a predetermined idea of what a social platform ought to look like.',
-          'Real Good Digital Spaces is therefore not primarily a software project. It is part of the wider question of how digital infrastructure can support a functioning social system without replacing the relationships and practices that make the system valuable.',
+          'The long-term digital architecture will be shaped by demonstrated community requirements, growing from what people actually use and value.',
+          'Real Good Digital Spaces is therefore part of a wider social question: how digital infrastructure can support a functioning social system by strengthening the relationships and practices that make the system valuable.',
         ],
       },
     ],

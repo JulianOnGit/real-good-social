@@ -91,7 +91,7 @@ export function Blocks({ blocks }: { blocks: Block[] }) {
         }
         return (
           <aside key={i} className="callout callout--question">
-            {block.label && <p className="label mt-0">{block.label}</p>}
+            {block.label && <p className="label">{block.label}</p>}
             <p className="callout__text">
               <Text text={block.callout} />
             </p>

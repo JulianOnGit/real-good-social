@@ -1,6 +1,7 @@
 import { Link, data } from 'react-router';
 import type { Route } from './+types/initiative';
-import StageBadge from '../components/StageBadge';
+import PageHero from '../components/PageHero';
+import Stages from '../components/Stages';
 import CtaBand from '../components/CtaBand';
 import { Sections } from '../components/Blocks';
 import { getInitiative } from '../data/initiatives';
@@ -26,39 +27,33 @@ export default function InitiativeDetail({ loaderData }: Route.ComponentProps) {
 
   return (
     <>
-      <section className="page-hero">
-        <div className="container container-narrow">
-          <p className="breadcrumb">
-            <Link to="/initiatives">Initiatives</Link>
-            <span aria-hidden="true"> / </span>
-            {initiative.name}
-          </p>
-          <h1>{initiative.name}</h1>
-          <dl className="initiative-facts">
+      <PageHero
+        eyebrow="Initiatives"
+        eyebrowTo="/initiatives"
+        title={initiative.name}
+        lead={initiative.tagline}
+      >
+        <dl className="facts">
+          <div>
+            <dt className="label">Area</dt>
+            <dd>{initiative.area}</dd>
+          </div>
+          <div>
+            <dt className="label">Stage</dt>
+            <dd>
+              <Stages stages={initiative.stages} />
+            </dd>
+          </div>
+          {initiative.location && (
             <div>
-              <dt>Area</dt>
-              <dd>{initiative.area}</dd>
+              <dt className="label">Founding location</dt>
+              <dd>{initiative.location}</dd>
             </div>
-            <div>
-              <dt>Stage</dt>
-              <dd className="initiative-detail__stages">
-                {initiative.stages.map((s) => (
-                  <StageBadge key={s} stage={s} />
-                ))}
-              </dd>
-            </div>
-            {initiative.location && (
-              <div>
-                <dt>Founding location</dt>
-                <dd>{initiative.location}</dd>
-              </div>
-            )}
-          </dl>
-          <p className="lead">{initiative.tagline}</p>
-        </div>
-      </section>
+          )}
+        </dl>
+      </PageHero>
 
-      <section className="section section--surface">
+      <section className="section">
         <div className="container container-narrow prose">
           <Sections sections={initiative.sections} />
 

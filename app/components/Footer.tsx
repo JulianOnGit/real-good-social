@@ -10,14 +10,11 @@ export default function Footer() {
         <div className="site-footer__brand">
           <Logo onInk />
           <p className="site-footer__tagline">Building practical systems for social good.</p>
-          <p className="site-footer__org">
-            We create technology, ventures, communities and organisational systems that expand our
-            collective capacity to create positive change.
-          </p>
+          <p className="site-footer__org">Real Good Social is an early-stage social enterprise.</p>
         </div>
 
         <nav className="site-footer__col" aria-label="Site">
-          <h2 className="site-footer__heading">Explore</h2>
+          <h2 className="label">Explore</h2>
           <ul>
             <li><Link to="/about">About</Link></li>
             <li><Link to="/what-we-do">What We Do</Link></li>
@@ -27,12 +24,12 @@ export default function Footer() {
         </nav>
 
         <nav className="site-footer__col" aria-label="Engage">
-          <h2 className="site-footer__heading">Engage</h2>
+          <h2 className="label">Engage</h2>
           <ul>
-            <li><Link to="/partner">Partner With Us</Link></li>
+            <li><Link to="/partner">Work With Us</Link></li>
             <li><Link to="/contact">Contact</Link></li>
             <li>
-              <a className="site-footer__email" href="mailto:julian@realgoodnetwork.org">
+              <a href="mailto:julian@realgoodnetwork.org">
                 julian@realgoodnetwork.org
               </a>
             </li>
@@ -40,7 +37,7 @@ export default function Footer() {
         </nav>
 
         <nav className="site-footer__col" aria-label="Organisation">
-          <h2 className="site-footer__heading">Organisation</h2>
+          <h2 className="label">Organisation</h2>
           <ul>
             <li><Link to="/privacy">Privacy</Link></li>
             <li><Link to="/terms">Terms</Link></li>
@@ -51,7 +48,7 @@ export default function Footer() {
 
       <div className="container site-footer__legal">
         <p>© {year} {LEGAL_ENTITY}.</p>
-        <p className="muted-on-ink">
+        <p>
           {BUSINESS_NAME} · Operated by {LEGAL_ENTITY}
         </p>
       </div>

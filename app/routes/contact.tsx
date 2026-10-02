@@ -90,10 +90,10 @@ export default function Contact() {
     return (
       <>
         <PageHero eyebrow="Contact" title="Your message is ready" />
-        <section className="section section--surface">
+        <section className="section">
           <div className="container container-narrow">
             <div className="callout callout--success" role="status">
-              <h2 className="mt-0">Finish sending it from your email application</h2>
+              <h2>Finish sending it from your email application</h2>
               <p>
                 We have opened a pre-filled message to <strong>{CONTACT_EMAIL}</strong>. Nothing
                 has been sent until you press send in your email application.
@@ -120,9 +120,9 @@ export default function Contact() {
         lead="Tell us what you’re working on and where you think Real Good could contribute."
       />
 
-      <section className="section section--surface">
+      <section className="section">
         <div className="container contact-grid">
-          <form className="contact-form card" onSubmit={handleSubmit} noValidate>
+          <form className="card contact-form" onSubmit={handleSubmit} noValidate>
             <div className="field">
               <label htmlFor="name">Name</label>
               <input id="name" name="name" type="text" autoComplete="name" required />
@@ -170,32 +170,32 @@ export default function Contact() {
             <button className="btn" type="submit">
               Compose message
             </button>
-            <p className="meta form-privacy">
+            <p className="meta">
               Nothing is sent until you choose to send it from your email application. See our{' '}
               <Link to="/privacy">privacy notice</Link>.
             </p>
           </form>
 
           <aside className="contact-aside">
-            <h2>Contact details</h2>
-            <dl className="contact-details">
-              <dt>Email</dt>
-              <dd>
-                <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
-              </dd>
-              <dt>Based in</dt>
-              <dd>Australia</dd>
+            <dl className="facts facts--stacked">
+              <div>
+                <dt className="label">Email</dt>
+                <dd>
+                  <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
+                </dd>
+              </div>
+              <div>
+                <dt className="label">Based in</dt>
+                <dd>Australia</dd>
+              </div>
+              {ABN && (
+                <div>
+                  <dt className="label">ABN</dt>
+                  <dd>{ABN}</dd>
+                </div>
+              )}
             </dl>
-            <hr className="divider" />
-            <p className="muted">
-              Real Good Social is operated by {LEGAL_ENTITY}.
-            </p>
-            {ABN && (
-              <dl className="contact-details">
-                <dt>ABN</dt>
-                <dd>{ABN}</dd>
-              </dl>
-            )}
+            <p className="meta">Real Good Social is operated by {LEGAL_ENTITY}.</p>
           </aside>
         </div>
       </section>

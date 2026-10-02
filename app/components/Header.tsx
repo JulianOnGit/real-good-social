@@ -7,7 +7,6 @@ const NAV = [
   { to: '/what-we-do', label: 'What We Do' },
   { to: '/initiatives', label: 'Initiatives' },
   { to: '/insights', label: 'Insights' },
-  { to: '/partner', label: 'Partner With Us' },
   { to: '/contact', label: 'Contact' },
 ];
 

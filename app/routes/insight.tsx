@@ -1,8 +1,10 @@
 import { Link, data } from 'react-router';
 import type { Route } from './+types/insight';
+import PageHero from '../components/PageHero';
 import CtaBand from '../components/CtaBand';
 import { Blocks } from '../components/Blocks';
-import { getInsight, insightSummary } from '../data/insights';
+import { InsightByline } from '../components/InsightMeta';
+import { getInsight, insightAuthor, insightSummary, isoDate, PUBLICATION } from '../data/insights';
 
 export async function loader({ params }: Route.LoaderArgs) {
   const insight = getInsight(params.slug);
@@ -14,9 +16,32 @@ export async function loader({ params }: Route.LoaderArgs) {
 
 export function meta({ data: loaded }: Route.MetaArgs) {
   if (!loaded?.insight) return [{ title: 'Insight — Real Good Social' }];
+  const { insight } = loaded;
+  const author = insightAuthor(insight);
+  const published = insight.date && isoDate(insight.date);
+  const modified = insight.updated && isoDate(insight.updated);
   return [
-    { title: `${loaded.insight.title} — Real Good Social` },
-    { name: 'description', content: insightSummary(loaded.insight) },
+    { title: `${insight.title} — Real Good Social` },
+    { name: 'description', content: insightSummary(insight) },
+    { name: 'author', content: author.name },
+    { property: 'og:type', content: 'article' },
+    ...(published ? [{ property: 'article:published_time', content: published }] : []),
+    ...(modified ? [{ property: 'article:modified_time', content: modified }] : []),
+    { property: 'article:section', content: insight.category },
+    {
+      'script:ld+json': {
+        '@context': 'https://schema.org',
+        '@type': 'Article',
+        headline: insight.title,
+        description: insightSummary(insight),
+        articleSection: insight.category,
+        author: { '@type': 'Person', name: author.name, jobTitle: author.role },
+        publisher: { '@type': 'Organization', name: 'Real Good Social' },
+        isPartOf: { '@type': 'Blog', name: PUBLICATION },
+        ...(published && { datePublished: published }),
+        ...(modified && { dateModified: modified }),
+      },
+    },
   ];
 }
 
@@ -25,24 +50,22 @@ export default function InsightDetail({ loaderData }: Route.ComponentProps) {
 
   return (
     <>
-      <section className="page-hero">
-        <div className="container container-narrow">
-          <p className="breadcrumb">
-            <Link to="/insights">Insights</Link>
-            <span aria-hidden="true"> / </span>
-            {insight.category}
-          </p>
-          <h1>{insight.title}</h1>
-        </div>
-      </section>
+      <PageHero
+        eyebrow={PUBLICATION}
+        eyebrowTo="/insights"
+        title={insight.title}
+        variant="article"
+      >
+        <InsightByline insight={insight} />
+      </PageHero>
 
-      <section className="section section--surface">
+      <section className="section">
         <article className="container container-narrow prose article-body">
           <Blocks blocks={insight.body} />
 
-          <hr className="divider" />
+          <hr />
           <p className="meta">
-            Real Good Insights explores questions, observations and working models that emerge from
+            {PUBLICATION} explores questions, observations and working models that emerge from
             our projects and research. We use these ideas to sharpen how we understand problems,
             design interventions and learn from practice. Where the evidence is still developing,
             we present the thinking as provisional and open to refinement.

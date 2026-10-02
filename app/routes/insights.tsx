@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import { Link } from 'react-router';
 import type { Route } from './+types/insights';
 import PageHero from '../components/PageHero';
-import { insights, insightSummary, hasTopic, INSIGHT_TOPICS } from '../data/insights';
+import { InsightTeaser } from '../components/InsightMeta';
+import { insights, hasTopic, INSIGHT_TOPICS, PUBLICATION } from '../data/insights';
 
 export function meta(_: Route.MetaArgs) {
   return [
@@ -24,34 +24,19 @@ export default function Insights() {
   return (
     <>
       <PageHero
-        eyebrow="Insights"
+        eyebrow={PUBLICATION}
         title="Ideas for building a better world"
-        lead="Real Good Insights develops ideas arising from the practical and conceptual work behind the organisation. Some concern questions of agency and capability; others concern communities, institutions, coordination, social infrastructure and the design of organisations capable of producing sustained social value."
-      >
-        <p>
-          I am interested particularly in places where familiar categories become insufficiently
-          precise. What does it mean for a programme to increase agency rather than merely provide
-          a service? What capabilities can exist at the level of a community rather than an
-          individual? How does the representation of a problem change when we model the wider
-          situation around it? What kinds of knowledge can communities produce that organisations
-          struggle to generate internally?
-        </p>
-        <p>
-          These articles are intended to develop those questions rather than prematurely resolve
-          them. Where an idea is provisional, I treat it as such. Where a concept is useful only
-          under certain conditions, those conditions matter. The aim is to make the reasoning
-          behind Real Good more explicit and, over time, to subject more of it to practical and
-          empirical scrutiny.
-        </p>
-      </PageHero>
+        lead="Real Good Insights develops ideas arising from the practical and conceptual work behind the organisation."
+      />
 
-      <section className="section section--surface">
+      <section className="section">
         <div className="container container-narrow">
           <div className="filter-bar" role="group" aria-label="Filter insights by topic">
             {filters.map((f) => (
               <button
                 key={f}
-                className={`filter-chip ${filter === f ? 'is-active' : ''}`}
+                type="button"
+                className="filter-chip"
                 aria-pressed={filter === f}
                 onClick={() => setFilter(f)}
               >
@@ -60,24 +45,38 @@ export default function Insights() {
             ))}
           </div>
 
-          <ul className="insight-list">
+          <ul className="ruled-list">
             {visible.map((i) => (
               <li key={i.slug}>
-                <article className="insight-row">
-                  <p className="meta">
-                    <span className="tag">{i.category}</span>
-                  </p>
-                  <h2>
-                    <Link to={`/insights/${i.slug}`}>{i.title}</Link>
-                  </h2>
-                  <p className="muted">{insightSummary(i)}</p>
-                  <Link to={`/insights/${i.slug}`} className="text-link">
-                    Read the insight
-                  </Link>
-                </article>
+                <InsightTeaser insight={i} />
               </li>
             ))}
           </ul>
+        </div>
+      </section>
+
+      <section className="section section--alt">
+        <div className="container container-narrow prose">
+          <p className="eyebrow">About {PUBLICATION}</p>
+          <p>
+            Some of these essays are about agency and capability. Others are about communities,
+            institutions and the organisations people build together: how they coordinate, what
+            holds them up, and how they can keep doing good over time.
+          </p>
+          <p>
+            We’re most interested in the places where the usual words stop working. What’s the
+            difference between a programme that gives someone a service and one that leaves them
+            more able to act for themselves? Can a community have capabilities that none of its
+            members have alone? What changes when you stop looking at a problem by itself and start
+            looking at everything around it? What can communities know that organisations can’t
+            work out from the inside?
+          </p>
+          <p>
+            Real Good Social is still working through these questions, and writing is one of the
+            ways we do it. Some of the ideas here are early. We share them anyway, because thinking
+            in the open is how our ideas get sharper, and how they eventually get tested against
+            what actually happens.
+          </p>
         </div>
       </section>
     </>

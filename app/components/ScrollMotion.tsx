@@ -17,19 +17,14 @@ import { useLocation } from 'react-router';
  *   - Solos   — standalone blocks that reveal on their own.
  */
 
-const GROUP_SELECTOR = [
-  '.process',
-  '.ticked',
-  '.chip-list',
-  '.link-list',
-  '.insight-list',
-  '.grid',
-].join(',');
+const GROUP_SELECTOR = ['.ruled-list', '.ruled-grid'].join(',');
 
 const SOLO_SELECTOR = [
   '[data-reveal]',
   '.section-head',
-  '.latest-insight',
+  '.split__aside',
+  '.split__body',
+  '.teaser',
   '.statement',
   '.callout',
   '.filter-bar',

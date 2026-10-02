@@ -1,39 +1,43 @@
 /* =========================================================================
    Real Good Social — design system
    An editorial, institutional system with restrained warmth. Craft comes from
-   typography, spacing rhythm, and hairline detailing rather than ornament.
-   Palette and pairings follow the design brief (sections 6–8).
+   typography, spacing rhythm and hairline rules rather than boxes or ornament.
+   Palette follows the design brief (§7).
+
+   The whole site is built from a small set of decisions:
+     - Fields:   paper (default), paper-alt, sky (one accent per page), ink.
+     - Content:  ruled grids and ruled lists. Boxes (`.card`) are kept for
+                 things you interact with, such as the contact form.
+     - Labels:   one small-caps label style, everywhere a label is needed.
+     - Headings: h1 for the page, h2 for sections, h3 for items.
    ========================================================================= */
 
 :root {
   /* --- Brand palette (brief §7) --- */
   --rg-blue: #2457d6;
   --rg-blue-deep: #1b429f;
-  --rg-blue-tint: #dde8fa;
+  --rg-sky: #dde8fa;
   --rg-ink: #14213d;
   --rg-green: #2f7d61;
   --rg-gold: #d6a84b;
-  --rg-stone: #687080;
 
-  /* --- Paper & surfaces ---
-     Warm, layered neutrals. The page is paper; cards sit on it quietly. */
+  /* --- Fields & surfaces --- */
   --paper: #f8f7f3;
-  --paper-sunk: #f2f0e9;
-  --surface: #fffefb;
-  --surface-raised: #ffffff;
+  --paper-alt: #f2f0e9;
+  --surface: #ffffff;
 
   /* --- Rules ---
-     Warm hairlines read as printed rules; the cool border is kept for inputs. */
+     `--rule` for page chrome (header, field edges); `--rule-strong` for the
+     hairlines content hangs from; `--rule-input` for form controls. */
   --rule: #e5e1d7;
   --rule-strong: #d3cec1;
-  --rule-cool: #d9dce2;
-  --rule-ink: rgba(255, 255, 255, 0.14);
+  --rule-input: #d9dce2;
+  --rule-on-ink: rgba(255, 255, 255, 0.14);
 
-  /* --- Text --- */
+  /* --- Text --- all pass WCAG AA on every field they are used on. */
   --text: #1b2947;
   --text-strong: #14213d;
   --text-muted: #646c7e;
-  --text-faint: #8a91a0;
   --text-on-ink: #cdd7ea;
   --text-on-ink-muted: #8fa0c1;
 
@@ -45,10 +49,10 @@
   /* --- Type --- */
   --font-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
 
-  /* Fluid scale — a considered ratio rather than arbitrary sizes. */
-  --step--2: 0.75rem;
-  --step--1: 0.8125rem;
-  --step-0: 1.0625rem;
+  --step--2: 0.75rem; /* labels */
+  --step--1: 0.875rem; /* metadata, fine print */
+  --step-ui: 0.9375rem; /* navigation, buttons, text links */
+  --step-0: 1.0625rem; /* body */
   --step-1: clamp(1.15rem, 0.4vw + 1.05rem, 1.3rem);
   --step-2: clamp(1.35rem, 0.8vw + 1.15rem, 1.6rem);
   --step-3: clamp(1.6rem, 1.6vw + 1.25rem, 2.15rem);
@@ -62,10 +66,10 @@
   --space-m: 1.5rem;
   --space-l: 2.25rem;
   --space-xl: 3.5rem;
-  --space-2xl: clamp(4rem, 8vw, 7rem);
+  --space-2xl: clamp(4rem, 8vw, 6.5rem);
+  --gutter: clamp(1.5rem, 4vw, 3rem);
 
-  /* --- Geometry ---
-     Small radii read as architectural/printed; large radii read as consumer app. */
+  /* --- Geometry --- small radii read as printed, not app-like. */
   --radius: 4px;
   --radius-lg: 6px;
   --radius-pill: 999px;
@@ -73,12 +77,14 @@
   --maxw: 1180px;
   --maxw-narrow: 44rem;
   --measure: 68ch;
+  --header-h: 74px;
 
-  /* --- Elevation — used sparingly; hairlines do most of the work. --- */
-  --shadow-sm: 0 1px 2px rgba(20, 33, 61, 0.04);
   --shadow-md: 0 10px 30px -12px rgba(20, 33, 61, 0.18);
 
+  /* --- Motion --- */
   --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --ease-out: cubic-bezier(0.16, 0.84, 0.44, 1);
+  --ease-soft: cubic-bezier(0.22, 0.61, 0.36, 1);
 }
 
 /* --- Reset / base --- */
@@ -89,9 +95,8 @@
 }
 
 /* Note: no global `scroll-behavior: smooth`. It makes the scroll reset on
-   route change animate all the way up through the page, which reads as the
-   page "scrolling itself" on every navigation. Landing at the top of a new
-   page should be instant. */
+   route change animate all the way up through the page. Landing at the top of
+   a new page should be instant. */
 html {
   -webkit-text-size-adjust: 100%;
 }
@@ -129,16 +134,14 @@ img {
   color: var(--text-strong);
 }
 
-/* --- Headings: confident humanist sans.
-   The editorial serif is reserved for long-form reading (Insights articles). --- */
+/* --- Headings --- line length is managed by `text-wrap: balance`, not by
+   per-heading `ch` caps. */
 h1,
 h2,
 h3,
 h4 {
-  font-family: var(--font-sans);
   color: var(--text-strong);
   font-weight: 700;
-  letter-spacing: -0.025em;
   text-wrap: balance;
   margin: 0 0 0.5em;
 }
@@ -166,6 +169,7 @@ h4 {
   font-size: var(--step-1);
   font-weight: 600;
   line-height: 1.3;
+  letter-spacing: -0.015em;
 }
 
 p {
@@ -200,16 +204,13 @@ strong {
 
 hr {
   border: none;
-  border-top: 1px solid var(--rule);
-  margin-block: var(--space-l);
+  border-top: 1px solid var(--rule-strong);
+  margin: var(--space-l) 0;
 }
 
-/* Numerals in metadata should align. */
-.meta,
-.badge,
 time,
-.process__num,
-.area-card__num {
+.meta,
+.ruled-list__num {
   font-variant-numeric: tabular-nums;
 }
 
@@ -248,7 +249,10 @@ time,
   top: 1rem;
 }
 
-/* --- Layout primitives --- */
+/* =========================================================================
+   Layout
+   ========================================================================= */
+
 .container {
   width: 100%;
   max-width: var(--maxw);
@@ -266,56 +270,84 @@ time,
   margin-inline: auto;
 }
 
+/* Sections: one rhythm. Fields alternate paper → paper-alt so adjacent sections
+   separate without boxes; sky is the one accent field a page may use. */
 .section {
   padding-block: var(--space-2xl);
 }
-.section--tight {
-  padding-block: var(--space-xl);
-}
-.section--surface {
-  background: var(--surface);
+.section--alt {
+  background: var(--paper-alt);
   border-block: 1px solid var(--rule);
 }
-.section--sky {
-  background: var(--rg-blue-tint);
+.section--accent {
+  background: var(--rg-sky);
 }
 .section--ink {
   background: var(--rg-ink);
   color: var(--text-on-ink);
 }
-.section--ink h2,
-.section--ink h3 {
+.section--ink :is(h2, h3) {
   color: #fff;
 }
-.section--ink .lead {
-  color: var(--text-on-ink);
+
+/* Split: a heading column held on the left, content on the right. On wide
+   screens the heading stays in view beside long content. Consecutive splits
+   in one section are separated by a rule. */
+.split {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: var(--space-l) var(--gutter);
+  align-items: start;
+}
+.split + .split {
+  margin-top: var(--space-xl);
+  padding-top: var(--space-xl);
+  border-top: 1px solid var(--rule-strong);
+}
+.split__aside > :last-child,
+.split__body > :last-child {
+  margin-bottom: 0;
+}
+.split__aside h2 {
+  margin-bottom: var(--space-m);
+}
+@media (min-width: 900px) {
+  .split__aside {
+    position: sticky;
+    top: calc(var(--header-h) + var(--space-l));
+  }
+}
+@media (max-width: 899px) {
+  .split {
+    grid-template-columns: 1fr;
+  }
 }
 
-/* --- Editorial section marker: small caps label with a hairline lead-in --- */
+/* =========================================================================
+   Typographic roles
+   ========================================================================= */
+
+/* One small-caps label style for every label: eyebrows, card kickers, field
+   names in definition lists, footer headings. */
+.label,
+.eyebrow {
+  font-size: var(--step--2);
+  font-weight: 600;
+  letter-spacing: 0.13em;
+  line-height: 1.4;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* Section marker: the label in brand blue with a hairline lead-in. */
 .eyebrow {
   display: flex;
   align-items: center;
   gap: 0.7rem;
-  font-family: var(--font-sans);
-  font-size: var(--step--2);
-  font-weight: 600;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
   color: var(--rg-blue);
   margin: 0 0 var(--space-s);
 }
-.eyebrow::before {
-  content: '';
-  width: 1.6rem;
-  height: 1px;
-  background: currentColor;
-  opacity: 0.55;
-  flex: none;
-}
-/* Centred sections get a rule on both sides so the marker reads as symmetrical. */
-.center .eyebrow {
-  justify-content: center;
-}
+.eyebrow::before,
 .center .eyebrow::after {
   content: '';
   width: 1.6rem;
@@ -324,36 +356,63 @@ time,
   opacity: 0.55;
   flex: none;
 }
+.center .eyebrow {
+  justify-content: center;
+}
 .section--ink .eyebrow {
   color: var(--rg-gold);
+}
+/* On detail pages the eyebrow links back to the parent listing. */
+.eyebrow a {
+  color: inherit;
+  text-decoration: none;
+}
+.eyebrow a:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
 }
 
 .lead {
   font-size: var(--step-1);
   line-height: 1.6;
   color: var(--text-muted);
-  max-width: 58ch;
+  max-width: 60ch;
+}
+.section--ink .lead {
+  color: var(--text-on-ink-muted);
 }
 
-/* A lede/pull-quote voice — large, light sans with generous leading. */
+/* A statement voice — large, light sans with generous leading. */
 .statement {
-  font-family: var(--font-sans);
   font-size: var(--step-3);
   font-weight: 400;
-  line-height: 1.4;
+  line-height: 1.45;
   letter-spacing: -0.025em;
   color: var(--text-strong);
-  text-wrap: pretty;
+  max-width: 36ch;
 }
 .center .statement {
-  max-width: 42ch;
   margin-inline: auto;
 }
-.section--ink .statement {
-  color: #fff;
+
+.meta {
+  font-size: var(--step--1);
+  line-height: 1.5;
+  color: var(--text-muted);
 }
 
-/* --- Buttons --- */
+.muted {
+  color: var(--text-muted);
+}
+
+.center {
+  text-align: center;
+}
+
+/* =========================================================================
+   Actions
+   ========================================================================= */
+
 .btn {
   --btn-bg: var(--rg-blue);
   --btn-fg: #fff;
@@ -364,7 +423,7 @@ time,
   gap: 0.5rem;
   font-family: var(--font-sans);
   font-weight: 600;
-  font-size: 0.95rem;
+  font-size: var(--step-ui);
   line-height: 1;
   padding: 0.9rem 1.4rem;
   border-radius: var(--radius);
@@ -374,17 +433,13 @@ time,
   cursor: pointer;
   text-decoration: none;
   transition: background 0.16s var(--ease), border-color 0.16s var(--ease),
-    color 0.16s var(--ease);
+    color 0.16s var(--ease), transform 0.16s var(--ease);
 }
 .btn:hover {
   --btn-bg: var(--rg-blue-deep);
   --btn-border: var(--rg-blue-deep);
-  color: #fff;
+  color: var(--btn-fg);
   text-decoration: none;
-}
-.btn:disabled {
-  opacity: 0.55;
-  cursor: not-allowed;
 }
 .btn--secondary {
   --btn-bg: transparent;
@@ -394,7 +449,6 @@ time,
 .btn--secondary:hover {
   --btn-bg: transparent;
   --btn-border: var(--rg-ink);
-  color: var(--text-strong);
 }
 .btn--on-ink {
   --btn-bg: #fff;
@@ -404,7 +458,6 @@ time,
 .btn--on-ink:hover {
   --btn-bg: #eef2fa;
   --btn-border: #eef2fa;
-  color: var(--rg-ink);
 }
 .btn--on-ink.btn--secondary {
   --btn-bg: transparent;
@@ -414,11 +467,10 @@ time,
 .btn--on-ink.btn--secondary:hover {
   --btn-bg: rgba(255, 255, 255, 0.07);
   --btn-border: #fff;
-  color: #fff;
 }
 .btn--sm {
   padding: 0.65rem 1rem;
-  font-size: 0.875rem;
+  font-size: var(--step--1);
 }
 
 .btn-row {
@@ -426,15 +478,18 @@ time,
   flex-wrap: wrap;
   gap: 0.75rem;
 }
+.center .btn-row {
+  justify-content: center;
+}
 
-/* --- Arrow link --- */
+/* Arrow link. No underline: on an inline-flex link it stops short of the
+   arrow and looks broken. The colour deepens and the arrow nudges instead. */
 .text-link {
   display: inline-flex;
   align-items: baseline;
   gap: 0.45rem;
-  font-family: var(--font-sans);
   font-weight: 600;
-  font-size: 0.95rem;
+  font-size: var(--step-ui);
   color: var(--rg-blue);
   text-decoration: none;
   width: fit-content;
@@ -444,153 +499,173 @@ time,
   transition: transform 0.18s var(--ease);
 }
 .text-link:hover {
-  text-decoration: underline;
-  text-underline-offset: 0.22em;
-  text-decoration-thickness: 1px;
+  color: var(--rg-blue-deep);
+  text-decoration: none;
 }
 .text-link:hover::after {
   transform: translateX(4px);
 }
 
-/* --- Grids --- */
-.grid {
-  display: grid;
-  gap: var(--space-m);
-}
-.grid-2 {
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-}
-.grid-3 {
-  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
-}
-.grid-4 {
-  grid-template-columns: repeat(auto-fit, minmax(225px, 1fr));
-}
+/* =========================================================================
+   Content patterns
+   ========================================================================= */
 
-/* --- Card: paper with a hairline, not a floating panel --- */
-.card {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  background: var(--surface-raised);
-  border: 1px solid var(--rule);
-  border-radius: var(--radius-lg);
-  padding: var(--space-m);
-  transition: border-color 0.2s var(--ease), box-shadow 0.2s var(--ease);
+/* --- Ruled grid: items hang from a hairline in 2–4 columns. --- */
+.ruled-grid {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: var(--space-l) var(--gutter);
 }
-.card h3 {
+.ruled-grid > li {
+  margin-top: 0;
+  padding-top: var(--space-s);
+  border-top: 1px solid var(--rule-strong);
+}
+.ruled-grid h3 {
+  font-size: var(--step-1);
   margin-bottom: 0.35rem;
 }
-.card p:last-child {
+.ruled-grid p {
   margin-bottom: 0;
 }
-.card--interactive:hover {
-  border-color: var(--rule-strong);
-  box-shadow: var(--shadow-md);
+.ruled-grid p + p {
+  margin-top: 0.75em;
 }
-
-.card__icon {
-  width: 2.5rem;
-  height: 2.5rem;
-  display: grid;
-  place-items: center;
-  border-radius: var(--radius);
-  background: var(--rg-blue-tint);
+/* Fewer, fuller entries (a page's main content rather than a summary): more
+   air between rows, a kicker label and a larger title. */
+.ruled-grid--roomy {
+  row-gap: var(--space-xl);
+}
+.ruled-grid--roomy > li {
+  padding-top: var(--space-m);
+}
+.ruled-grid--roomy .label {
+  margin-bottom: 0.6rem;
+}
+.ruled-grid--roomy :is(h2, h3) {
+  font-size: var(--step-2);
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+  margin-bottom: 0.5rem;
+}
+.ruled-grid--roomy p:not(.label) {
+  max-width: 52ch;
+}
+/* A step number inside a label. */
+.label__num {
   color: var(--rg-blue);
-  margin-bottom: var(--space-s);
+  margin-right: 0.75em;
+}
+.ruled-grid--2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.ruled-grid--3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.ruled-grid--4 {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+/* A list of short names rather than items with copy: tighter rows. */
+.ruled-grid--names {
+  row-gap: 0;
+}
+.ruled-grid--names > li {
+  padding-block: 1.1rem;
+  font-size: var(--step-1);
+  font-weight: 500;
+  line-height: 1.3;
+  letter-spacing: -0.015em;
+  color: var(--text-strong);
+}
+@media (max-width: 899px) {
+  .ruled-grid--3,
+  .ruled-grid--4 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 599px) {
+  .ruled-grid--2,
+  .ruled-grid--3,
+  .ruled-grid--4 {
+    grid-template-columns: 1fr;
+  }
 }
 
-/* --- Stage badges: typographic, not chunky --- */
-.badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  font-size: var(--step--2);
+/* --- Ruled list: full-width rows between hairlines. Rows can carry a key
+   column on the left — a step number (`--numbered`) or a heading (`--keyed`). --- */
+.ruled-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  border-top: 1px solid var(--rule-strong);
+}
+.ruled-list > li {
+  margin-top: 0;
+  padding-block: clamp(1.4rem, 2.4vw, 1.9rem);
+  border-bottom: 1px solid var(--rule-strong);
+}
+.ruled-list--numbered > li,
+.ruled-list--keyed > li {
+  display: grid;
+  gap: 0.4rem var(--space-m);
+  align-items: baseline;
+}
+.ruled-list--numbered > li {
+  grid-template-columns: 3.5rem minmax(0, 1fr);
+}
+.ruled-list--keyed > li {
+  grid-template-columns: minmax(0, 4fr) minmax(0, 8fr);
+}
+.ruled-list h2,
+.ruled-list h3 {
+  margin-bottom: 0.3rem;
+}
+.ruled-list--keyed h2 {
+  font-size: var(--step-2);
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+}
+.ruled-list h3 {
+  font-size: var(--step-1);
+}
+.ruled-list p {
+  max-width: 60ch;
+}
+.ruled-list li > div > :last-child {
+  margin-bottom: 0;
+}
+.ruled-list__num {
+  font-size: var(--step-ui);
   font-weight: 600;
-  letter-spacing: 0.09em;
-  text-transform: uppercase;
-  padding: 0.28rem 0.55rem;
-  border-radius: var(--radius);
-  border: 1px solid currentColor;
-  white-space: nowrap;
+  color: var(--rg-blue);
   line-height: 1;
 }
-.badge::before {
-  content: '';
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: currentColor;
-  flex: none;
-}
-.badge--exploring {
-  color: var(--text-muted);
-  background: color-mix(in srgb, var(--text-muted) 7%, transparent);
-}
-.badge--researching {
-  color: #5a4bb3;
-  background: color-mix(in srgb, #5a4bb3 7%, transparent);
-}
-.badge--designing {
-  color: var(--rg-blue);
-  background: color-mix(in srgb, var(--rg-blue) 7%, transparent);
-}
-.badge--early-operation {
-  color: #8a3f6b;
-  background: color-mix(in srgb, #8a3f6b 7%, transparent);
-}
-.badge--prototyping {
-  color: var(--warning);
-  background: color-mix(in srgb, var(--warning) 8%, transparent);
-}
-.badge--piloting {
-  color: #1f6f8b;
-  background: color-mix(in srgb, #1f6f8b 8%, transparent);
-}
-.badge--operating {
-  color: var(--success);
-  background: color-mix(in srgb, var(--success) 8%, transparent);
+@media (max-width: 599px) {
+  .ruled-list--numbered > li,
+  .ruled-list--keyed > li {
+    grid-template-columns: 1fr;
+  }
 }
 
-/* --- Meta & labels --- */
-.meta {
-  color: var(--text-muted);
-  font-size: 0.9rem;
+/* --- Prose --- */
+.prose > h2 {
+  margin-top: var(--space-xl);
 }
-.label {
-  font-size: var(--step--2);
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--text-faint);
-}
-
-.divider {
-  border: none;
-  border-top: 1px solid var(--rule);
-  margin-block: var(--space-l);
-}
-
-.motif-rule {
-  height: 1px;
-  border: none;
-  margin: 0;
-  background: linear-gradient(90deg, transparent, var(--rule) 15%, var(--rule) 85%, transparent);
-}
-
-/* --- Utilities --- */
-.center {
-  text-align: center;
-}
-.mx-auto {
-  margin-inline: auto;
-}
-.mt-0 {
+.prose > :first-child {
   margin-top: 0;
 }
-.muted {
-  color: var(--text-muted);
+.prose p,
+.prose li {
+  max-width: var(--measure);
 }
-.stack > * + * {
-  margin-top: var(--stack-gap, 1rem);
+/* Arrow links and buttons keep their own treatment inside prose. */
+.prose a:not(.text-link, .btn) {
+  text-decoration: underline;
+}
+
+/* A closing link beneath a block of content. */
+.section-foot {
+  margin: var(--space-l) 0 0;
 }

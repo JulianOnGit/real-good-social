@@ -6,7 +6,38 @@ export interface Insight {
   category: string;
   /** Listing text; defaults to the first sentence of the body. */
   summary?: string;
+  /** Short statement of the argument, used when the insight is featured on the homepage. */
+  standfirst?: string;
+  /** Defaults to {@link DEFAULT_AUTHOR}. */
+  author?: InsightAuthor;
+  /** Publication date as displayed, e.g. "30 June 2026". */
+  date?: string;
+  /** Date of the last material revision, in the same format; omit for minor edits. */
+  updated?: string;
   body: Block[];
+}
+
+export interface InsightAuthor {
+  name: string;
+  role: string;
+}
+
+/** The publication identity every insight is issued under. */
+export const PUBLICATION = 'Real Good Insights';
+
+export const DEFAULT_AUTHOR: InsightAuthor = {
+  name: 'Julian Knowles',
+  role: 'Founder, Real Good Social',
+};
+
+export function insightAuthor(insight: Insight): InsightAuthor {
+  return insight.author ?? DEFAULT_AUTHOR;
+}
+
+/** ISO date (YYYY-MM-DD) for a display date like "30 June 2026", for <time> and structured data. */
+export function isoDate(display: string): string | undefined {
+  const parsed = new Date(`${display} UTC`);
+  return Number.isNaN(parsed.getTime()) ? undefined : parsed.toISOString().slice(0, 10);
 }
 
 /**
@@ -32,6 +63,22 @@ export function insightSummary(insight: Insight): string {
   return insight.summary ?? firstSentence(insight.body);
 }
 
+/** Estimated reading time in whole minutes, at roughly 230 words a minute. */
+export function readingMinutes(insight: Insight): number {
+  const text = insight.body
+    .map((b) =>
+      typeof b === 'string'
+        ? b
+        : 'list' in b
+          ? b.list.join(' ')
+          : 'items' in b
+            ? b.items.map((i) => `${i.title} ${i.text}`).join(' ')
+            : b.callout,
+    )
+    .join(' ');
+  return Math.max(1, Math.round(text.split(/\s+/).filter(Boolean).length / 230));
+}
+
 export const insights: Insight[] = [
   {
     slug: "community-capabilities-through-participation",
@@ -39,6 +86,9 @@ export const insights: Insight[] = [
     category: "Community & Capability",
     summary:
       'A community may accumulate capabilities that are not visible in attendance figures alone: knowledge of who can do what, trusted relationships, coordination capacity and the ability to initiate activity independently.',
+    standfirst:
+      'Participation can leave a community with more than stronger relationships. It can also build shared knowledge, coordination capacity and the ability to initiate activity without relying on a central organiser.',
+    date: '30 June 2026',
     body: [
       "I became interested in this question because the usual measures of community activity tell us surprisingly little about what a community has become capable of doing. Attendance, membership, retention and frequency of participation are useful indicators of activity, but they are not measures of collective capability. A community can attract large numbers of people while remaining heavily dependent on a small number of organisers, poor at circulating knowledge, and unable to initiate much beyond its established programme.",
       "Repeated participation can nevertheless produce changes that are structurally important. People learn who has particular knowledge, who is dependable, who has access to particular institutions, who can organise, who is willing to contribute, and who shares an interest in a particular problem. Relationships develop, but so does practical knowledge of the network itself. The community begins to acquire a form of distributed social memory: not a formal database of capabilities, but an increasingly usable understanding of where knowledge, support, initiative and connection reside.",

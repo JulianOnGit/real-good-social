@@ -1,10 +1,10 @@
 import { Link } from 'react-router';
 import type { Route } from './+types/home';
-import Icon from '../components/Icon';
 import InitiativeCard from '../components/InitiativeCard';
 import CtaBand from '../components/CtaBand';
 import { initiatives } from '../data/initiatives';
-import { insights, insightSummary } from '../data/insights';
+import { InsightTeaser } from '../components/InsightMeta';
+import { insights } from '../data/insights';
 
 export function meta(_: Route.MetaArgs) {
   return [
@@ -19,25 +19,39 @@ export function meta(_: Route.MetaArgs) {
 
 const WORK_AREAS = [
   {
-    icon: 'venture' as const,
     title: 'Social ventures',
     body: 'Creating sustainable new ways to deliver social good.',
   },
   {
-    icon: 'tech' as const,
     title: 'Technology',
     body: 'Building tools that expand access, knowledge, agency and capability.',
   },
   {
-    icon: 'partnership' as const,
     title: 'Communities',
     body: 'Creating spaces for connection, participation, support and contribution.',
   },
   {
-    icon: 'strategy' as const,
     title: 'Strategy & systems',
     body: 'Designing the organisational systems that help worthwhile work grow.',
   },
+];
+
+const PROCESS = [
+  { n: '01', title: 'Understand the problem', body: 'Start from the real situation and let the response follow from it.' },
+  { n: '02', title: 'Develop a practical response', body: 'Design something concrete that can be built and tested.' },
+  { n: '03', title: 'Build with relevant partners', body: 'Work with those closest to the problem and build on what already exists.' },
+  { n: '04', title: 'Test, learn, and improve', body: 'Treat evidence and reflection as part of the work.' },
+  { n: '05', title: 'Establish durable capability', body: 'Aim for reusable systems that keep creating value.' },
+];
+
+const PARTNERS = [
+  'Venues & spaces',
+  'AI & technology',
+  'Skills & knowledge sharing',
+  'Community organisations',
+  'Researchers & specialists',
+  'Government & institutions',
+  'Funders & supporters',
 ];
 
 export default function Home() {
@@ -70,36 +84,30 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="section section--surface">
+      {/* Fields alternate paper / alt, with sky as the page's one accent. */}
+      <section className="section section--alt">
         <div className="container">
-          <div className="section-head">
-            <p className="eyebrow">What we do</p>
-            <h2>We expand the capacity to do good.</h2>
-            <p className="lead">
-              We build practical systems that help people and organisations turn good intentions
-              into effective action.
-            </p>
-          </div>
-          <div className="grid grid-4">
-            {WORK_AREAS.map((a) => (
-              <article key={a.title} className="card">
-                <div className="card__icon">
-                  <Icon name={a.icon} />
-                </div>
-                <h3>{a.title}</h3>
-                <p className="muted">{a.body}</p>
-              </article>
-            ))}
-          </div>
-          <p className="section-foot">
+          <div className="section-head section-head--row">
+            <div>
+              <p className="eyebrow">What we do</p>
+              <h2>We expand the capacity to do good.</h2>
+            </div>
             <Link to="/what-we-do" className="text-link">
               Explore what we do
             </Link>
-          </p>
+          </div>
+          <ul className="ruled-grid ruled-grid--4">
+            {WORK_AREAS.map((a) => (
+              <li key={a.title}>
+                <h3>{a.title}</h3>
+                <p className="muted">{a.body}</p>
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 
-      <section className="section section--sky">
+      <section className="section section--accent">
         <div className="container container-narrow center">
           <p className="eyebrow">Why Real Good exists</p>
           <p className="statement">
@@ -110,59 +118,76 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="section section--surface">
+      <section className="section">
         <div className="container">
           <div className="section-head section-head--row">
             <div>
               <p className="eyebrow">Featured initiatives</p>
               <h2>What we’re building</h2>
-              <p className="lead">
-                Practical initiatives across community, support, technology and social
-                infrastructure.
-              </p>
             </div>
             <Link to="/initiatives" className="text-link">
               View all initiatives
             </Link>
           </div>
-          <div className="feature-grid">
+          <ul className="ruled-grid ruled-grid--2">
             {featured.map((i) => (
-              <InitiativeCard key={i.slug} initiative={i} variant="feature" />
+              <li key={i.slug}>
+                <InitiativeCard initiative={i} />
+              </li>
             ))}
+          </ul>
+        </div>
+      </section>
+
+      <section className="section section--alt">
+        <div className="container split">
+          <div className="split__aside">
+            <p className="eyebrow">How we work</p>
+            <h2>From understanding to durable capability</h2>
           </div>
+          <ol className="ruled-list ruled-list--numbered">
+            {PROCESS.map((step) => (
+              <li key={step.n}>
+                <span className="ruled-list__num">{step.n}</span>
+                <div>
+                  <h3>{step.title}</h3>
+                  <p className="muted">{step.body}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
         </div>
       </section>
 
       <section className="section">
-        <div className="container container-narrow center">
-          <p className="eyebrow">How we work</p>
-          <h2>Understand. Build. Learn.</h2>
-          <p className="lead mx-auto">
-            We start with the whole situation, build what appears useful, then refine it through
-            practice.
-          </p>
+        <div className="container split">
+          <div className="split__aside">
+            <p className="eyebrow">Who we work with</p>
+            <h2>Good work is built in good company.</h2>
+            <Link to="/partner" className="text-link">
+              Explore ways to work with us
+            </Link>
+          </div>
+          <div className="split__body">
+            <p className="lead">
+              We’re always glad to meet people and organisations who bring places, tools, know-how
+              or time to the work.
+            </p>
+            <ul className="pills">
+              {PARTNERS.map((p) => (
+                <li key={p} className="pill">
+                  {p}
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </section>
 
-      <section className="section section--surface">
+      <section className="section section--alt">
         <div className="container container-narrow">
-          <p className="eyebrow">Insights</p>
-          <h2>Ideas for building a better world</h2>
-          <p className="lead">
-            Essays on agency, community, social infrastructure and the systems that shape what
-            people can do.
-          </p>
-          <article className="latest-insight">
-            <h3>
-              <Link to={`/insights/${latest.slug}`}>{latest.title}</Link>
-            </h3>
-            <p className="muted">{insightSummary(latest)}</p>
-          </article>
-          <p className="section-foot">
-            <Link to="/insights" className="text-link">
-              Read Insights
-            </Link>
-          </p>
+          <p className="eyebrow">Latest insight</p>
+          <InsightTeaser insight={latest} featured />
         </div>
       </section>
 

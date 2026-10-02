@@ -3,7 +3,7 @@ import type { Route } from './+types/initiatives';
 import PageHero from '../components/PageHero';
 import InitiativeCard from '../components/InitiativeCard';
 import CtaBand from '../components/CtaBand';
-import { initiatives, developmentLabels, stageOrder, type Stage } from '../data/initiatives';
+import { initiatives, stageOrder, type Stage } from '../data/initiatives';
 
 export function meta(_: Route.MetaArgs) {
   return [
@@ -32,24 +32,20 @@ export default function Initiatives() {
         eyebrow="Initiatives"
         title="What we’re building"
         lead="Real Good develops initiatives where there is an opportunity to create useful new capability — by building something that is missing, connecting capabilities that already exist, or strengthening the infrastructure through which people and organisations can act."
-      >
-        <p className="lead">
-          The initiatives below are at different stages of development. Some are already taking
-          practical form; others are still being designed, tested and refined.
-        </p>
-      </PageHero>
+      />
 
-      <section className="section section--surface">
+      <section className="section">
         <div className="container">
-          <div className="development-labels">
-            <p className="label mt-0">{developmentLabels.join(' · ')}</p>
-          </div>
-
+          <p className="muted">
+            Initiatives are at different stages of development. Some are already taking practical
+            form; others are still being designed, tested and refined.
+          </p>
           <div className="filter-bar" role="group" aria-label="Filter initiatives by stage">
             {filters.map((f) => (
               <button
                 key={f}
-                className={`filter-chip ${filter === f ? 'is-active' : ''}`}
+                type="button"
+                className="filter-chip"
                 aria-pressed={filter === f}
                 onClick={() => setFilter(f)}
               >
@@ -58,11 +54,13 @@ export default function Initiatives() {
             ))}
           </div>
 
-          <div className="grid grid-3" style={{ marginTop: '1.75rem' }}>
+          <ul className="ruled-grid ruled-grid--3">
             {visible.map((i) => (
-              <InitiativeCard key={i.slug} initiative={i} />
+              <li key={i.slug}>
+                <InitiativeCard initiative={i} />
+              </li>
             ))}
-          </div>
+          </ul>
         </div>
       </section>
 

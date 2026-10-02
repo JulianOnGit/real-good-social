@@ -13,7 +13,7 @@ export default function Terms() {
   return (
     <>
       <PageHero eyebrow="Legal" title="Terms of use" />
-      <section className="section section--surface">
+      <section className="section">
         <div className="container container-narrow prose">
           <p className="meta">Last updated: October 2026</p>
           <Blocks

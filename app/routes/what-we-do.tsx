@@ -1,6 +1,5 @@
 import type { Route } from './+types/what-we-do';
 import PageHero from '../components/PageHero';
-import Icon from '../components/Icon';
 import CtaBand from '../components/CtaBand';
 
 export function meta(_: Route.MetaArgs) {
@@ -14,14 +13,15 @@ export function meta(_: Route.MetaArgs) {
   ];
 }
 
-const AREAS: {
-  icon: 'venture' | 'tech' | 'partnership' | 'strategy' | 'research';
+interface Area {
   label: string;
   title: string;
   body: string[];
-}[] = [
+}
+
+/** The four practical areas of work. */
+const AREAS: Area[] = [
   {
-    icon: 'venture',
     label: 'Social ventures',
     title: 'Creating new ways to deliver social good',
     body: [
@@ -29,7 +29,6 @@ const AREAS: {
     ],
   },
   {
-    icon: 'tech',
     label: 'Technology',
     title: 'Technology for practical capability',
     body: [
@@ -37,7 +36,6 @@ const AREAS: {
     ],
   },
   {
-    icon: 'partnership',
     label: 'Communities',
     title: 'Creating places to connect and participate',
     body: [
@@ -45,23 +43,25 @@ const AREAS: {
     ],
   },
   {
-    icon: 'strategy',
     label: 'Strategy & systems',
     title: 'Making complex work more coherent',
     body: [
       'We help organisations see how people, processes and technology fit together, then redesign the parts that are getting in the way.',
     ],
   },
-  {
-    icon: 'research',
-    label: 'Research & frameworks',
-    title: 'Developing the thinking behind the work',
-    body: [
-      'We develop practical frameworks around agency, capability, community, social infrastructure, flourishing, power and organisational systems.',
-      'They help us ask better questions, design better interventions and identify what needs to be tested.',
-    ],
-  },
 ];
+
+/** The thinking that underpins the four areas, set apart beneath them. */
+const FOUNDATION: Area = {
+  label: 'Research & frameworks',
+  title: 'Developing the thinking behind the work',
+  body: [
+    'We develop practical frameworks around agency, capability, community, social infrastructure, flourishing, power and organisational systems.',
+    'They help us ask better questions, design better interventions and identify what needs to be tested.',
+  ],
+};
+
+const anchor = (label: string) => label.toLowerCase().replace(/[^a-z]+/g, '-');
 
 export default function WhatWeDo() {
   return (
@@ -72,29 +72,37 @@ export default function WhatWeDo() {
         lead="Our work spans technology, ventures, communities and organisational systems."
       />
 
-      <section className="section section--surface">
+      <section className="section">
         <div className="container">
-          <div className="grid grid-2">
+          <ul className="ruled-grid ruled-grid--2 ruled-grid--roomy">
             {AREAS.map((a, i) => (
-              <article
-                key={a.label}
-                className="card area-card"
-                id={a.label.toLowerCase().replace(/[^a-z]+/g, '-')}
-              >
-                <div className="area-card__head">
-                  <div className="card__icon">
-                    <Icon name={a.icon} />
-                  </div>
-                  <span className="area-card__num">{String(i + 1).padStart(2, '0')}</span>
-                </div>
-                <p className="eyebrow">{a.label}</p>
-                <h3>{a.title}</h3>
+              <li key={a.label} id={anchor(a.label)}>
+                <p className="label">
+                  <span className="label__num">{String(i + 1).padStart(2, '0')}</span>
+                  {a.label}
+                </p>
+                <h2>{a.title}</h2>
                 {a.body.map((para) => (
                   <p key={para} className="muted">
                     {para}
                   </p>
                 ))}
-              </article>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      <section className="section section--accent" id={anchor(FOUNDATION.label)}>
+        <div className="container split">
+          <div className="split__aside">
+            <p className="eyebrow">Underpinning the work</p>
+            <h2>{FOUNDATION.label}</h2>
+          </div>
+          <div className="split__body">
+            <h3>{FOUNDATION.title}</h3>
+            {FOUNDATION.body.map((para) => (
+              <p key={para}>{para}</p>
             ))}
           </div>
         </div>

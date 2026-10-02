@@ -1,5 +1,5 @@
-import { Link } from 'react-router';
 import type { Route } from './+types/not-found';
+import StatusMessage from '../components/StatusMessage';
 
 // Any unmatched URL renders this. The 404 *status* comes from the host serving
 // the prerendered copy of this page as `404.html` — a static site has no
@@ -10,23 +10,5 @@ export function meta(_: Route.MetaArgs) {
 }
 
 export default function NotFound() {
-  return (
-    <section className="section section--surface">
-      <div className="container container-narrow center" style={{ paddingBlock: '3rem' }}>
-        <p className="eyebrow">404</p>
-        <h1>We couldn’t find that page.</h1>
-        <p className="lead mx-auto">
-          It may have moved or changed.
-        </p>
-        <div className="btn-row" style={{ justifyContent: 'center', marginTop: '1.5rem' }}>
-          <Link to="/" className="btn">
-            Return home
-          </Link>
-          <Link to="/initiatives" className="btn btn--secondary">
-            Explore our initiatives
-          </Link>
-        </div>
-      </div>
-    </section>
-  );
+  return <StatusMessage notFound />;
 }

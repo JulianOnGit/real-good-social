@@ -6,7 +6,6 @@ import {
   Scripts,
   ScrollRestoration,
   isRouteErrorResponse,
-  Link,
 } from 'react-router';
 import type { Route } from './+types/root';
 
@@ -17,6 +16,7 @@ import './styles/motion.css';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import ScrollMotion from './components/ScrollMotion';
+import StatusMessage from './components/StatusMessage';
 
 export const links: Route.LinksFunction = () => [
   { rel: 'icon', href: `${import.meta.env.BASE_URL}favicon.png`, type: 'image/png' },
@@ -84,27 +84,7 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
       </a>
       <Header />
       <main id="main">
-        <section className="section section--surface">
-          <div className="container container-narrow center" style={{ paddingBlock: '3rem' }}>
-            <p className="eyebrow">{isNotFound ? '404' : 'Something went wrong'}</p>
-            <h1>{isNotFound ? 'We couldn’t find that page.' : 'We hit an unexpected problem.'}</h1>
-            <p className="lead mx-auto">
-              {isNotFound
-                ? 'It may have moved or changed.'
-                : 'Try again, or contact us if the problem continues.'}
-            </p>
-            <div className="btn-row" style={{ justifyContent: 'center', marginTop: '1.5rem' }}>
-              <Link to="/" className="btn">
-                Return home
-              </Link>
-              {isNotFound && (
-                <Link to="/initiatives" className="btn btn--secondary">
-                  Explore our initiatives
-                </Link>
-              )}
-            </div>
-          </div>
-        </section>
+        <StatusMessage notFound={isNotFound} />
       </main>
       <Footer />
     </>

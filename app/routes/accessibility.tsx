@@ -20,7 +20,7 @@ export default function Accessibility() {
         title="Accessibility statement"
         lead="We want Real Good Social to be usable by as many people as possible."
       />
-      <section className="section section--surface">
+      <section className="section">
         <div className="container container-narrow prose">
           <p className="meta">Last updated: October 2026</p>
           <p>

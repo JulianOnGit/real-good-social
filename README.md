@@ -7,7 +7,7 @@ and the Real Good brand (blue-gradient heart mark, navy wordmark).
 - **Framework:** React Router 7 (framework mode), **prerendered to static HTML**.
 - **Hosting:** GitHub Pages — no server, no runtime, no environment variables.
 - **Client:** React 18, hydrated. Per-route code splitting.
-- **Design system:** brand colours, Inter + Source Serif 4 typography, WCAG 2.2 AA intent.
+- **Design system:** brand colours, Inter throughout, WCAG 2.2 AA intent. See [Design system](#design-system).
 
 Every page is rendered to HTML at build time, so content is visible before (or
 without) client JS. Once JS loads, the client router takes over and navigation is
@@ -62,10 +62,10 @@ website-2/
 │   │   ├── partner.tsx  contact.tsx
 │   │   ├── privacy.tsx  terms.tsx  accessibility.tsx
 │   │   └── not-found.tsx                        # catch-all → 404.html
-│   ├── components/           # Header, Footer, Logo, cards, badges, PageHero, CtaBand, Icon
+│   ├── components/           # Header, Footer, Logo, PageHero, CtaBand, InitiativeCard, Stages, InsightMeta, StatusMessage
 │   ├── data/                 # initiatives, insights, contact constants + validation
 │   ├── assets/logo-mark.png  # hashed by Vite
-│   └── styles/               # brand system (index.css) + components.css
+│   └── styles/               # tokens + patterns (index.css), components.css, motion.css
 └── public/                   # favicon.png, apple-touch-icon.png
 ```
 
@@ -129,8 +129,24 @@ restore a server-side action.
 
 ## Pages
 
-Home · About · What We Do · Initiatives (+ three profiles) · Partner With Us ·
-Insights (+ two articles) · Contact · Privacy · Terms · Accessibility.
+Home · About · What We Do · Initiatives (+ a page per initiative) · Partner With Us ·
+Insights (+ a page per article) · Contact · Privacy · Terms · Accessibility.
+
+## Design system
+
+`app/styles/index.css` holds the tokens and the few patterns every page is built from.
+Reach for these before adding page-specific styles:
+
+| Decision | Rule |
+|---|---|
+| Fields | Paper by default; `section--alt` alternates; `section--accent` (sky) at most once a page; ink for the closing CTA and footer. |
+| Content | `ruled-grid` (items hang from a hairline, 2–4 columns) and `ruled-list` (rows between hairlines, optionally `--numbered` or `--keyed`). |
+| Layout | `split`: heading column left, content right. `container-narrow` for reading. |
+| Boxes | `card` only for things you interact with (the contact form). |
+| Labels | One small-caps style: `.label`, and `.eyebrow` for section markers. |
+| Headings | h1 page, h2 section, h3 item. No per-heading `ch` caps; `text-wrap: balance` handles line length. |
+| Stages | `<Stages>`: dot + word, three tones (forming / building / running). |
+| Text colour | `--text-muted` is the lightest text colour; it passes AA on paper and paper-alt. |
 
 ## Accessibility
 

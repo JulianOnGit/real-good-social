@@ -68,6 +68,8 @@ export function validateContact(fields: ContactFields): ValidationResult {
 /** Maps a Partner-page audience label (?purpose=…) to a default category. */
 export function purposeToCategory(purpose: string | null): CategoryValue {
   if (!purpose) return 'general';
+  // A category value names the topic directly (e.g. `?purpose=funding`).
+  if (CATEGORY_VALUES.includes(purpose)) return purpose as CategoryValue;
   const p = purpose.toLowerCase();
   if (p.includes('community') || p.includes('institution')) return 'partnership';
   if (p.includes('research')) return 'research';

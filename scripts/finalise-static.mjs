@@ -12,6 +12,9 @@
  *     with a real 404 status.
  *  3. `.nojekyll` — without it Pages runs the output through Jekyll, which
  *     drops every file and directory whose name starts with an underscore.
+ *  4. Strip NUL bytes from the HTML. React 18's streaming renderer can emit one
+ *     when a multi-byte character (e.g. "→") straddles its internal 2 KB write
+ *     buffer; browsers show it as "�". NUL is never valid in HTML text.
  */
 import fs from 'node:fs/promises';
 import path from 'node:path';
@@ -33,4 +36,17 @@ await fs.rm(path.join(CLIENT_DIR, '__spa-fallback.html'), { force: true });
 
 await fs.writeFile(path.join(CLIENT_DIR, '.nojekyll'), '');
 
-console.log('[finalise-static] flattened output, wrote 404.html and .nojekyll');
+let strippedPages = 0;
+for (const file of await fs.readdir(CLIENT_DIR, { recursive: true })) {
+  if (!file.endsWith('.html')) continue;
+  const filePath = path.join(CLIENT_DIR, file);
+  const html = await fs.readFile(filePath, 'utf8');
+  if (html.includes('\0')) {
+    await fs.writeFile(filePath, html.replaceAll('\0', ''));
+    strippedPages += 1;
+  }
+}
+
+console.log(
+  `[finalise-static] flattened output, wrote 404.html and .nojekyll, stripped NUL bytes from ${strippedPages} page(s)`,
+);

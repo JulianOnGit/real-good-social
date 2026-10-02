@@ -11,7 +11,7 @@ export default function Footer() {
           <Logo onInk />
           <p className="site-footer__tagline">Building practical systems for social good.</p>
           <p className="site-footer__org">
-            {BUSINESS_NAME}, operated by {LEGAL_ENTITY}.
+            {BUSINESS_NAME} is an early-stage social enterprise.
           </p>
         </div>
 
@@ -50,6 +50,9 @@ export default function Footer() {
 
       <div className="container site-footer__legal">
         <p>© {year} {LEGAL_ENTITY}.</p>
+        <p className="muted-on-ink">
+          {BUSINESS_NAME} · Operated by {LEGAL_ENTITY}
+        </p>
       </div>
     </footer>
   );

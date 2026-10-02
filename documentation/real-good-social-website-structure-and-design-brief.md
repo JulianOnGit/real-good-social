@@ -298,12 +298,12 @@ Separate departmental email addresses are unnecessary at this stage.
 
 ### Footer navigation
 
-- Real Good Social, operated by Real Good Ventures Pty Ltd
+- Brand block: Real Good logo, tagline, and "Real Good Social is an early-stage social enterprise."
+- Bottom strip: © Real Good Ventures Pty Ltd (left); "Real Good Social · Operated by Real Good Ventures Pty Ltd" (right)
 - Privacy
 - Terms
 - Accessibility
 - LinkedIn or primary public channel
-- © Real Good Ventures Pty Ltd
 
 The site should avoid exposing every internal programme, product, capability, or prospective entity in the main navigation.
 

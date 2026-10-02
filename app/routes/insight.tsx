@@ -42,12 +42,10 @@ export default function InsightDetail({ loaderData }: Route.ComponentProps) {
 
           <hr className="divider" />
           <p className="meta">
-            Real Good Insights documents questions, observations and working models emerging from
-            our projects.
-          </p>
-          <p className="meta">
-            Where an idea has not yet been established through evidence, we treat it as a
-            hypothesis to test rather than a conclusion to defend.
+            Real Good Insights explores questions, observations and working models that emerge from
+            our projects and research. We use these ideas to sharpen how we understand problems,
+            design interventions and learn from practice. Where the evidence is still developing,
+            we present the thinking as provisional and open to refinement.
           </p>
           <p className="section-foot">
             <Link to="/insights" className="text-link">

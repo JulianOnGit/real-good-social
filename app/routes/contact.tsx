@@ -189,12 +189,12 @@ export default function Contact() {
             </dl>
             <hr className="divider" />
             <p className="muted">
-              Real Good Social is a Real Good™ social enterprise operated by {LEGAL_ENTITY}.
+              Real Good Social is operated by {LEGAL_ENTITY}.
             </p>
             <dl className="contact-details">
               <dt>Legal entity</dt>
               <dd>{LEGAL_ENTITY}</dd>
-              <dt>Business name</dt>
+              <dt>Operating brand</dt>
               <dd>{BUSINESS_NAME}</dd>
               {ABN && (
                 <>

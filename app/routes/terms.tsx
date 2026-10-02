@@ -18,9 +18,9 @@ export default function Terms() {
 
           <h2>About this site</h2>
           <p>
-            This website is operated by Real Good Ventures Pty Ltd under the Real Good Social and
-            Real Good™ brands. It describes the purpose, activities, programmes and initiatives of
-            Real Good Social, and is provided for general information.
+            This website represents Real Good Social and is operated by Real Good Ventures Pty Ltd.
+            It describes the purpose, activities, programmes and initiatives of Real Good Social,
+            and is provided for general information.
           </p>
 
           <h2>Development-stage information</h2>

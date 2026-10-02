@@ -18,10 +18,9 @@ export default function Privacy() {
 
           <h2>Who we are</h2>
           <p>
-            Real Good Social is a social enterprise operating under the Real Good™ brand. Real Good
-            Social is operated by Real Good Ventures Pty Ltd, an Australian company. Real Good
-            Ventures Pty Ltd is responsible for personal information collected through this
-            website. For any privacy question, contact{' '}
+            Real Good Social is a social enterprise operated by Real Good Ventures Pty Ltd, an
+            Australian company. Real Good Ventures Pty Ltd is responsible for the personal
+            information collected through this website. For any privacy question, contact{' '}
             <a href="mailto:julian@realgoodnetwork.org">julian@realgoodnetwork.org</a>.
           </p>
 

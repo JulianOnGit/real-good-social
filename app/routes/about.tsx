@@ -65,11 +65,12 @@ export default function About() {
             concern into sustained action.
           </p>
           <p>
-            Real Good Social exists to help bridge this gap — developing practical social
-            infrastructure that helps people connect, cooperate and create public value.
+            Real Good Social exists to build practical systems for social good that help bridge
+            this gap.
           </p>
           <p>
-            Real Good Social is part of the broader Real Good™ family of ventures and initiatives.
+            Real Good Social develops social infrastructure, programmes and practical systems that
+            help people connect, cooperate and create public value.
           </p>
         </div>
       </section>
@@ -97,12 +98,12 @@ export default function About() {
           <h2>Origin and direction</h2>
           <p>
             Real Good Social was founded by <strong>Julian Knowles</strong>, who leads its early
-            development. The organisation grew from a simple observation: that the distance between
+            development. Real Good Social grew from a simple observation: that the distance between
             wanting to do good and doing it well is usually a matter of systems, not sincerity.
           </p>
           <p>
-            The founder’s role is to establish accountability and direction while the organisation,
-            its portfolio, and its partnerships mature. Real Good Social is intended to become a
+            The founder’s role is to establish accountability and direction while Real Good Social,
+            its portfolio, and its partnerships mature. It is intended to become a
             durable institution rather than a personal profile — the work, not the founder, is the
             subject.
           </p>

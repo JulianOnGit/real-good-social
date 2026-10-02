@@ -33,18 +33,17 @@ Many worthwhile efforts are constrained by fragmented systems, limited coordinat
 
 ### Brand and legal architecture
 
-The site communicates three distinct layers:
-
-| Layer | Name | Use when referring to |
+| Name | Role | Use when referring to |
 |---|---|---|
-| Brand | **Real Good™** | the overarching brand, identity or family of ventures |
-| Enterprise / business name | **Real Good Social** | this particular social enterprise |
-| Legal entity | **Real Good Ventures Pty Ltd** | company ownership, contracts, privacy responsibility, liability and other legally significant matters |
+| **Real Good** | friendly, abbreviated public-facing identity | the logo, wordmark and conversational brand expression |
+| **Real Good Social** | the social enterprise and fuller brand identity | the enterprise itself, in all ordinary descriptive copy |
+| **Real Good Ventures Pty Ltd** | the legal entity operating Real Good Social | legal responsibility, liability, ownership, privacy and contractual matters |
 
-- The header wordmark simply reads "Real Good".
-- Use ™ selectively on prominent brand-identification uses (footer, brand statements), not on every occurrence. Do not use ® until the relevant trade mark is registered.
-- Keep the corporate entity in the background of ordinary brand copy; name it where legal responsibility matters.
-- Do not present Real Good Social as a separate incorporated company or as a "division" of Real Good Ventures, and do not describe the structure as the "Real Good Australia group".
+- Real Good is not a parent or master brand above Real Good Social. Avoid "a Real Good™ social enterprise", "part of the Real Good™ family", "Real Good™ ecosystem" and "a Real Good venture".
+- Real Good Social should read as a substantive social enterprise, not as a registered business name, division or initiative of Real Good Ventures. Business-name terminology belongs only on legal pages where necessary.
+- Keep the corporate entity in the background; show it only where useful or legally appropriate.
+- Do not use ™ in ordinary website prose. Reserve it for the logo, brand guidelines, formal brand documentation and trade mark notices. Do not use ® until the mark is registered.
+- Do not describe the structure as the "Real Good Australia group".
 
 ## 3. Recommended Site Structure
 
@@ -193,7 +192,7 @@ Each initiative profile should include:
 
 These labels should appear consistently throughout the site.
 
-An initial public portfolio of three to five initiatives is sufficient. The broader Real Good ecosystem should remain simplified until its internal relationships can be explained clearly to an external audience.
+An initial public portfolio of three to five initiatives is sufficient. The wider body of Real Good Social's work should remain simplified until its internal relationships can be explained clearly to an external audience.
 
 ---
 
@@ -267,7 +266,7 @@ The Contact page should include:
 - a contributor expression-of-interest pathway;
 - an organisational email address;
 - location: Canberra, Australia;
-- legal details: legal entity (Real Good Ventures Pty Ltd), business name (Real Good Social) and ABN.
+- legal details, presented separately from marketing copy: legal entity (Real Good Ventures Pty Ltd), operating brand (Real Good Social) and ABN.
 
 The enquiry form should allow users to identify the purpose of their contact.
 
@@ -299,12 +298,12 @@ Separate departmental email addresses are unnecessary at this stage.
 
 ### Footer navigation
 
-- Real Good Social — a Real Good™ social enterprise operated by Real Good Ventures Pty Ltd
+- Real Good Social, operated by Real Good Ventures Pty Ltd
 - Privacy
 - Terms
 - Accessibility
 - LinkedIn or primary public channel
-- Legal details: © Real Good Ventures Pty Ltd; Real Good Social is a registered business name of Real Good Ventures Pty Ltd; ABN
+- © Real Good Ventures Pty Ltd
 
 The site should avoid exposing every internal programme, product, capability, or prospective entity in the main navigation.
 

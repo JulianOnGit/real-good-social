@@ -56,8 +56,8 @@ export default function Initiatives() {
 
           <p className="muted" style={{ marginTop: '2rem', maxWidth: '60ch' }}>
             An initial public portfolio of three to five initiatives is sufficient at this stage.
-            The broader Real Good™ family of ventures remains deliberately simplified until its relationships
-            can be explained clearly.
+            The wider body of Real Good Social’s work remains deliberately simplified until its
+            relationships can be explained clearly.
           </p>
         </div>
       </section>

@@ -14,6 +14,7 @@ without) client JS. Once JS loads, the client router takes over and navigation i
 instant.
 
 **Live:** <https://julianongit.github.io/real-good-social/>
+**Staging:** <https://julianongit.github.io/real-good-social-staging/>
 
 ## How the static build works
 
@@ -100,8 +101,17 @@ Pushing to `main` triggers [`.github/workflows/deploy.yml`](./.github/workflows/
 which typechecks, builds, and publishes `build/client` to GitHub Pages. The repository's
 **Settings → Pages → Source** must be set to **GitHub Actions**.
 
-Because the base path is the repository name, renaming the repository means editing
-`base-path.mjs` to match.
+The base path is the repository name: the workflow passes it to the build as `BASE_PATH`,
+and `base-path.mjs` falls back to `/real-good-social` locally.
+
+### Staging
+
+The [staging repository](https://github.com/JulianOnGit/real-good-social-staging) runs the
+same workflow. To preview a branch there, push it to the staging repository's `main`:
+
+```sh
+git push staging <branch>:main --force
+```
 
 ## The contact form
 

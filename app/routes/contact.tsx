@@ -10,6 +10,7 @@ import {
   validateContact,
   type ContactFields,
 } from '../data/contact';
+import { ABN, BUSINESS_NAME, LEGAL_ENTITY } from '../data/legal';
 
 export function meta(_: Route.MetaArgs) {
   return [
@@ -188,9 +189,20 @@ export default function Contact() {
             </dl>
             <hr className="divider" />
             <p className="muted">
-              Real Good Social is an early-stage social enterprise. Registration and legal details
-              will be published here as the organisation is formally established.
+              Real Good Social is a Real Good™ social enterprise operated by {LEGAL_ENTITY}.
             </p>
+            <dl className="contact-details">
+              <dt>Legal entity</dt>
+              <dd>{LEGAL_ENTITY}</dd>
+              <dt>Business name</dt>
+              <dd>{BUSINESS_NAME}</dd>
+              {ABN && (
+                <>
+                  <dt>ABN</dt>
+                  <dd>{ABN}</dd>
+                </>
+              )}
+            </dl>
           </aside>
         </div>
       </section>

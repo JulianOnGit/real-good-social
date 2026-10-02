@@ -116,7 +116,7 @@ export default function Home() {
 
       <section className="section section--sky">
         <div className="container container-narrow center">
-          <p className="eyebrow">Why Real Good exists</p>
+          <p className="eyebrow">Why Real Good Social exists</p>
           <p className="statement">
             Many people and organisations want to produce meaningful social good but lack the
             systems, tools, relationships, or operating structures required to turn concern into

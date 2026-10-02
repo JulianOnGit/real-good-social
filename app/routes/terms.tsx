@@ -18,8 +18,9 @@ export default function Terms() {
 
           <h2>About this site</h2>
           <p>
-            This website is published by Real Good Social to describe our purpose, work, and
-            initiatives. It is provided for general information.
+            This website is operated by Real Good Ventures Pty Ltd under the Real Good Social and
+            Real Good™ brands. It describes the purpose, activities, programmes and initiatives of
+            Real Good Social, and is provided for general information.
           </p>
 
           <h2>Development-stage information</h2>
@@ -32,7 +33,8 @@ export default function Terms() {
 
           <h2>Use of content</h2>
           <p>
-            You may read, share, and cite our published content with attribution. You may not
+            Content on this site is owned by Real Good Ventures Pty Ltd unless stated otherwise. You
+            may read, share, and cite our published content with attribution. You may not
             reproduce it in a way that misrepresents Real Good Social or implies endorsement we have
             not given.
           </p>
@@ -41,13 +43,15 @@ export default function Terms() {
           <p>
             Information you send us through the contact form should be accurate and lawful. We may
             decline or not respond to enquiries at our discretion. Submitting an enquiry does not
-            create a partnership, contract, or obligation on either side.
+            create a partnership, contract, or obligation between you and Real Good Ventures Pty
+            Ltd.
           </p>
 
           <h2>No warranty</h2>
           <p>
-            The site is provided “as is” without warranties of any kind. We make reasonable efforts
-            to keep information current but do not guarantee it is complete or error-free.
+            The site is provided “as is” without warranties of any kind. Real Good Ventures Pty Ltd
+            makes reasonable efforts to keep information current but does not guarantee it is
+            complete or error-free.
           </p>
 
           <h2>Contact</h2>

@@ -58,13 +58,19 @@ export default function About() {
 
           <hr className="divider" />
 
-          <h2>Why Real Good exists</h2>
+          <h2>Why Real Good Social exists</h2>
           <p>
             Many people and organisations want to produce meaningful social good but lack the
             systems, tools, relationships, resources, or operating structures required to turn
             concern into sustained action.
           </p>
-          <p>Real Good Social exists to help bridge this gap.</p>
+          <p>
+            Real Good Social exists to help bridge this gap — developing practical social
+            infrastructure that helps people connect, cooperate and create public value.
+          </p>
+          <p>
+            Real Good Social is part of the broader Real Good™ family of ventures and initiatives.
+          </p>
         </div>
       </section>
 

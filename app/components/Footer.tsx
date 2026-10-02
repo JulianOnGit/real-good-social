@@ -1,5 +1,6 @@
 import { Link } from 'react-router';
 import Logo from './Logo';
+import { ABN, BUSINESS_NAME, LEGAL_ENTITY } from '../data/legal';
 
 export default function Footer() {
   const year = new Date().getFullYear();
@@ -10,7 +11,9 @@ export default function Footer() {
           <Logo onInk />
           <p className="site-footer__tagline">Building practical systems for social good.</p>
           <p className="site-footer__org">
-            Real Good Social is an early-stage social enterprise.
+            <strong>{BUSINESS_NAME}</strong>
+            <br />
+            A Real Good™ social enterprise operated by {LEGAL_ENTITY}.
           </p>
         </div>
 
@@ -48,10 +51,10 @@ export default function Footer() {
       </div>
 
       <div className="container site-footer__legal">
-        <p>© {year} Real Good Social. Part of the Real Good Australia group.</p>
+        <p>© {year} {LEGAL_ENTITY}.</p>
         <p className="muted-on-ink">
-          Registration and legal details will be published as the organisation is formally
-          established.
+          {BUSINESS_NAME} is a registered business name of {LEGAL_ENTITY}.
+          {ABN && <> ABN {ABN}.</>}
         </p>
       </div>
     </footer>

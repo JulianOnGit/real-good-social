@@ -31,6 +31,21 @@ Real Good Social develops ventures, technologies, and partnerships that help peo
 
 Many worthwhile efforts are constrained by fragmented systems, limited coordination, weak institutional pathways, or insufficient practical support. Real Good Social works to develop the ventures, tools, and collaborations needed to overcome these barriers.
 
+### Brand and legal architecture
+
+The site communicates three distinct layers:
+
+| Layer | Name | Use when referring to |
+|---|---|---|
+| Brand | **Real Good™** | the overarching brand, identity or family of ventures |
+| Enterprise / business name | **Real Good Social** | this particular social enterprise |
+| Legal entity | **Real Good Ventures Pty Ltd** | company ownership, contracts, privacy responsibility, liability and other legally significant matters |
+
+- The header wordmark simply reads "Real Good".
+- Use ™ selectively on prominent brand-identification uses (footer, brand statements), not on every occurrence. Do not use ® until the relevant trade mark is registered.
+- Keep the corporate entity in the background of ordinary brand copy; name it where legal responsibility matters.
+- Do not present Real Good Social as a separate incorporated company or as a "division" of Real Good Ventures, and do not describe the structure as the "Real Good Australia group".
+
 ## 3. Recommended Site Structure
 
 ### 3.1 Home
@@ -56,7 +71,7 @@ The homepage should quickly answer four questions:
    - Partnerships for good
    - Strategy and systems
 
-3. **Why Real Good exists**
+3. **Why Real Good Social exists**
    - A concise description of the gap between good intentions and effective action
 
 4. **Featured initiatives**
@@ -105,7 +120,7 @@ Real Good Social combines:
 - partnerships and institutional collaboration;
 - knowledge, strategy, and practical implementation.
 
-#### Why Real Good exists
+#### Why Real Good Social exists
 
 Many people and organisations want to produce meaningful social good but lack the systems, tools, relationships, resources, or operating structures required to turn concern into sustained action.
 
@@ -252,7 +267,7 @@ The Contact page should include:
 - a contributor expression-of-interest pathway;
 - an organisational email address;
 - location: Canberra, Australia;
-- relevant registration and legal details when established.
+- legal details: legal entity (Real Good Ventures Pty Ltd), business name (Real Good Social) and ABN.
 
 The enquiry form should allow users to identify the purpose of their contact.
 
@@ -284,13 +299,12 @@ Separate departmental email addresses are unnecessary at this stage.
 
 ### Footer navigation
 
-- Real Good Social
-- Real Good Australia
+- Real Good Social — a Real Good™ social enterprise operated by Real Good Ventures Pty Ltd
 - Privacy
 - Terms
 - Accessibility
 - LinkedIn or primary public channel
-- Organisation and registration details
+- Legal details: © Real Good Ventures Pty Ltd; Real Good Social is a registered business name of Real Good Ventures Pty Ltd; ABN
 
 The site should avoid exposing every internal programme, product, capability, or prospective entity in the main navigation.
 

@@ -90,20 +90,16 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
             <h1>{isNotFound ? 'We couldn’t find that page.' : 'We hit an unexpected problem.'}</h1>
             <p className="lead mx-auto">
               {isNotFound
-                ? 'It may have moved, changed or no longer exist.'
-                : 'Try again. If the problem continues, let us know.'}
+                ? 'It may have moved or changed.'
+                : 'Try again, or contact us if the problem continues.'}
             </p>
             <div className="btn-row" style={{ justifyContent: 'center', marginTop: '1.5rem' }}>
               <Link to="/" className="btn">
                 Return home
               </Link>
-              {isNotFound ? (
+              {isNotFound && (
                 <Link to="/initiatives" className="btn btn--secondary">
                   Explore our initiatives
-                </Link>
-              ) : (
-                <Link to="/contact" className="btn btn--secondary">
-                  Contact us
                 </Link>
               )}
             </div>

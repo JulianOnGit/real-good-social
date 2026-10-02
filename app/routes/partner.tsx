@@ -1,6 +1,7 @@
 import { Link } from 'react-router';
 import type { Route } from './+types/partner';
 import PageHero from '../components/PageHero';
+import CtaBand from '../components/CtaBand';
 
 export function meta(_: Route.MetaArgs) {
   return [
@@ -16,27 +17,27 @@ export function meta(_: Route.MetaArgs) {
 const AUDIENCES = [
   {
     title: 'Community organisations',
-    body: 'Build programmes, strengthen community capability, connect participants with useful opportunities or work together on shared social priorities.',
+    body: 'Develop programmes, strengthen community capability or collaborate around shared opportunities.',
     cta: 'Explore collaboration',
   },
   {
     title: 'Government & institutions',
-    body: 'Work with Real Good on community participation, social infrastructure, programme design, organisational capability, technology, research or institutional learning.',
+    body: 'Work with us on community participation, social infrastructure, programme design, technology and organisational capability.',
     cta: 'Explore institutional collaboration',
   },
   {
     title: 'Researchers & specialists',
-    body: 'Contribute evidence, methodology, evaluation, specialist expertise or new ways of understanding the questions we are exploring.',
+    body: 'Contribute evidence, evaluation, specialist knowledge or research collaboration.',
     cta: 'Contribute expertise',
   },
   {
     title: 'Builders & contributors',
-    body: 'Help create technology, programmes, communities, research, communications, events and organisational capability.',
+    body: 'Help create technology, programmes, communities and new initiatives.',
     cta: 'Get involved',
   },
   {
     title: 'Funders & supporters',
-    body: 'Support useful work through funding, sponsorship, commissioned programmes, resources, introductions or institutional support.',
+    body: 'Support the work through funding, sponsorship, resources, introductions or commissioned delivery.',
     cta: 'Support the work',
   },
 ];
@@ -47,7 +48,7 @@ export default function Partner() {
       <PageHero
         eyebrow="Work with us"
         title="Create more capacity for good."
-        lead="Real Good works with people and organisations bringing knowledge, ideas, experience, resources, reach and practical capabilities that could become more useful together."
+        lead="We work with people and organisations that can contribute something useful — expertise, reach, resources, ideas or practical capability."
       />
 
       <section className="section section--surface">
@@ -66,25 +67,7 @@ export default function Partner() {
         </div>
       </section>
 
-      <section className="section section--sky">
-        <div className="container container-narrow center">
-          <p className="eyebrow">Partnership approach</p>
-          <h2>Start with what each side can contribute.</h2>
-          <p className="lead mx-auto">
-            Useful partnerships do not require every organisation to do the same thing.
-          </p>
-          <p className="lead mx-auto">They work when complementary capabilities are clear.</p>
-          <p className="lead mx-auto">
-            We are interested in collaborations that create practical value while also building
-            knowledge, relationships and capability that can support future work.
-          </p>
-          <div className="btn-row" style={{ justifyContent: 'center', marginTop: '1.75rem' }}>
-            <Link to="/contact" className="btn">
-              Start a conversation
-            </Link>
-          </div>
-        </div>
-      </section>
+      <CtaBand title="What could we build together?" lead={null} />
     </>
   );
 }

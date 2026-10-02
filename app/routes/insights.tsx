@@ -25,13 +25,23 @@ export default function Insights() {
     <>
       <PageHero
         eyebrow="Insights"
-        title="Questions emerging from the work"
-        lead="Real Good Insights explores observations, design questions and working ideas arising from the systems, communities and programmes we are building."
+        title="Ideas for building a better world"
+        lead="Real Good Insights develops ideas arising from the practical and conceptual work behind the organisation. Some concern questions of agency and capability; others concern communities, institutions, coordination, social infrastructure and the design of organisations capable of producing sustained social value."
       >
-        <p className="lead">The aim is not to present unfinished thinking as settled fact.</p>
-        <p className="lead">
-          It is to make useful questions and developing models available for discussion, testing
-          and improvement.
+        <p>
+          I am interested particularly in places where familiar categories become insufficiently
+          precise. What does it mean for a programme to increase agency rather than merely provide
+          a service? What capabilities can exist at the level of a community rather than an
+          individual? How does the representation of a problem change when we model the wider
+          situation around it? What kinds of knowledge can communities produce that organisations
+          struggle to generate internally?
+        </p>
+        <p>
+          These articles are intended to develop those questions rather than prematurely resolve
+          them. Where an idea is provisional, I treat it as such. Where a concept is useful only
+          under certain conditions, those conditions matter. The aim is to make the reasoning
+          behind Real Good more explicit and, over time, to subject more of it to practical and
+          empirical scrutiny.
         </p>
       </PageHero>
 

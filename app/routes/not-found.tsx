@@ -16,7 +16,7 @@ export default function NotFound() {
         <p className="eyebrow">404</p>
         <h1>We couldn’t find that page.</h1>
         <p className="lead mx-auto">
-          It may have moved, changed or no longer exist.
+          It may have moved or changed.
         </p>
         <div className="btn-row" style={{ justifyContent: 'center', marginTop: '1.5rem' }}>
           <Link to="/" className="btn">

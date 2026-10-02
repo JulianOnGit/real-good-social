@@ -10,7 +10,7 @@ import {
   validateContact,
   type ContactFields,
 } from '../data/contact';
-import { ABN, BUSINESS_NAME, LEGAL_ENTITY } from '../data/legal';
+import { ABN, LEGAL_ENTITY } from '../data/legal';
 
 export function meta(_: Route.MetaArgs) {
   return [
@@ -116,21 +116,21 @@ export default function Contact() {
     <>
       <PageHero
         eyebrow="Contact"
-        title="Start a conversation"
-        lead="Tell us what you are working on, thinking about, trying to create or interested in exploring together."
+        title="Start a conversation."
+        lead="Tell us what you’re working on and where you think Real Good could contribute."
       />
 
       <section className="section section--surface">
         <div className="container contact-grid">
           <form className="contact-form card" onSubmit={handleSubmit} noValidate>
             <div className="field">
-              <label htmlFor="name">Your name</label>
+              <label htmlFor="name">Name</label>
               <input id="name" name="name" type="text" autoComplete="name" required />
               {errors?.name && <span className="field-error">{errors.name}</span>}
             </div>
 
             <div className="field">
-              <label htmlFor="email">Email address</label>
+              <label htmlFor="email">Email</label>
               <input id="email" name="email" type="email" autoComplete="email" required />
               {errors?.email && <span className="field-error">{errors.email}</span>}
             </div>
@@ -156,7 +156,7 @@ export default function Contact() {
             </div>
 
             <div className="field">
-              <label htmlFor="message">Your message</label>
+              <label htmlFor="message">Message</label>
               <textarea id="message" name="message" rows={6} required />
               {errors?.message && <span className="field-error">{errors.message}</span>}
             </div>
@@ -171,13 +171,13 @@ export default function Contact() {
               Compose message
             </button>
             <p className="meta form-privacy">
-              This opens a message in your email application. Nothing is sent until you choose to
-              send it. See our <Link to="/privacy">privacy notice</Link>.
+              Nothing is sent until you choose to send it from your email application. See our{' '}
+              <Link to="/privacy">privacy notice</Link>.
             </p>
           </form>
 
           <aside className="contact-aside">
-            <h2>Other ways to reach us</h2>
+            <h2>Contact details</h2>
             <dl className="contact-details">
               <dt>Email</dt>
               <dd>
@@ -190,18 +190,12 @@ export default function Contact() {
             <p className="muted">
               Real Good Social is operated by {LEGAL_ENTITY}.
             </p>
-            <dl className="contact-details">
-              <dt>Legal entity</dt>
-              <dd>{LEGAL_ENTITY}</dd>
-              <dt>Operating brand</dt>
-              <dd>{BUSINESS_NAME}</dd>
-              {ABN && (
-                <>
-                  <dt>ABN</dt>
-                  <dd>{ABN}</dd>
-                </>
-              )}
-            </dl>
+            {ABN && (
+              <dl className="contact-details">
+                <dt>ABN</dt>
+                <dd>{ABN}</dd>
+              </dl>
+            )}
           </aside>
         </div>
       </section>

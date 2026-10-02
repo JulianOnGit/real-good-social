@@ -4,7 +4,7 @@ const modifier: Record<Stage, string> = {
   Exploring: 'exploring',
   Researching: 'researching',
   Designing: 'designing',
-  Developing: 'developing',
+  'Early operation': 'early-operation',
   Prototyping: 'prototyping',
   Piloting: 'piloting',
   Operating: 'operating',

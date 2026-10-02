@@ -30,12 +30,12 @@ export default function Initiatives() {
     <>
       <PageHero
         eyebrow="Initiatives"
-        title="What we are building"
-        lead="Real Good develops practical initiatives across community, social infrastructure, support, technology and organisational capability."
+        title="What we’re building"
+        lead="Real Good develops initiatives where there is an opportunity to create useful new capability — by building something that is missing, connecting capabilities that already exist, or strengthening the infrastructure through which people and organisations can act."
       >
         <p className="lead">
-          Each initiative is designed to learn from real use and develop as evidence, participation
-          and opportunity grow.
+          The initiatives below are at different stages of development. Some are already taking
+          practical form; others are still being designed, tested and refined.
         </p>
       </PageHero>
 
@@ -43,10 +43,6 @@ export default function Initiatives() {
         <div className="container">
           <div className="development-labels">
             <p className="label mt-0">{developmentLabels.join(' · ')}</p>
-            <p className="muted">
-              These labels describe where the work currently sits. They are intended to make
-              development visible without treating early ideas as finished products.
-            </p>
           </div>
 
           <div className="filter-bar" role="group" aria-label="Filter initiatives by stage">

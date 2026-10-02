@@ -12,18 +12,6 @@ export function meta(_: Route.MetaArgs) {
   ];
 }
 
-const MEASURES = [
-  'semantic headings and page structure;',
-  'keyboard-accessible navigation;',
-  'visible focus indicators;',
-  'strong colour contrast;',
-  'labelled forms;',
-  'information not conveyed through colour alone;',
-  'support for reduced-motion preferences;',
-  'responsive layouts;',
-  'compatibility with high zoom levels.',
-];
-
 export default function Accessibility() {
   return (
     <>
@@ -35,35 +23,18 @@ export default function Accessibility() {
       <section className="section section--surface">
         <div className="container container-narrow prose">
           <p className="meta">Last updated: October 2026</p>
-
-          <h2>Our approach</h2>
           <p>
-            Real Good aims to build accessibility into the design and development of its digital
-            services.
-          </p>
-          <p>
-            The website aims to conform with{' '}
+            The website aims to meet{' '}
             <a href="https://www.w3.org/TR/WCAG22/" rel="noopener noreferrer">
               WCAG 2.2
             </a>{' '}
-            Level AA where practical.
+            Level AA and includes semantic structure, keyboard navigation, visible focus states,
+            accessible forms, strong colour contrast, reduced-motion support and responsive
+            layouts.
           </p>
-
-          <h2>Current measures</h2>
-          <ul>
-            {MEASURES.map((m) => (
-              <li key={m}>{m}</li>
-            ))}
-          </ul>
-
-          <h2>Feedback</h2>
-          <p>If something prevents you from using the site effectively, contact:</p>
+          <p>If you encounter an accessibility problem, contact:</p>
           <p>
             <a href="mailto:julian@realgoodnetwork.org">julian@realgoodnetwork.org</a>
-          </p>
-          <p>
-            Please include the page, the problem you encountered and any relevant assistive
-            technology information.
           </p>
         </div>
       </section>

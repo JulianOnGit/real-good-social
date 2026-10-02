@@ -2,8 +2,6 @@ import type { Route } from './+types/what-we-do';
 import PageHero from '../components/PageHero';
 import Icon from '../components/Icon';
 import CtaBand from '../components/CtaBand';
-import { Blocks } from '../components/Blocks';
-import type { Block } from '../data/content';
 
 export function meta(_: Route.MetaArgs) {
   return [
@@ -20,76 +18,49 @@ const AREAS: {
   icon: 'venture' | 'tech' | 'partnership' | 'strategy' | 'research';
   label: string;
   title: string;
-  body: Block[];
+  body: string[];
 }[] = [
   {
     icon: 'venture',
     label: 'Social ventures',
-    title: 'Building new capacity through enterprise',
+    title: 'Creating new ways to deliver social good',
     body: [
-      'We create and develop ventures around social opportunities where a dedicated operating model, service or organisation can create lasting value.',
-      'This includes testing customer needs, designing services, establishing delivery capability, developing partnerships and finding sustainable ways for useful work to continue.',
+      'We develop ventures around opportunities where a dedicated service, organisation or operating model can create lasting value.',
     ],
   },
   {
     icon: 'tech',
     label: 'Technology',
-    title: 'Technology as practical capability',
+    title: 'Technology for practical capability',
     body: [
-      'We build digital tools and infrastructure where technology can make knowledge, coordination, services or opportunities easier to access and use.',
-      'Our interest is not technology for its own sake.',
-      'It is what technology enables people and organisations to understand, reach, create and do.',
+      'We build tools that make useful knowledge, services and opportunities easier to reach and act on.',
     ],
   },
   {
     icon: 'partnership',
     label: 'Communities',
-    title: 'Creating environments for connection, participation and contribution',
+    title: 'Creating places to connect and participate',
     body: [
-      'Communities can create relationships, knowledge, support, opportunities and forms of cooperation that formal services alone cannot provide.',
-      'Real Good develops community environments in which people can participate in different ways: meeting others, joining activities, learning, contributing capabilities, receiving support, initiating projects and taking part in practical social good.',
+      'We build communities where people can meet, contribute, learn, find support and pursue things that matter to them.',
     ],
   },
   {
     icon: 'strategy',
-    label: 'Strategy, organisations & systems',
-    title: 'Designing capability around the whole situation',
+    label: 'Strategy & systems',
+    title: 'Making complex work more coherent',
     body: [
-      'Some opportunities require changes to how people, processes, technology, information and institutions fit together.',
-      'We use systems thinking, enterprise architecture, programme design and organisational development to understand those relationships and build more effective ways of working.',
+      'We help organisations see how people, processes and technology fit together, then redesign the parts that are getting in the way.',
     ],
   },
   {
     icon: 'research',
     label: 'Research & frameworks',
-    title: 'Developing better ways to understand what we are building',
+    title: 'Developing the thinking behind the work',
     body: [
-      'Real Good develops conceptual and practical frameworks around areas including:',
-      {
-        list: [
-          'agency and capability;',
-          'community and social infrastructure;',
-          'collective capability;',
-          'human flourishing;',
-          'institutional capability;',
-          'social knowledge;',
-          'power and anti-domination;',
-          'systems of positive social action.',
-        ],
-      },
-      'These frameworks are used to generate questions, structure design work and identify things worth testing in practice.',
-      'They are working models rather than claims of final knowledge.',
+      'We develop practical frameworks around agency, capability, community, social infrastructure, flourishing, power and organisational systems.',
+      'They help us ask better questions, design better interventions and identify what needs to be tested.',
     ],
   },
-];
-
-const CONNECTIONS = [
-  'A community can reveal an opportunity.',
-  'An opportunity can become a programme or venture.',
-  'A programme can generate knowledge.',
-  'Knowledge can improve another service.',
-  'A partnership can introduce a capability that was previously unavailable.',
-  'Technology can make that capability easier to access.',
 ];
 
 export default function WhatWeDo() {
@@ -98,7 +69,7 @@ export default function WhatWeDo() {
       <PageHero
         eyebrow="What we do"
         title="We expand the capacity to do good."
-        lead="Our work builds and strengthens the practical capabilities through which people, communities and organisations can create positive change."
+        lead="Our work spans technology, ventures, communities and organisational systems."
       />
 
       <section className="section section--surface">
@@ -107,7 +78,7 @@ export default function WhatWeDo() {
             {AREAS.map((a, i) => (
               <article
                 key={a.label}
-                className="card area-card prose"
+                className="card area-card"
                 id={a.label.toLowerCase().replace(/[^a-z]+/g, '-')}
               >
                 <div className="area-card__head">
@@ -118,25 +89,14 @@ export default function WhatWeDo() {
                 </div>
                 <p className="eyebrow">{a.label}</p>
                 <h3>{a.title}</h3>
-                <div className="muted">
-                  <Blocks blocks={a.body} />
-                </div>
+                {a.body.map((para) => (
+                  <p key={para} className="muted">
+                    {para}
+                  </p>
+                ))}
               </article>
             ))}
           </div>
-        </div>
-      </section>
-
-      <section className="section section--sky">
-        <div className="container container-narrow center">
-          <p className="eyebrow">Across the portfolio</p>
-          <h2>Different capabilities can reinforce one another.</h2>
-          {CONNECTIONS.map((c) => (
-            <p key={c} className="lead mx-auto">
-              {c}
-            </p>
-          ))}
-          <p className="lead mx-auto">Real Good is designed to work across those connections.</p>
         </div>
       </section>
 

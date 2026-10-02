@@ -2,8 +2,9 @@ import { Fragment } from 'react';
 import type { Block, Section } from '../data/content';
 
 const EMAIL = /([^\s@]+@[^\s@]+\.[a-z]+)/i;
+const EMPHASIS = /(\*\*[^*]+\*\*|\*[^*]+\*)/;
 
-/** A line of text with any email address made a mailto link. */
+/** Plain text with any email address made a mailto link. */
 function Linked({ text }: { text: string }) {
   return (
     <>
@@ -20,20 +21,38 @@ function Linked({ text }: { text: string }) {
   );
 }
 
-function Lines({ text }: { text: string }) {
+/** A line of text with `**bold**` and `*italic*` applied. */
+function Inline({ text }: { text: string }) {
+  return (
+    <>
+      {text.split(EMPHASIS).map((part, i) => {
+        if (part.startsWith('**') && part.endsWith('**') && part.length > 4) {
+          return <strong key={i}>{part.slice(2, -2)}</strong>;
+        }
+        if (part.startsWith('*') && part.endsWith('*') && part.length > 2) {
+          return <em key={i}>{part.slice(1, -1)}</em>;
+        }
+        return <Linked key={i} text={part} />;
+      })}
+    </>
+  );
+}
+
+/** Text with line breaks and inline emphasis. */
+export function Text({ text }: { text: string }) {
   return (
     <>
       {text.split('\n').map((line, i) => (
         <Fragment key={i}>
           {i > 0 && <br />}
-          <Linked text={line} />
+          <Inline text={line} />
         </Fragment>
       ))}
     </>
   );
 }
 
-/** Renders blocks of copy as paragraphs and lists. */
+/** Renders blocks of copy as paragraphs, lists and callouts. */
 export function Blocks({ blocks }: { blocks: Block[] }) {
   return (
     <>
@@ -41,36 +60,56 @@ export function Blocks({ blocks }: { blocks: Block[] }) {
         if (typeof block === 'string') {
           return (
             <p key={i}>
-              <Lines text={block} />
+              <Text text={block} />
             </p>
           );
         }
-        if ('strong' in block) {
+        if ('list' in block) {
           return (
-            <p key={i}>
-              <strong>{block.strong}</strong>
-            </p>
+            <ul key={i}>
+              {block.list.map((item) => (
+                <li key={item}>
+                  <Text text={item} />
+                </li>
+              ))}
+            </ul>
+          );
+        }
+        if ('items' in block) {
+          return (
+            <dl key={i} className="titled-items">
+              {block.items.map((item) => (
+                <div key={item.title}>
+                  <dt>{item.title}</dt>
+                  <dd>
+                    <Text text={item.text} />
+                  </dd>
+                </div>
+              ))}
+            </dl>
           );
         }
         return (
-          <ul key={i}>
-            {block.list.map((item) => (
-              <li key={item}>{item}</li>
-            ))}
-          </ul>
+          <aside key={i} className="callout callout--question">
+            {block.label && <p className="label mt-0">{block.label}</p>}
+            <p className="callout__text">
+              <Text text={block.callout} />
+            </p>
+          </aside>
         );
       })}
     </>
   );
 }
 
-/** Renders sections, each with an optional `<h2>`. */
-export function Sections({ sections }: { sections: Section[] }) {
+/** Renders sections, each with an optional heading (`<h2>` by default). */
+export function Sections({ sections, level = 2 }: { sections: Section[]; level?: 2 | 3 }) {
+  const Heading = level === 2 ? 'h2' : 'h3';
   return (
     <>
       {sections.map((section, i) => (
         <Fragment key={i}>
-          {section.heading && <h2>{section.heading}</h2>}
+          {section.heading && <Heading>{section.heading}</Heading>}
           <Blocks blocks={section.blocks} />
         </Fragment>
       ))}

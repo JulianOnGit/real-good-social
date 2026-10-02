@@ -33,15 +33,27 @@ export default function InitiativeDetail({ loaderData }: Route.ComponentProps) {
             <span aria-hidden="true"> / </span>
             {initiative.name}
           </p>
-          <div className="initiative-detail__head">
-            <span className="label">{initiative.area}</span>
-            <span className="initiative-detail__stages">
-              {initiative.stages.map((s) => (
-                <StageBadge key={s} stage={s} />
-              ))}
-            </span>
-          </div>
           <h1>{initiative.name}</h1>
+          <dl className="initiative-facts">
+            <div>
+              <dt>Area</dt>
+              <dd>{initiative.area}</dd>
+            </div>
+            <div>
+              <dt>Stage</dt>
+              <dd className="initiative-detail__stages">
+                {initiative.stages.map((s) => (
+                  <StageBadge key={s} stage={s} />
+                ))}
+              </dd>
+            </div>
+            {initiative.location && (
+              <div>
+                <dt>Founding location</dt>
+                <dd>{initiative.location}</dd>
+              </div>
+            )}
+          </dl>
           <p className="lead">{initiative.tagline}</p>
         </div>
       </section>

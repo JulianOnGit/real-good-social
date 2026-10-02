@@ -14,7 +14,6 @@ without) client JS. Once JS loads, the client router takes over and navigation i
 instant.
 
 **Live:** <https://julianongit.github.io/real-good-social/>
-**Staging:** <https://julianongit.github.io/real-good-social-staging/>
 
 ## How the static build works
 
@@ -107,9 +106,12 @@ and `base-path.mjs` falls back to `/real-good-social` locally.
 ### Staging
 
 The [staging repository](https://github.com/JulianOnGit/real-good-social-staging) runs the
-same workflow. To preview a branch there, push it to the staging repository's `main`:
+same workflow, but its Pages site is currently switched off. To preview a branch there,
+re-enable Pages (**Settings → Pages → Source: GitHub Actions**), add it as a remote and
+push the branch to its `main`:
 
 ```sh
+git remote add staging https://github.com/JulianOnGit/real-good-social-staging.git
 git push staging <branch>:main --force
 ```
 

@@ -876,3 +876,47 @@
 .initiative-facts dd {
   margin: 0.3rem 0 0;
 }
+
+/* --- Featured initiatives (home): a 2 × 2 editorial grid --- */
+.feature-grid {
+  display: grid;
+  gap: var(--space-m);
+  grid-template-columns: 1fr;
+}
+@media (min-width: 760px) {
+  .feature-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .initiative-card--feature {
+    padding: var(--space-m) var(--space-l);
+  }
+}
+.initiative-card__meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  margin: 0 0 0.6rem;
+}
+.initiative-card__category {
+  font-size: var(--step--2);
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+.initiative-card__status {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+.initiative-card--feature h3 {
+  font-size: var(--step-2);
+  margin-bottom: 0.4rem;
+}
+.initiative-card--feature .muted {
+  max-width: 52ch;
+  margin-bottom: 0;
+}
+/* Keep links aligned across a row without stretching the gap. */
+.initiative-card--feature .text-link {
+  padding-top: var(--space-s);
+}

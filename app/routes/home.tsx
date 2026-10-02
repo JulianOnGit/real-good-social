@@ -112,24 +112,24 @@ export default function Home() {
 
       <section className="section section--surface">
         <div className="container">
-          <div className="section-head">
-            <p className="eyebrow">Featured initiatives</p>
-            <h2>What we’re building</h2>
-            <p className="lead">
-              Practical initiatives across community, support, technology and social
-              infrastructure.
-            </p>
-          </div>
-          <div className="grid grid-2">
-            {featured.map((i) => (
-              <InitiativeCard key={i.slug} initiative={i} />
-            ))}
-          </div>
-          <p className="section-foot">
+          <div className="section-head section-head--row">
+            <div>
+              <p className="eyebrow">Featured initiatives</p>
+              <h2>What we’re building</h2>
+              <p className="lead">
+                Practical initiatives across community, support, technology and social
+                infrastructure.
+              </p>
+            </div>
             <Link to="/initiatives" className="text-link">
               View all initiatives
             </Link>
-          </p>
+          </div>
+          <div className="feature-grid">
+            {featured.map((i) => (
+              <InitiativeCard key={i.slug} initiative={i} variant="feature" />
+            ))}
+          </div>
         </div>
       </section>
 

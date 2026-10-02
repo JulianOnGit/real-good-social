@@ -12,6 +12,18 @@ export function meta(_: Route.MetaArgs) {
   ];
 }
 
+const MEASURES = [
+  'semantic headings and page structure;',
+  'keyboard-accessible navigation;',
+  'visible focus indicators;',
+  'strong colour contrast;',
+  'labelled forms;',
+  'information not conveyed through colour alone;',
+  'support for reduced-motion preferences;',
+  'responsive layouts;',
+  'compatibility with high zoom levels.',
+];
+
 export default function Accessibility() {
   return (
     <>
@@ -22,39 +34,36 @@ export default function Accessibility() {
       />
       <section className="section section--surface">
         <div className="container container-narrow prose">
-          <p className="meta">Last updated: July 2026</p>
+          <p className="meta">Last updated: October 2026</p>
 
-          <h2>Our commitment</h2>
+          <h2>Our approach</h2>
           <p>
-            Real Good Social aims to meet the{' '}
+            Real Good aims to build accessibility into the design and development of its digital
+            services.
+          </p>
+          <p>
+            The website aims to conform with{' '}
             <a href="https://www.w3.org/TR/WCAG22/" rel="noopener noreferrer">
-              Web Content Accessibility Guidelines (WCAG) 2.2
+              WCAG 2.2
             </a>{' '}
-            at level AA. Accessibility is treated as part of how we design and build.
+            Level AA where practical.
           </p>
 
-          <h2>What we have done</h2>
-          <ul className="ticked">
-            <li>Strong colour contrast checked against AA thresholds.</li>
-            <li>A visible “skip to main content” link and clear keyboard focus indicators.</li>
-            <li>Semantic headings, landmarks and labelled form fields.</li>
-            <li>Status and stage information conveyed with text rather than colour alone.</li>
-            <li>Reduced-motion support that respects operating-system preferences.</li>
-            <li>Server-side rendering so core content is available before scripts load.</li>
-            <li>Responsive layouts designed to work on small screens and at high zoom levels.</li>
+          <h2>Current measures</h2>
+          <ul>
+            {MEASURES.map((m) => (
+              <li key={m}>{m}</li>
+            ))}
           </ul>
 
-          <h2>Known limitations</h2>
+          <h2>Feedback</h2>
+          <p>If something prevents you from using the site effectively, contact:</p>
           <p>
-            Some parts of the site will continue to evolve as Real Good Social develops. If something
-            prevents you from using the site effectively, we would like to know.
+            <a href="mailto:julian@realgoodnetwork.org">julian@realgoodnetwork.org</a>
           </p>
-
-          <h2>Give us feedback</h2>
           <p>
-            Email <a href="mailto:julian@realgoodnetwork.org">julian@realgoodnetwork.org</a> with the
-            page, the issue and any relevant assistive technology information. We will review the
-            problem and prioritise an appropriate fix.
+            Please include the page, the problem you encountered and any relevant assistive
+            technology information.
           </p>
         </div>
       </section>

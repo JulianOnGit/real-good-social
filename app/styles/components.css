@@ -453,6 +453,12 @@
   padding-bottom: var(--space-s);
   border-bottom: 1px solid var(--rule);
 }
+.initiative-card__stages,
+.initiative-detail__stages {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
 .initiative-card__title-link {
   color: var(--text-strong);
   text-decoration: none;
@@ -808,4 +814,13 @@
 }
 #main {
   flex: 1;
+}
+
+/* --- Development labels (Initiatives page) --- */
+.development-labels {
+  max-width: 60ch;
+  margin-bottom: var(--space-l);
+}
+.development-labels .muted {
+  margin-top: 0.4rem;
 }

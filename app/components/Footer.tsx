@@ -9,10 +9,10 @@ export default function Footer() {
       <div className="container site-footer__grid">
         <div className="site-footer__brand">
           <Logo onInk />
-          <p className="site-footer__tagline">Building better ways to do good.</p>
+          <p className="site-footer__tagline">Building practical systems for social good.</p>
           <p className="site-footer__org">
-            {BUSINESS_NAME} builds practical ventures, tools and social infrastructure for a better
-            society.
+            We create technology, ventures, communities and organisational systems that expand our
+            collective capacity to create positive change.
           </p>
         </div>
 

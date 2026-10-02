@@ -30,11 +30,11 @@ export const links: Route.LinksFunction = () => [
 ];
 
 export const meta: Route.MetaFunction = () => [
-  { title: 'Real Good Social — Building better ways to do good' },
+  { title: 'Real Good Social — Building practical systems for social good' },
   {
     name: 'description',
     content:
-      'Real Good Social builds ventures, technology, partnerships and social infrastructure that help people turn good ideas into practical, lasting change.',
+      'Real Good Social creates technology, ventures, communities and organisational systems that expand our collective capacity to create positive change.',
   },
 ];
 
@@ -87,19 +87,25 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
         <section className="section section--surface">
           <div className="container container-narrow center" style={{ paddingBlock: '3rem' }}>
             <p className="eyebrow">{isNotFound ? '404' : 'Something went wrong'}</p>
-            <h1>{isNotFound ? 'That page isn’t here' : 'We hit an unexpected problem'}</h1>
+            <h1>{isNotFound ? 'We couldn’t find that page.' : 'We hit an unexpected problem.'}</h1>
             <p className="lead mx-auto">
               {isNotFound
-                ? 'It may have moved, changed or disappeared. There is plenty more to explore.'
-                : 'Try again in a moment. If the problem keeps happening, let us know.'}
+                ? 'It may have moved, changed or no longer exist.'
+                : 'Try again. If the problem continues, let us know.'}
             </p>
             <div className="btn-row" style={{ justifyContent: 'center', marginTop: '1.5rem' }}>
               <Link to="/" className="btn">
                 Return home
               </Link>
-              <Link to="/initiatives" className="btn btn--secondary">
-                Explore our initiatives
-              </Link>
+              {isNotFound ? (
+                <Link to="/initiatives" className="btn btn--secondary">
+                  Explore our initiatives
+                </Link>
+              ) : (
+                <Link to="/contact" className="btn btn--secondary">
+                  Contact us
+                </Link>
+              )}
             </div>
           </div>
         </section>

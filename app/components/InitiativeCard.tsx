@@ -7,7 +7,11 @@ export default function InitiativeCard({ initiative }: { initiative: Initiative 
     <article className="card card--interactive initiative-card">
       <div className="initiative-card__top">
         <span className="label">{initiative.area}</span>
-        <StageBadge stage={initiative.stage} />
+        <span className="initiative-card__stages">
+          {initiative.stages.map((s) => (
+            <StageBadge key={s} stage={s} />
+          ))}
+        </span>
       </div>
       <h3>
         <Link to={`/initiatives/${initiative.slug}`} className="initiative-card__title-link">
@@ -16,7 +20,7 @@ export default function InitiativeCard({ initiative }: { initiative: Initiative 
       </h3>
       <p className="muted">{initiative.summary}</p>
       <Link to={`/initiatives/${initiative.slug}`} className="text-link">
-        Explore the initiative
+        {initiative.cardLink}
       </Link>
     </article>
   );

@@ -8,26 +8,30 @@ export function meta(_: Route.MetaArgs) {
     {
       name: 'description',
       content:
-        'Real Good Social builds practical social infrastructure, ventures, technology and partnerships that help people create lasting public value.',
+        'Real Good Social builds practical systems that expand agency, strengthen collective capability and increase our capacity to create positive change.',
     },
   ];
 }
 
-const APPROACH = [
-  'Social venture development',
-  'Technology for good',
-  'Partnerships and institutional collaboration',
-  'Strategy, systems and practical implementation',
+const CONNECTED = [
+  'Communities can surface knowledge, opportunities and needs.',
+  'Technology can make information and capability easier to access.',
+  'Services can help people navigate difficult or complex situations.',
+  'Research can improve how problems are understood.',
+  'Ventures can establish sustainable new forms of delivery.',
+  'Partnerships can connect expertise, resources and institutional reach.',
+  'Organisational systems can make useful work more durable.',
 ];
 
 const PRINCIPLES = [
-  { title: 'Make good practical', body: 'Good intentions matter most when they become useful action, capability and better outcomes.' },
-  { title: 'Expand human agency', body: 'People should have greater capacity to understand, choose, participate and act in the systems that affect them.' },
-  { title: 'Learn from reality', body: 'We test ideas, use evidence and treat changing our minds as part of building well.' },
-  { title: 'Use technology responsibly', body: 'Technology should expand capability and access without unnecessarily concentrating power.' },
-  { title: 'Build with, not around', body: 'Durable solutions are stronger when shaped with the people and organisations already closest to the problem.' },
-  { title: 'Think beyond the intervention', body: 'We look for structures that can endure, compound and become useful beyond a single project.' },
-  { title: 'Be clear about what is real', body: 'We distinguish ideas, experiments, prototypes and operating capabilities so people know what they are engaging with.' },
+  { title: 'Expand agency', body: 'Create conditions in which people have greater practical power to understand their options, make meaningful choices and act on them.' },
+  { title: 'Create practical good', body: 'Turn values and worthwhile ideas into capabilities that make a real difference in the world.' },
+  { title: 'Build from possibility', body: 'Look for what can be created, strengthened, connected or made more accessible.' },
+  { title: 'Understand the whole situation', body: 'Consider relationships, dependencies and wider systems rather than assuming the presenting issue is the whole problem.' },
+  { title: 'Learn through action', body: 'Use implementation, participation and evidence to improve both the work and the thinking behind it.' },
+  { title: 'Strengthen collective capability', body: 'Build relationships and systems through which different people and organisations can combine what they know and can do.' },
+  { title: 'Create continued value', body: 'Where possible, leave behind useful capability that can support further action, learning and opportunity.' },
+  { title: 'Use technology responsibly', body: 'Develop technology in ways that strengthen human capability, agency, access and accountability.' },
 ];
 
 export default function About() {
@@ -35,44 +39,55 @@ export default function About() {
     <>
       <PageHero
         eyebrow="About"
-        title="We build things that make good action easier"
-        lead="Real Good Social is a social enterprise for developing the ventures, tools, partnerships and institutions that help people work together on worthwhile problems."
+        title="Expanding our capacity to do good."
+        lead="Real Good Social develops technology, ventures, communities and organisational systems that strengthen our ability to create positive change."
       />
 
       <section className="section section--surface">
         <div className="container container-narrow prose">
-          <h2>Our purpose</h2>
-          <p className="statement">
-            To expand people’s practical capacity to create good in the world around them.
+          <p className="eyebrow">Our purpose</p>
+          <h2>We expand the capacity to do good.</h2>
+          <p>Real Good is built around a practical question:</p>
+          <p className="statement">What would increase our ability to create good in the world?</p>
+          <p>The answer is rarely one thing.</p>
+          <p>
+            It can involve knowledge, technology, relationships, confidence, resources,
+            organisations, communities, institutions or new ways of coordinating what already
+            exists.
+          </p>
+          <p>
+            Real Good works across these dimensions to create and strengthen practical capability.
           </p>
 
           <hr className="divider" />
 
-          <h2>Our approach</h2>
-          <p>Real Good Social brings together four kinds of work:</p>
-          <ul className="ticked">
-            {APPROACH.map((a) => (
-              <li key={a}>{a}</li>
-            ))}
-          </ul>
+          <p className="eyebrow">Our approach</p>
+          <h2>Start with capability, not category.</h2>
+          <p>
+            Real-world opportunities do not necessarily arrive neatly labelled as technology
+            problems, community problems, organisational problems or policy problems.
+          </p>
+          <p>We look at the wider situation.</p>
+          <p>
+            That means understanding what already exists, what people are trying to achieve, what
+            capabilities are available, where important connections are missing and what
+            additional capability could change what becomes possible.
+          </p>
+          <p>The result may be technology.</p>
+          <p>
+            It may be a venture, programme, community, partnership, service, operating model or new
+            organisational capability.
+          </p>
+          <p>The category follows the work.</p>
 
           <hr className="divider" />
 
-          <h2>Why Real Good Social exists</h2>
-          <p>
-            Many worthwhile ideas fail for reasons that have little to do with their underlying
-            value.
-          </p>
-          <p>
-            The right people may not know each other. Useful knowledge may sit in the wrong
-            institution. A community may lack the tool, structure or capacity needed to act. A
-            promising idea may never become an organisation, service or system.
-          </p>
-          <p>Real Good Social works in that space between possibility and implementation.</p>
-          <p>
-            We build social infrastructure, ventures, programmes, technology and practical systems
-            that help people connect, cooperate and create public value.
-          </p>
+          <h2>A connected organisation</h2>
+          <p>Real Good is being developed as a family of complementary capabilities.</p>
+          {CONNECTED.map((c) => (
+            <p key={c}>{c}</p>
+          ))}
+          <p>Real Good provides a place where these capabilities can develop together.</p>
         </div>
       </section>
 
@@ -96,23 +111,27 @@ export default function About() {
       <section className="section section--surface">
         <div className="container container-narrow prose">
           <p className="eyebrow">Founder</p>
-          <h2>Where Real Good began</h2>
+          <h2>Julian Knowles</h2>
+          <p>Real Good Social was founded by Julian Knowles.</p>
           <p>
-            Real Good Social was founded by <strong>Julian Knowles</strong> from a simple question:
-            why is doing something genuinely useful for society often harder than wanting to?
+            His background spans technology strategy, enterprise architecture, software
+            development, public-sector transformation and systems thinking.
           </p>
           <p>
-            That question led to a broader interest in the systems behind social action — how
-            people find one another, how ideas become organisations, how knowledge becomes action,
-            and how better social infrastructure can expand what communities are capable of doing.
+            Real Good brings those disciplines into social-good work: analysing complex situations,
+            modelling capabilities and systems, designing practical interventions and building the
+            organisational and technological infrastructure needed to make them real.
           </p>
           <p>
-            Julian leads Real Good Social’s early development while building the partnerships,
-            ventures and organisational foundations intended to let the work grow beyond any one
-            person.
+            Real Good is also the product of a longer programme of work exploring human agency,
+            flourishing, knowledge, power, collective capability, social infrastructure and the
+            conditions through which individuals and societies become better able to act.
           </p>
           <p className="meta">
-            Julian Knowles, Founder &amp; CEO ·{' '}
+            <strong>Julian Knowles</strong>
+            <br />
+            Founder &amp; CEO
+            <br />
             <a href="mailto:julian@realgoodnetwork.org">julian@realgoodnetwork.org</a>
           </p>
         </div>

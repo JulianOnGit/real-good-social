@@ -1,5 +1,5 @@
 interface IconProps {
-  name: 'venture' | 'tech' | 'partnership' | 'strategy';
+  name: 'venture' | 'tech' | 'partnership' | 'strategy' | 'research';
   size?: number;
 }
 
@@ -30,6 +30,12 @@ const paths: Record<IconProps['name'], JSX.Element> = {
     <>
       <path d="M4 20V4M4 20h16" />
       <path d="M7 16l4-5 3 3 4-7" />
+    </>
+  ),
+  research: (
+    <>
+      <circle cx="10.5" cy="10.5" r="5.5" />
+      <path d="M14.5 14.5 20 20" />
     </>
   ),
 };

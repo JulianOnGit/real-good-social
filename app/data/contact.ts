@@ -5,13 +5,15 @@
 /** Where enquiries are addressed. */
 export const CONTACT_EMAIL = 'julian@realgoodnetwork.org';
 
-// Enquiry categories mirror the design brief (section 3.7).
+// Enquiry categories, as listed in the website copy deck.
 export const ENQUIRY_CATEGORIES = [
   { value: 'partnership', label: 'Partnership' },
+  { value: 'communities', label: 'Real Good Communities' },
+  { value: 'social-infrastructure', label: 'Social infrastructure' },
   { value: 'project', label: 'Project or initiative' },
   { value: 'research', label: 'Research collaboration' },
   { value: 'contributing', label: 'Contributing expertise' },
-  { value: 'funding', label: 'Funding or support' },
+  { value: 'funding', label: 'Funding or sponsorship' },
   { value: 'media', label: 'Media' },
   { value: 'general', label: 'General enquiry' },
 ] as const;

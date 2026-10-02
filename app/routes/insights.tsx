@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router';
 import type { Route } from './+types/insights';
 import PageHero from '../components/PageHero';
-import { insights, formatDate, type InsightCategory } from '../data/insights';
+import { insights, insightSummary, hasTopic, INSIGHT_TOPICS } from '../data/insights';
 
 export function meta(_: Route.MetaArgs) {
   return [
@@ -10,31 +10,34 @@ export function meta(_: Route.MetaArgs) {
     {
       name: 'description',
       content:
-        'Ideas, research, project notes and lessons from building ventures, systems and social infrastructure for public good.',
+        'Ideas, research and design questions emerging from Real Good’s work on agency, capability, communities, social infrastructure and positive social action.',
     },
   ];
 }
 
-type Filter = 'All' | InsightCategory;
-const CATEGORIES: InsightCategory[] = ['Ideas', 'Projects', 'Research', 'Updates'];
-
 export default function Insights() {
-  const [filter, setFilter] = useState<Filter>('All');
-  const present = CATEGORIES.filter((c) => insights.some((i) => i.category === c));
-  const filters: Filter[] = ['All', ...present];
-  const visible = filter === 'All' ? insights : insights.filter((i) => i.category === filter);
+  const [filter, setFilter] = useState('All');
+  const present = INSIGHT_TOPICS.filter((t) => insights.some((i) => hasTopic(i, t)));
+  const filters = ['All', ...present];
+  const visible = filter === 'All' ? insights : insights.filter((i) => hasTopic(i, filter));
 
   return (
     <>
       <PageHero
         eyebrow="Insights"
-        title="Ideas from the work"
-        lead="Notes, research and working ideas about how people build useful things together — and how better systems can expand what becomes possible."
-      />
+        title="Questions emerging from the work"
+        lead="Real Good Insights explores observations, design questions and working ideas arising from the systems, communities and programmes we are building."
+      >
+        <p className="lead">The aim is not to present unfinished thinking as settled fact.</p>
+        <p className="lead">
+          It is to make useful questions and developing models available for discussion, testing
+          and improvement.
+        </p>
+      </PageHero>
 
       <section className="section section--surface">
         <div className="container container-narrow">
-          <div className="filter-bar" role="group" aria-label="Filter insights by category">
+          <div className="filter-bar" role="group" aria-label="Filter insights by topic">
             {filters.map((f) => (
               <button
                 key={f}
@@ -52,15 +55,14 @@ export default function Insights() {
               <li key={i.slug}>
                 <article className="insight-row">
                   <p className="meta">
-                    <span className="tag">{i.category}</span> · {formatDate(i.date)} ·{' '}
-                    {i.readingMinutes} min read
+                    <span className="tag">{i.category}</span>
                   </p>
                   <h2>
                     <Link to={`/insights/${i.slug}`}>{i.title}</Link>
                   </h2>
-                  <p className="muted">{i.summary}</p>
+                  <p className="muted">{insightSummary(i)}</p>
                   <Link to={`/insights/${i.slug}`} className="text-link">
-                    Read the piece
+                    Read the insight
                   </Link>
                 </article>
               </li>

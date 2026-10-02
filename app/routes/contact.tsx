@@ -18,7 +18,7 @@ export function meta(_: Route.MetaArgs) {
     {
       name: 'description',
       content:
-        'Contact Real Good Social about partnerships, initiatives, research, contributing, funding or other opportunities to work together.',
+        'Contact Real Good Social about partnerships, initiatives, research, contribution, funding or other opportunities.',
     },
   ];
 }
@@ -117,7 +117,7 @@ export default function Contact() {
       <PageHero
         eyebrow="Contact"
         title="Start a conversation"
-        lead="Tell us what you are working on, what problem you are trying to solve or where you think our work might connect."
+        lead="Tell us what you are working on, thinking about, trying to create or interested in exploring together."
       />
 
       <section className="section section--surface">
@@ -171,8 +171,8 @@ export default function Contact() {
               Compose message
             </button>
             <p className="meta form-privacy">
-              This opens a message in your email application. Your details stay on your device until
-              you choose to send it. See our <Link to="/privacy">privacy notice</Link>.
+              This opens a message in your email application. Nothing is sent until you choose to
+              send it. See our <Link to="/privacy">privacy notice</Link>.
             </p>
           </form>
 
@@ -184,7 +184,7 @@ export default function Contact() {
                 <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
               </dd>
               <dt>Based in</dt>
-              <dd>Australia · working with people and organisations anywhere</dd>
+              <dd>Australia</dd>
             </dl>
             <hr className="divider" />
             <p className="muted">

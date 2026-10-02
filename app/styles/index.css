@@ -535,6 +535,10 @@ time,
   color: var(--rg-blue);
   background: color-mix(in srgb, var(--rg-blue) 7%, transparent);
 }
+.badge--developing {
+  color: #8a3f6b;
+  background: color-mix(in srgb, #8a3f6b 7%, transparent);
+}
 .badge--prototyping {
   color: var(--warning);
   background: color-mix(in srgb, var(--warning) 8%, transparent);

@@ -8,7 +8,7 @@ export function meta(_: Route.MetaArgs) {
     {
       name: 'description',
       content:
-        'Work with Real Good Social on ventures, technology, research, programmes, partnerships and social infrastructure.',
+        'Work with Real Good Social to build communities, ventures, technology, partnerships and practical systems for positive change.',
     },
   ];
 }
@@ -16,40 +16,38 @@ export function meta(_: Route.MetaArgs) {
 const AUDIENCES = [
   {
     title: 'Community organisations',
-    body: 'Bring us a recurring problem, unmet need, programme idea or opportunity to strengthen something already working.',
-    cta: 'Share a problem or opportunity',
+    body: 'Build programmes, strengthen community capability, connect participants with useful opportunities or work together on shared social priorities.',
+    cta: 'Explore collaboration',
   },
   {
-    title: 'Institutions',
-    body: 'Explore work involving research, technology, programme design, social infrastructure, service development or implementation.',
+    title: 'Government & institutions',
+    body: 'Work with Real Good on community participation, social infrastructure, programme design, organisational capability, technology, research or institutional learning.',
     cta: 'Explore institutional collaboration',
   },
   {
-    title: 'Researchers and specialists',
-    body: 'Apply domain knowledge, evidence, evaluation, design or technical expertise to a specific initiative.',
+    title: 'Researchers & specialists',
+    body: 'Contribute evidence, methodology, evaluation, specialist expertise or new ways of understanding the questions we are exploring.',
     cta: 'Contribute expertise',
   },
   {
-    title: 'Builders and contributors',
-    body: 'Help design, build and operate products, programmes, communities, research and new ventures.',
+    title: 'Builders & contributors',
+    body: 'Help create technology, programmes, communities, research, communications, events and organisational capability.',
     cta: 'Get involved',
   },
   {
-    title: 'Supporters and funders',
-    body: 'Help useful work become possible through funding, sponsorship, introductions, resources, advice or institutional support.',
-    cta: 'Support an initiative',
+    title: 'Funders & supporters',
+    body: 'Support useful work through funding, sponsorship, commissioned programmes, resources, introductions or institutional support.',
+    cta: 'Support the work',
   },
 ];
-
-const ACTIONS = ['A problem', 'An idea', 'Evidence', 'Expertise', 'Resources', 'A possible partnership'];
 
 export default function Partner() {
   return (
     <>
       <PageHero
-        eyebrow="Partner with us"
-        title="Bring something worth building"
-        lead="Real Good Social works with people and organisations who have problems worth solving, knowledge worth applying, capabilities worth sharing or ideas worth developing."
+        eyebrow="Work with us"
+        title="Create more capacity for good."
+        lead="Real Good works with people and organisations bringing knowledge, ideas, experience, resources, reach and practical capabilities that could become more useful together."
       />
 
       <section className="section section--surface">
@@ -70,15 +68,16 @@ export default function Partner() {
 
       <section className="section section--sky">
         <div className="container container-narrow center">
-          <p className="eyebrow">Ways to begin</p>
-          <h2>Start with what you have</h2>
-          <ul className="chip-list" style={{ justifyContent: 'center' }}>
-            {ACTIONS.map((a) => (
-              <li key={a} className="chip chip--action">
-                {a}
-              </li>
-            ))}
-          </ul>
+          <p className="eyebrow">Partnership approach</p>
+          <h2>Start with what each side can contribute.</h2>
+          <p className="lead mx-auto">
+            Useful partnerships do not require every organisation to do the same thing.
+          </p>
+          <p className="lead mx-auto">They work when complementary capabilities are clear.</p>
+          <p className="lead mx-auto">
+            We are interested in collaborations that create practical value while also building
+            knowledge, relationships and capability that can support future work.
+          </p>
           <div className="btn-row" style={{ justifyContent: 'center', marginTop: '1.75rem' }}>
             <Link to="/contact" className="btn">
               Start a conversation

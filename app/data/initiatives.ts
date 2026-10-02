@@ -1,7 +1,10 @@
+import type { Section } from './content';
+
 export type Stage =
   | 'Exploring'
   | 'Researching'
   | 'Designing'
+  | 'Developing'
   | 'Prototyping'
   | 'Piloting'
   | 'Operating';
@@ -9,18 +12,22 @@ export type Stage =
 export interface Initiative {
   slug: string;
   name: string;
-  stage: Stage;
+  /** Usually one stage; work spanning stages lists each. */
+  stages: Stage[];
   area: string;
+  /** Card text on the home and initiatives pages. */
   summary: string;
-  problem: string;
-  response: string;
-  beneficiaries: string;
-  currentActivities: string[];
-  seeking: string[];
-  nextMilestone: string;
+  /** Card link label. */
+  cardLink: string;
+  /** Shown in "Featured initiatives" on the home page. */
+  featured: boolean;
+  /** Lead line under the name on the initiative's own page. */
+  tagline: string;
+  sections: Section[];
 }
 
-export const stageOrder: Stage[] = [
+/** The public development labels, in order. */
+export const developmentLabels: Stage[] = [
   'Exploring',
   'Researching',
   'Designing',
@@ -29,79 +36,251 @@ export const stageOrder: Stage[] = [
   'Operating',
 ];
 
+/** Every stage, in order — used to order the stage filter. */
+export const stageOrder: Stage[] = [
+  'Exploring',
+  'Researching',
+  'Designing',
+  'Developing',
+  'Prototyping',
+  'Piloting',
+  'Operating',
+];
+
 export const initiatives: Initiative[] = [
   {
-    slug: 'solutiongraph',
-    name: 'SolutionGraph',
-    stage: 'Prototyping',
-    area: 'Technology for Good',
+    slug: 'real-good-communities',
+    name: 'Real Good Communities',
+    stages: ['Developing'],
+    area: 'Communities & Social Infrastructure',
     summary:
-      'A tool for turning a tangled situation into a practical path forward by mapping obstacles, dependencies, resources and possible next steps.',
-    problem:
-      'People navigating difficult life situations — such as re-establishing identity documents, housing or employment — often face several interdependent problems at once. Services may address each issue separately even when the order in which they are solved matters.',
-    response:
-      'SolutionGraph represents a situation as a network of obstacles, dependencies, resources and actions. It helps reveal which steps unlock others, where effort is blocked and what realistic routes exist towards a goal.',
-    beneficiaries:
-      'People rebuilding stability after disruption, together with the community workers, advocates and case managers supporting them.',
-    currentActivities: [
-      'Building an early working prototype focused on identity re-establishment.',
-      'Testing the obstacle-mapping model against realistic support scenarios.',
-      'Developing design principles for humane and non-judgemental decision-support tooling.',
+      'A growing network of communities, programmes and shared spaces where people can connect, participate, pursue things that matter to them, support one another and contribute to practical social good.',
+    cardLink: 'Explore Real Good Communities',
+    featured: true,
+    tagline: 'A community for connection, participation, support and practical good',
+    sections: [
+      {
+        blocks: [
+          'Real Good Communities is a growing network of communities and programmes designed to make it easier for people to connect, pursue things that matter to them, find useful support, contribute what they can and create things together.',
+          'Canberra is the founding local community.',
+        ],
+      },
+      {
+        heading: 'Real Good Canberra',
+        blocks: [
+          'Real Good Canberra is the local operating base for Real Good Communities.',
+          'It will bring together:',
+          {
+            list: [
+              'social gatherings;',
+              'thoughtful discussion;',
+              'learning and workshops;',
+              'cultural activities;',
+              'practical-good projects;',
+              'peer connection;',
+              'opportunities to contribute;',
+              'community-led activities;',
+              'connections into relevant organisations and services.',
+            ],
+          },
+          'The aim is to build a community that becomes increasingly capable through the relationships, knowledge and participation of the people within it.',
+        ],
+      },
+      {
+        heading: 'What we are testing',
+        blocks: [
+          'The first year will help us understand:',
+          {
+            list: [
+              'what draws people into meaningful participation;',
+              'which activities people return to;',
+              'how useful relationships form;',
+              'what kinds of opportunities people want to contribute to;',
+              'how participants access support and practical pathways;',
+              'what capabilities the community develops over time;',
+              'which operating and revenue models can sustain the work.',
+            ],
+          },
+        ],
+      },
+      {
+        heading: 'Current work',
+        blocks: [
+          {
+            list: [
+              'Establishing the Real Good Canberra identity and community infrastructure.',
+              'Developing the initial programme portfolio.',
+              'Building member onboarding and communications.',
+              'Designing participation and contribution pathways.',
+              'Developing the Care Collective and Pathways Support.',
+              'Establishing partner relationships.',
+              'Developing outcome and learning measures.',
+              'Building the digital participant experience.',
+            ],
+          },
+        ],
+      },
     ],
-    seeking: [
-      'Community organisations willing to review the prototype against real service scenarios.',
-      'Researchers in social work, service design or decision support.',
-    ],
-    nextMilestone:
-      'Complete a usable prototype and run a small supervised review with two community partners.',
   },
   {
-    slug: 'partnership-commons',
-    name: 'Partnership Commons',
-    stage: 'Designing',
-    area: 'Partnerships for Good',
+    slug: 'social-infrastructure-collaborative',
+    name: 'Real Good Social Infrastructure Collaborative',
+    stages: ['Designing'],
+    area: 'Social Infrastructure & Organisational Systems',
     summary:
-      'A lightweight set of shared tools for helping community organisations, researchers and builders form useful collaborations without repeatedly starting from scratch.',
-    problem:
-      'Good collaborations often lose momentum to preventable friction: unclear expectations, mismatched capacity, uncertain roles and the repeated reinvention of basic partnership arrangements.',
-    response:
-      'Partnership Commons provides reusable templates, role definitions, conversation guides and readiness tools that help collaborators move from shared interest to a workable arrangement more quickly.',
-    beneficiaries:
-      'Community organisations, institutions, researchers and specialists forming practical cross-sector collaborations.',
-    currentActivities: [
-      'Designing the first partnership templates and readiness tools.',
-      'Gathering examples of what helps early collaborations succeed or fail.',
+      'A platform for designing, testing and strengthening the social infrastructure through which connection, agency, collective capability and institutional learning can develop.',
+    cardLink: 'Explore the Collaborative',
+    featured: true,
+    tagline: 'Building and learning from social infrastructure',
+    sections: [
+      {
+        blocks: [
+          'The Real Good Social Infrastructure Collaborative develops the models, methods and operating capabilities behind Real Good’s community and social-infrastructure work.',
+          'Its current architecture explores a progression through:',
+          { strong: 'Connect → Relate → Effectuate → Uplift → Mobilise → Achieve → Reform → Elevate' },
+          'These stages correspond to different capabilities including:',
+          {
+            list: [
+              'creating social connection;',
+              'fostering mutual support;',
+              'developing agency and capability;',
+              'building collective capability;',
+              'facilitating beneficial action;',
+              'synthesising social insight;',
+              'contributing to institutional change;',
+              'strengthening social infrastructure.',
+            ],
+          },
+          'The model is a working architecture to be tested and refined through practice.',
+        ],
+      },
+      {
+        heading: 'What the Collaborative does',
+        blocks: [
+          'The Collaborative supports:',
+          {
+            list: [
+              'social-infrastructure design;',
+              'programme architecture;',
+              'community capability modelling;',
+              'partnership development;',
+              'outcome and measurement design;',
+              'synthesis of community insight;',
+              'organisational learning;',
+              'research and framework development;',
+              'replication and adaptation of useful practices.',
+            ],
+          },
+          'Real Good Communities provides an initial environment in which this work can be applied and tested.',
+        ],
+      },
     ],
-    seeking: [
-      'Organisations that have recently formed — or attempted to form — cross-sector partnerships.',
-      'Practitioners working in social innovation, collaboration or programme design.',
-    ],
-    nextMilestone:
-      'Publish the first template set and test it with three prospective partnerships.',
   },
   {
-    slug: 'stage-signals',
-    name: 'Stage Signals',
-    stage: 'Researching',
-    area: 'Strategy and Systems',
+    slug: 'pathways-support',
+    name: 'Pathways Support',
+    stages: ['Designing'],
+    area: 'Practical Support & Agency',
     summary:
-      'A shared vocabulary for describing how developed an early initiative actually is, so people can support it with clearer expectations.',
-    problem:
-      'New ventures often have to describe themselves in binary terms: either an idea is “real” or it is not. That obscures the meaningful stages between first exploration and mature operation.',
-    response:
-      'Stage Signals explores a simple development vocabulary — Exploring, Researching, Designing, Prototyping, Piloting and Operating — together with evidence expectations appropriate to each stage.',
-    beneficiaries:
-      'Social ventures, funders, partners and supporters making decisions under uncertainty.',
-    currentActivities: [
-      'Reviewing maturity and readiness frameworks from adjacent fields.',
-      'Drafting stage definitions and evidence expectations.',
+      'A practical approach to helping people make sense of complex situations, identify useful options and move towards clearer next steps.',
+    cardLink: 'Explore Pathways Support',
+    featured: true,
+    tagline: 'Making complex situations easier to understand and act on',
+    sections: [
+      {
+        blocks: [
+          'Pathways Support is being developed for situations where several parts of life, work or support have become difficult to navigate at once.',
+          'It focuses on sense-making, practical options, next steps, coordination and continuity.',
+          'The aim is not to replace specialist services.',
+          'It is to make it easier to understand the wider situation, identify useful pathways and connect the different forms of support or action that may be relevant.',
+        ],
+      },
+      {
+        heading: 'What Pathways Support may include',
+        blocks: [
+          {
+            list: [
+              'clarifying goals, needs or priorities;',
+              'understanding available options;',
+              'identifying useful services and resources;',
+              'planning practical next steps;',
+              'connecting different areas of support;',
+              'documenting decisions or important information;',
+              'maintaining continuity while several organisations are involved.',
+            ],
+          },
+          'The initial service model will be tested before broader development.',
+        ],
+      },
     ],
-    seeking: [
-      'Funders and intermediaries interested in more useful descriptions of venture maturity.',
-      'Researchers with experience in evaluation, maturity or readiness assessment.',
+  },
+  {
+    slug: 'care-collective',
+    name: 'Real Good Care Collective',
+    stages: ['Designing'],
+    area: 'Community Care & Support',
+    summary:
+      'A developing network of contributors, associates and partner organisations supporting connection, community care, practical guidance and pathways into specialist help.',
+    cardLink: 'Explore the Care Collective',
+    featured: true,
+    tagline: 'Building a stronger community layer of care',
+    sections: [
+      {
+        blocks: [
+          'The Real Good Care Collective brings together contributors, associates and partner organisations that help Real Good Communities welcome people, facilitate participation, provide practical support and connect specialist help when appropriate.',
+          'The Collective is designed around complementary roles rather than trying to turn one organisation into every kind of service.',
+        ],
+      },
+      {
+        heading: 'Areas of contribution',
+        blocks: [
+          {
+            list: [
+              'welcoming and community connection;',
+              'peer and social support;',
+              'facilitation;',
+              'practical guidance;',
+              'community activities;',
+              'resource and service navigation;',
+              'specialist partnerships;',
+              'contributor development and training.',
+            ],
+          },
+          'The work will develop with clear role boundaries, safeguarding practices and referral pathways.',
+        ],
+      },
     ],
-    nextMilestone:
-      'Publish a foundational article proposing the framework for discussion and testing.',
+  },
+  {
+    slug: 'digital-spaces',
+    name: 'Real Good Digital Spaces',
+    stages: ['Exploring', 'Designing'],
+    area: 'Technology & Community',
+    summary: 'Real Good Digital Spaces will support participation across Real Good Communities.',
+    cardLink: 'Explore Digital Spaces',
+    featured: false,
+    tagline: 'Extending participation beyond physical events',
+    sections: [
+      {
+        blocks: [
+          'Real Good Digital Spaces will support participation across Real Good Communities.',
+          'The digital layer is intended to help people:',
+          {
+            list: [
+              'stay connected;',
+              'discover activities and opportunities;',
+              'find relevant groups;',
+              'access useful information;',
+              'share knowledge and resources;',
+              'coordinate activities;',
+              'contribute across geography;',
+              'continue relationships and work begun elsewhere.',
+            ],
+          },
+          'Early development will use existing community platforms where appropriate while longer-term requirements are explored.',
+        ],
+      },
+    ],
   },
 ];
 

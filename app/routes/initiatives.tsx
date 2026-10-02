@@ -3,7 +3,7 @@ import type { Route } from './+types/initiatives';
 import PageHero from '../components/PageHero';
 import InitiativeCard from '../components/InitiativeCard';
 import CtaBand from '../components/CtaBand';
-import { initiatives, stageOrder, type Stage } from '../data/initiatives';
+import { initiatives, developmentLabels, stageOrder, type Stage } from '../data/initiatives';
 
 export function meta(_: Route.MetaArgs) {
   return [
@@ -11,7 +11,7 @@ export function meta(_: Route.MetaArgs) {
     {
       name: 'description',
       content:
-        'Explore the ventures, tools, research and social infrastructure currently being developed through Real Good Social.',
+        'Explore the communities, services, research and social infrastructure being developed through Real Good Social.',
     },
   ];
 }
@@ -21,20 +21,34 @@ type Filter = 'All' | Stage;
 export default function Initiatives() {
   const [filter, setFilter] = useState<Filter>('All');
 
-  const presentStages = stageOrder.filter((s) => initiatives.some((i) => i.stage === s));
+  const presentStages = stageOrder.filter((s) => initiatives.some((i) => i.stages.includes(s)));
   const filters: Filter[] = ['All', ...presentStages];
-  const visible = filter === 'All' ? initiatives : initiatives.filter((i) => i.stage === filter);
+  const visible =
+    filter === 'All' ? initiatives : initiatives.filter((i) => i.stages.includes(filter));
 
   return (
     <>
       <PageHero
         eyebrow="Initiatives"
         title="What we are building"
-        lead="Some initiatives begin as questions. Others are prototypes, programmes or emerging ventures. Explore what they are trying to change, where they are now and what comes next."
-      />
+        lead="Real Good develops practical initiatives across community, social infrastructure, support, technology and organisational capability."
+      >
+        <p className="lead">
+          Each initiative is designed to learn from real use and develop as evidence, participation
+          and opportunity grow.
+        </p>
+      </PageHero>
 
       <section className="section section--surface">
         <div className="container">
+          <div className="development-labels">
+            <p className="label mt-0">{developmentLabels.join(' · ')}</p>
+            <p className="muted">
+              These labels describe where the work currently sits. They are intended to make
+              development visible without treating early ideas as finished products.
+            </p>
+          </div>
+
           <div className="filter-bar" role="group" aria-label="Filter initiatives by stage">
             {filters.map((f) => (
               <button
@@ -53,10 +67,6 @@ export default function Initiatives() {
               <InitiativeCard key={i.slug} initiative={i} />
             ))}
           </div>
-
-          <p className="muted" style={{ marginTop: '2rem', maxWidth: '60ch' }}>
-            Development stages show where each initiative currently sits: {stageOrder.join(' · ')}
-          </p>
         </div>
       </section>
 

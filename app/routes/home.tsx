@@ -4,15 +4,15 @@ import Icon from '../components/Icon';
 import InitiativeCard from '../components/InitiativeCard';
 import CtaBand from '../components/CtaBand';
 import { initiatives } from '../data/initiatives';
-import { insights, formatDate } from '../data/insights';
+import { insights, insightSummary } from '../data/insights';
 
 export function meta(_: Route.MetaArgs) {
   return [
-    { title: 'Real Good Social — Building better ways to do good' },
+    { title: 'Real Good Social — Building practical systems for social good' },
     {
       name: 'description',
       content:
-        'Real Good Social builds ventures, technology, partnerships and social infrastructure that help people turn good ideas into practical, lasting change.',
+        'Real Good Social creates technology, ventures, communities and organisational systems that expand our collective capacity to create positive change.',
     },
   ];
 }
@@ -20,44 +20,50 @@ export function meta(_: Route.MetaArgs) {
 const WORK_AREAS = [
   {
     icon: 'venture' as const,
-    title: 'Social Ventures',
-    body: 'Creating and growing ventures that respond to real social, cultural, environmental and human needs.',
+    title: 'Social ventures',
+    body: 'We create and develop ventures that establish useful new services, capabilities and opportunities for social good.',
   },
   {
     icon: 'tech' as const,
-    title: 'Technology for Good',
-    body: 'Building digital tools and infrastructure that give people more agency, access, knowledge and capacity to act.',
+    title: 'Technology',
+    body: 'We build technology that expands access to knowledge, opportunity, coordination and practical capability.',
   },
   {
     icon: 'partnership' as const,
-    title: 'Partnerships for Good',
-    body: 'Bringing people and organisations together around problems that are easier to solve collectively.',
+    title: 'Communities',
+    body: 'We create environments where people can connect, participate, contribute, find support and build things together.',
   },
   {
     icon: 'strategy' as const,
-    title: 'Strategy and Systems',
-    body: 'Designing the structures, models and capabilities that help good ideas become durable institutions and services.',
+    title: 'Organisations & systems',
+    body: 'We develop the structures, operating models and institutional capabilities through which worthwhile work can grow and endure.',
   },
 ];
 
 const PROCESS = [
-  { n: '01', title: 'Understand the real problem', body: 'Begin with the situation as it is, including the people, systems and constraints already involved.' },
-  { n: '02', title: 'Find the useful intervention', body: 'Identify what would genuinely make the situation easier, better or more possible.' },
-  { n: '03', title: 'Build with the right people', body: 'Bring together the people closest to the problem and the capabilities needed to address it.' },
-  { n: '04', title: 'Test and learn', body: 'Put ideas into contact with reality, gather evidence and improve what does not work.' },
-  { n: '05', title: 'Make it durable', body: 'Turn useful interventions into reusable capabilities, services, ventures or institutions.' },
+  { n: '01', title: 'Understand the situation', body: 'Start with the people, context, capabilities, constraints, opportunities and systems already present.' },
+  { n: '02', title: 'See what could become possible', body: 'Look for capabilities that could be created, strengthened, connected or made easier to access.' },
+  { n: '03', title: 'Build in practice', body: 'Develop real tools, programmes, communities, ventures, partnerships and organisational systems.' },
+  { n: '04', title: 'Learn from what happens', body: 'Use evidence, participation and experience to understand what is creating value, what is changing and what needs further development.' },
+  { n: '05', title: 'Strengthen what can continue', body: 'Build knowledge, relationships, infrastructure and organisational capability that support further positive action.' },
 ];
 
 const AUDIENCES = [
-  'Community organisations',
-  'Institutions',
+  'Communities',
+  'Social enterprises',
   'Researchers',
-  'Builders and specialists',
-  'Supporters',
+  'Government',
+  'Universities',
+  'Builders',
+  'Practitioners',
+  'Funders',
+  'Institutions',
+  'Contributors',
 ];
 
 export default function Home() {
   const latest = insights[0];
+  const featured = initiatives.filter((i) => i.featured);
 
   return (
     <>
@@ -65,10 +71,10 @@ export default function Home() {
         <div className="hero__grid container">
           <div className="hero__content">
             <p className="eyebrow">Real Good Social</p>
-            <h1 className="hero__title">Building better ways to do good.</h1>
+            <h1 className="hero__title">Building practical systems for social good.</h1>
             <p className="lead">
-              We build ventures, technology, partnerships and social infrastructure that help people
-              solve worthwhile problems and create lasting public value.
+              We create technology, ventures, communities and organisational systems that expand
+              our collective capacity to create positive change.
             </p>
             <div className="btn-row hero__actions">
               <Link to="/what-we-do" className="btn">
@@ -89,10 +95,11 @@ export default function Home() {
         <div className="container">
           <div className="section-head">
             <p className="eyebrow">What we do</p>
-            <h2>We build the missing pieces</h2>
+            <h2>We expand the capacity to do good.</h2>
             <p className="lead">
-              Sometimes the answer is a venture. Sometimes it is a tool, a partnership, a programme
-              or a better way of organising people and resources.
+              Real Good develops practical capabilities for positive action — connecting people,
+              knowledge, resources, technology and organisations in ways that increase what
+              becomes possible.
             </p>
           </div>
           <div className="grid grid-4">
@@ -108,7 +115,7 @@ export default function Home() {
           </div>
           <p className="section-foot">
             <Link to="/what-we-do" className="text-link">
-              See how our work fits together
+              Explore what we do
             </Link>
           </p>
         </div>
@@ -117,9 +124,22 @@ export default function Home() {
       <section className="section section--sky">
         <div className="container container-narrow center">
           <p className="eyebrow">Why Real Good exists</p>
-          <p className="statement">
-            Good ideas are everywhere. What is often missing are the systems, relationships, tools
-            and institutions that help them become real. Real Good Social exists to build them.
+          <h2>There is already enormous capacity for good in the world.</h2>
+          <p className="lead mx-auto">
+            People hold knowledge, experience, creativity, care, resources, relationships and
+            practical abilities that can contribute to positive change.
+          </p>
+          <p className="lead mx-auto">
+            Organisations and institutions hold further capabilities: expertise, infrastructure,
+            authority, reach and resources.
+          </p>
+          <p className="lead mx-auto">
+            Real Good is interested in what becomes possible when these capabilities are made more
+            accessible, developed further and connected in useful ways.
+          </p>
+          <p className="lead mx-auto">
+            Our work creates practical systems through which more of that capacity can become
+            action.
           </p>
         </div>
       </section>
@@ -129,18 +149,18 @@ export default function Home() {
           <div className="section-head section-head--row">
             <div>
               <p className="eyebrow">Featured initiatives</p>
-              <h2>Things we are building</h2>
+              <h2>What we are building</h2>
               <p className="lead">
-                Our initiatives range from early ideas to working prototypes and operating
-                programmes. Each one is explicit about where it stands and what comes next.
+                Our initiatives put the Real Good approach into practice across community, social
+                infrastructure, support, technology and organisational development.
               </p>
             </div>
             <Link to="/initiatives" className="btn btn--secondary">
               View all initiatives
             </Link>
           </div>
-          <div className="grid grid-3">
-            {initiatives.map((i) => (
+          <div className="grid grid-2">
+            {featured.map((i) => (
               <InitiativeCard key={i.slug} initiative={i} />
             ))}
           </div>
@@ -151,7 +171,7 @@ export default function Home() {
         <div className="container">
           <div className="section-head">
             <p className="eyebrow">How we work</p>
-            <h2>Understand. Build. Learn. Strengthen.</h2>
+            <h2>Build capability. Learn from practice. Create what becomes useful.</h2>
           </div>
           <ol className="process">
             {PROCESS.map((step) => (
@@ -171,7 +191,7 @@ export default function Home() {
         <div className="container">
           <div className="section-head">
             <p className="eyebrow">Who we work with</p>
-            <h2>Better systems are built together</h2>
+            <h2>Good work grows through useful connections.</h2>
           </div>
           <ul className="chip-list">
             {AUDIENCES.map((a) => (
@@ -182,7 +202,7 @@ export default function Home() {
           </ul>
           <p className="section-foot">
             <Link to="/partner" className="text-link">
-              Find a way to get involved
+              Find a way to work with us
             </Link>
           </p>
         </div>
@@ -192,15 +212,13 @@ export default function Home() {
         <div className="container container-narrow">
           <p className="eyebrow">Latest insight</p>
           <article className="latest-insight">
-            <p className="meta">
-              {latest.category} · {formatDate(latest.date)} · {latest.readingMinutes} min read
-            </p>
+            <p className="meta">{latest.category}</p>
             <h2>
               <Link to={`/insights/${latest.slug}`}>{latest.title}</Link>
             </h2>
-            <p className="lead">{latest.summary}</p>
+            <p className="lead">{insightSummary(latest)}</p>
             <Link to={`/insights/${latest.slug}`} className="text-link">
-              Read the piece
+              Read the insight
             </Link>
           </article>
         </div>

@@ -51,8 +51,8 @@ export function validateContact(fields: ContactFields): ValidationResult {
   else if (name.length > 120) errors.name = 'Name is too long.';
   if (!EMAIL_RE.test(email)) errors.email = 'Please enter a valid email address.';
   if (organisation.length > 160) errors.organisation = 'Organisation name is too long.';
-  if (!CATEGORY_VALUES.includes(category)) errors.category = 'Please choose the purpose of your enquiry.';
-  if (message.length < 10) errors.message = 'Please include a little more detail (at least 10 characters).';
+  if (!CATEGORY_VALUES.includes(category)) errors.category = 'Please choose what you would like to talk about.';
+  if (message.length < 10) errors.message = 'Please include a little more detail.';
   else if (message.length > 5000) errors.message = 'Message is too long (5000 characters maximum).';
 
   if (Object.keys(errors).length > 0) return { ok: false, errors };

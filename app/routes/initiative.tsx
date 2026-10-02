@@ -46,13 +46,13 @@ export default function InitiativeDetail({ loaderData }: Route.ComponentProps) {
           <h2>The problem or opportunity</h2>
           <p>{initiative.problem}</p>
 
-          <h2>Our proposed response</h2>
+          <h2>What we are building</h2>
           <p>{initiative.response}</p>
 
-          <h2>Intended beneficiaries</h2>
+          <h2>Who it is for</h2>
           <p>{initiative.beneficiaries}</p>
 
-          <h2>Current activities</h2>
+          <h2>What is happening now</h2>
           <ul className="ticked">
             {initiative.currentActivities.map((a) => (
               <li key={a}>{a}</li>
@@ -60,19 +60,19 @@ export default function InitiativeDetail({ loaderData }: Route.ComponentProps) {
           </ul>
 
           <div className="callout callout--seeking">
-            <h3 className="mt-0">Collaborators and support we are seeking</h3>
+            <h3 className="mt-0">Who we would like to work with</h3>
             <ul>
               {initiative.seeking.map((s) => (
                 <li key={s}>{s}</li>
               ))}
             </ul>
             <Link to="/partner" className="btn btn--sm">
-              Propose a partnership
+              Work with us
             </Link>
           </div>
 
           <div className="callout callout--milestone">
-            <p className="label mt-0">Next meaningful milestone</p>
+            <p className="label mt-0">Next milestone</p>
             <p className="statement" style={{ fontSize: '1.25rem' }}>
               {initiative.nextMilestone}
             </p>

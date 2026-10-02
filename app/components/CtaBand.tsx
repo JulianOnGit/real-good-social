@@ -5,18 +5,18 @@ export default function CtaBand() {
   return (
     <section className="section section--ink cta-band">
       <div className="container container-narrow center">
-        <p className="eyebrow">Work with Real Good Social</p>
-        <h2>There is concrete work to do, and useful ways to help.</h2>
+        <p className="eyebrow">Build something worthwhile</p>
+        <h2>Good things become possible when the right people, ideas and capabilities come together.</h2>
         <p className="lead mx-auto">
-          Whether you carry a problem worth solving, evidence worth applying, or capability worth
-          contributing, we would welcome the conversation.
+          Bring us a problem worth solving, an idea worth developing, evidence worth applying or
+          capability worth contributing.
         </p>
         <div className="btn-row" style={{ justifyContent: 'center', marginTop: '1.5rem' }}>
           <Link to="/partner" className="btn btn--on-ink">
-            Propose a partnership
+            Work with us
           </Link>
           <Link to="/contact" className="btn btn--secondary btn--on-ink">
-            Contact Real Good Social
+            Start a conversation
           </Link>
         </div>
       </div>

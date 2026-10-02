@@ -16,7 +16,7 @@ export default function InitiativeCard({ initiative }: { initiative: Initiative 
       </h3>
       <p className="muted">{initiative.summary}</p>
       <Link to={`/initiatives/${initiative.slug}`} className="text-link">
-        View the initiative
+        Explore the initiative
       </Link>
     </article>
   );

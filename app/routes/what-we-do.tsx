@@ -11,7 +11,7 @@ export function meta(_: Route.MetaArgs) {
     {
       name: 'description',
       content:
-        'Real Good Social works across four areas: social ventures, technology for good, partnerships for good, and strategy and systems.',
+        'Real Good Social works across social ventures, technology, partnerships and systems to build practical capability for social good.',
     },
   ];
 }
@@ -20,22 +20,22 @@ const AREAS = [
   {
     icon: 'venture' as const,
     title: 'Social Ventures',
-    body: 'Real Good Social develops and supports ventures addressing social, cultural, environmental, and human needs — from early concept through to durable operating models.',
+    body: 'We create and support ventures that respond to social, cultural, environmental and human needs, from first concept through to sustainable operation.',
   },
   {
     icon: 'tech' as const,
     title: 'Technology for Good',
-    body: 'We design digital tools and infrastructure that improve agency, access, coordination, knowledge, accountability, and participation for the people and organisations who use them.',
+    body: 'We design digital tools and infrastructure that improve agency, access, coordination, knowledge, accountability and participation.',
   },
   {
     icon: 'partnership' as const,
     title: 'Partnerships for Good',
-    body: 'We work with community organisations, researchers, institutions, and practitioners to develop and implement practical responses — strengthening existing work rather than duplicating it.',
+    body: 'We bring community organisations, researchers, institutions, practitioners and builders together around problems where collaboration can create more than isolated effort.',
   },
   {
     icon: 'strategy' as const,
     title: 'Strategy and Systems',
-    body: 'We examine how promising ideas can become sustainable operating models, organisational capabilities, services, and ventures — the connective work that turns intent into capacity.',
+    body: 'We design the operating models, structures and capabilities that allow promising ideas to become useful, sustainable and repeatable.',
   },
 ];
 
@@ -44,8 +44,8 @@ export default function WhatWeDo() {
     <>
       <PageHero
         eyebrow="What we do"
-        title="Four areas of work, one purpose"
-        lead="Our work is grouped into a small number of public-facing areas — broad enough to stay useful as the portfolio evolves, clear enough to be understood at a glance."
+        title="From worthwhile ideas to working systems"
+        lead="We work wherever a useful idea needs more than goodwill to become real — whether that means building a venture, a technology, a partnership or the system around it."
       />
 
       <section className="section section--surface">
@@ -75,9 +75,9 @@ export default function WhatWeDo() {
         <div className="container container-narrow center">
           <p className="eyebrow">How the areas connect</p>
           <p className="statement">
-            A venture may begin as research, take shape as technology, depend on partnership to
-            reach the people it serves, and only endure through sound strategy and systems. The
-            areas are not silos — they are the sequence by which an idea becomes durable capability.
+            A useful idea may begin with research, become a venture, require technology, depend on
+            partnership and eventually need its own organisation or operating model. We work across
+            those boundaries because real problems rarely respect them.
           </p>
         </div>
       </section>
@@ -87,8 +87,11 @@ export default function WhatWeDo() {
           <div className="section-head section-head--row">
             <div>
               <p className="eyebrow">In practice</p>
-              <h2>See the areas at work</h2>
-              <p className="lead">Our current initiatives show how these areas take concrete form.</p>
+              <h2>See what we are building</h2>
+              <p className="lead">
+                Our initiatives show how these capabilities come together around real problems and
+                opportunities.
+              </p>
             </div>
             <Link to="/initiatives" className="btn btn--secondary">
               View all initiatives

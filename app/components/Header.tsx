@@ -68,7 +68,7 @@ export default function Header() {
             ))}
             <li className="site-nav__cta">
               <NavLink to="/partner" className="btn btn--sm" onClick={() => setOpen(false)}>
-                Propose a partnership
+                Work with us
               </NavLink>
             </li>
           </ul>

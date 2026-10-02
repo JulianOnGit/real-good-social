@@ -30,11 +30,11 @@ export const links: Route.LinksFunction = () => [
 ];
 
 export const meta: Route.MetaFunction = () => [
-  { title: 'Real Good Social — Building practical systems for social good' },
+  { title: 'Real Good Social — Building better ways to do good' },
   {
     name: 'description',
     content:
-      'Real Good Social develops ventures, technologies, and partnerships that help people and organisations translate good intentions into effective, durable action.',
+      'Real Good Social builds ventures, technology, partnerships and social infrastructure that help people turn good ideas into practical, lasting change.',
   },
 ];
 
@@ -87,18 +87,18 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
         <section className="section section--surface">
           <div className="container container-narrow center" style={{ paddingBlock: '3rem' }}>
             <p className="eyebrow">{isNotFound ? '404' : 'Something went wrong'}</p>
-            <h1>{isNotFound ? 'We couldn’t find that page' : 'An unexpected error occurred'}</h1>
+            <h1>{isNotFound ? 'That page isn’t here' : 'We hit an unexpected problem'}</h1>
             <p className="lead mx-auto">
               {isNotFound
-                ? 'The page may have moved, or the link may be out of date. Let’s get you back on track.'
-                : 'Please try again in a moment. If it keeps happening, let us know.'}
+                ? 'It may have moved, changed or disappeared. There is plenty more to explore.'
+                : 'Try again in a moment. If the problem keeps happening, let us know.'}
             </p>
             <div className="btn-row" style={{ justifyContent: 'center', marginTop: '1.5rem' }}>
               <Link to="/" className="btn">
                 Return home
               </Link>
               <Link to="/initiatives" className="btn btn--secondary">
-                View our initiatives
+                Explore our initiatives
               </Link>
             </div>
           </div>

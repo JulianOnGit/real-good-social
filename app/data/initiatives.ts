@@ -36,24 +36,24 @@ export const initiatives: Initiative[] = [
     stage: 'Prototyping',
     area: 'Technology for Good',
     summary:
-      'A structured way to map a person’s obstacles, resources, and viable next steps so that support workers and individuals can see a path forward rather than a wall of problems.',
+      'A tool for turning a tangled situation into a practical path forward by mapping obstacles, dependencies, resources and possible next steps.',
     problem:
-      'People navigating hardship — re-establishing identity documents, housing, or employment — often face a tangle of interdependent obstacles. Support systems tend to treat each problem in isolation, so effort is duplicated and the practical order of operations is lost.',
+      'People navigating difficult life situations — such as re-establishing identity documents, housing or employment — often face several interdependent problems at once. Services may address each issue separately even when the order in which they are solved matters.',
     response:
-      'SolutionGraph represents a situation as a graph of obstacles and the concrete steps that unblock them. It surfaces the shortest realistic path to a goal, makes dependencies explicit, and produces plain-language briefs that a person and a support worker can act on together.',
+      'SolutionGraph represents a situation as a network of obstacles, dependencies, resources and actions. It helps reveal which steps unlock others, where effort is blocked and what realistic routes exist towards a goal.',
     beneficiaries:
-      'People re-establishing stability after disruption, and the community workers and case managers who support them.',
+      'People rebuilding stability after disruption, together with the community workers, advocates and case managers supporting them.',
     currentActivities: [
       'Building an early working prototype focused on identity re-establishment.',
-      'Testing the obstacle-mapping model against real support scenarios.',
-      'Documenting design principles for humane, non-judgemental tooling.',
+      'Testing the obstacle-mapping model against realistic support scenarios.',
+      'Developing design principles for humane and non-judgemental decision-support tooling.',
     ],
     seeking: [
-      'Community organisations willing to review the prototype against real cases.',
-      'Researchers in social work, service design, or decision support.',
+      'Community organisations willing to review the prototype against real service scenarios.',
+      'Researchers in social work, service design or decision support.',
     ],
     nextMilestone:
-      'Complete a usable prototype and run a small, supervised review with two community partners.',
+      'Complete a usable prototype and run a small supervised review with two community partners.',
   },
   {
     slug: 'partnership-commons',
@@ -61,23 +61,23 @@ export const initiatives: Initiative[] = [
     stage: 'Designing',
     area: 'Partnerships for Good',
     summary:
-      'A shared, lightweight framework for setting up collaborations between community organisations, researchers, and builders without heavy overhead or duplicated groundwork.',
+      'A lightweight set of shared tools for helping community organisations, researchers and builders form useful collaborations without repeatedly starting from scratch.',
     problem:
-      'Promising collaborations stall on avoidable friction: unclear expectations, mismatched capacity, and each partnership re-inventing agreements, roles, and reporting from scratch.',
+      'Good collaborations often lose momentum to preventable friction: unclear expectations, mismatched capacity, uncertain roles and the repeated reinvention of basic partnership arrangements.',
     response:
-      'Partnership Commons provides reusable templates, role definitions, and a simple readiness checklist so that aligned organisations can move from a shared problem to a working arrangement quickly and transparently.',
+      'Partnership Commons provides reusable templates, role definitions, conversation guides and readiness tools that help collaborators move from shared interest to a workable arrangement more quickly.',
     beneficiaries:
-      'Community organisations and institutions seeking practical collaboration, and the specialists who contribute to it.',
+      'Community organisations, institutions, researchers and specialists forming practical cross-sector collaborations.',
     currentActivities: [
-      'Designing the core partnership templates and readiness checklist.',
-      'Gathering input on what makes early collaborations succeed or fail.',
+      'Designing the first partnership templates and readiness tools.',
+      'Gathering examples of what helps early collaborations succeed or fail.',
     ],
     seeking: [
-      'Organisations that have recently formed — or attempted — a cross-sector partnership.',
-      'Practitioners in social innovation and programme design.',
+      'Organisations that have recently formed — or attempted to form — cross-sector partnerships.',
+      'Practitioners working in social innovation, collaboration or programme design.',
     ],
     nextMilestone:
-      'Publish a first template set and validate it with three prospective partnerships.',
+      'Publish the first template set and test it with three prospective partnerships.',
   },
   {
     slug: 'stage-signals',
@@ -85,23 +85,23 @@ export const initiatives: Initiative[] = [
     stage: 'Researching',
     area: 'Strategy and Systems',
     summary:
-      'A small research effort into how early-stage social ventures can communicate their maturity honestly — helping funders, partners, and the public calibrate expectations.',
+      'A shared vocabulary for describing how developed an early initiative actually is, so people can support it with clearer expectations.',
     problem:
-      'Early ventures are pushed to overstate their maturity to attract support, which erodes trust and misallocates resources. There is no shared, honest vocabulary for “how developed is this, really?”',
+      'New ventures often have to describe themselves in binary terms: either an idea is “real” or it is not. That obscures the meaningful stages between first exploration and mature operation.',
     response:
-      'Stage Signals studies existing maturity models and proposes a simple, consistent way to label development stage — the same Exploring-to-Operating vocabulary used across this site — with guidance on evidence appropriate to each stage.',
+      'Stage Signals explores a simple development vocabulary — Exploring, Researching, Designing, Prototyping, Piloting and Operating — together with evidence expectations appropriate to each stage.',
     beneficiaries:
-      'Social ventures, funders, and partners who need to make sound decisions under uncertainty.',
+      'Social ventures, funders, partners and supporters making decisions under uncertainty.',
     currentActivities: [
       'Reviewing maturity and readiness frameworks from adjacent fields.',
-      'Drafting stage definitions and the evidence appropriate to each.',
+      'Drafting stage definitions and evidence expectations.',
     ],
     seeking: [
-      'Funders and intermediaries willing to comment on the draft framework.',
-      'Researchers with experience in evaluation or readiness assessment.',
+      'Funders and intermediaries interested in more useful descriptions of venture maturity.',
+      'Researchers with experience in evaluation, maturity or readiness assessment.',
     ],
     nextMilestone:
-      'Produce a short foundational article proposing the stage framework for public comment.',
+      'Publish a foundational article proposing the framework for discussion and testing.',
   },
 ];
 

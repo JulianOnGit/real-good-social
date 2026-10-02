@@ -8,7 +8,7 @@ export function meta(_: Route.MetaArgs) {
     {
       name: 'description',
       content:
-        'Concrete ways for community organisations, institutions, researchers, builders, and supporters to work with Real Good Social.',
+        'Work with Real Good Social on ventures, technology, research, programmes, partnerships and social infrastructure.',
     },
   ];
 }
@@ -16,46 +16,40 @@ export function meta(_: Route.MetaArgs) {
 const AUDIENCES = [
   {
     title: 'Community organisations',
-    body: 'Collaborate on a problem, pilot a tool, strengthen an existing service, or develop a new response alongside us.',
+    body: 'Bring us a recurring problem, unmet need, programme idea or opportunity to strengthen something already working.',
     cta: 'Share a problem or opportunity',
   },
   {
     title: 'Institutions',
-    body: 'Explore partnerships involving research, technology, programme design, social innovation, service development, or implementation.',
+    body: 'Explore work involving research, technology, programme design, social infrastructure, service development or implementation.',
     cta: 'Explore institutional collaboration',
   },
   {
     title: 'Researchers and specialists',
-    body: 'Contribute domain knowledge, evidence, evaluation, design expertise, or technical capability to a specific initiative.',
+    body: 'Apply domain knowledge, evidence, evaluation, design or technical expertise to a specific initiative.',
     cta: 'Contribute expertise',
   },
   {
     title: 'Builders and contributors',
-    body: 'Participate in product development, design, operations, communications, research, or venture formation.',
-    cta: 'Express interest in contributing',
+    body: 'Help design, build and operate products, programmes, communities, research and new ventures.',
+    cta: 'Get involved',
   },
   {
     title: 'Supporters and funders',
-    body: 'Provide introductions, sponsorship, philanthropic support, resources, strategic advice, or support for a specific initiative.',
+    body: 'Help useful work become possible through funding, sponsorship, introductions, resources, advice or institutional support.',
     cta: 'Support an initiative',
   },
 ];
 
-const ACTIONS = [
-  'Propose a partnership',
-  'Share a problem or opportunity',
-  'Contribute expertise',
-  'Support an initiative',
-  'Arrange an introductory conversation',
-];
+const ACTIONS = ['A problem', 'An idea', 'Evidence', 'Expertise', 'Resources', 'A possible partnership'];
 
 export default function Partner() {
   return (
     <>
       <PageHero
         eyebrow="Partner with us"
-        title="Concrete ways to work together"
-        lead="Early-stage credibility comes from being clear about the kinds of engagement we are prepared to undertake. Here is how different partners can get involved."
+        title="Bring something worth building"
+        lead="Real Good Social works with people and organisations who have problems worth solving, knowledge worth applying, capabilities worth sharing or ideas worth developing."
       />
 
       <section className="section section--surface">
@@ -77,7 +71,7 @@ export default function Partner() {
       <section className="section section--sky">
         <div className="container container-narrow center">
           <p className="eyebrow">Ways to begin</p>
-          <h2>Choose a starting point</h2>
+          <h2>Start with what you have</h2>
           <ul className="chip-list" style={{ justifyContent: 'center' }}>
             {ACTIONS.map((a) => (
               <li key={a} className="chip chip--action">

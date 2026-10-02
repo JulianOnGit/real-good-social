@@ -1,3 +1,4 @@
+import { Fragment } from 'react';
 import { Link, data } from 'react-router';
 import type { Route } from './+types/insight';
 import CtaBand from '../components/CtaBand';
@@ -45,15 +46,22 @@ export default function InsightDetail({ loaderData }: Route.ComponentProps) {
             <div key={idx}>
               {block.heading && <h2>{block.heading}</h2>}
               {block.body.map((para, i) => (
-                <p key={i}>{para}</p>
+                <p key={i}>
+                  {para.split('\n').map((line, j) => (
+                    <Fragment key={j}>
+                      {j > 0 && <br />}
+                      {line}
+                    </Fragment>
+                  ))}
+                </p>
               ))}
             </div>
           ))}
 
           <hr className="divider" />
           <p className="meta">
-            Written by Real Good Social. This piece reflects our thinking at its current stage of
-            development and may be revised as the work matures.
+            Written by Real Good Social. Our thinking develops through the work, and we may revise
+            pieces as we learn more.
           </p>
           <p className="section-foot">
             <Link to="/insights" className="text-link">

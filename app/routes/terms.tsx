@@ -11,7 +11,7 @@ export function meta(_: Route.MetaArgs) {
 export default function Terms() {
   return (
     <>
-      <PageHero eyebrow="Legal" title="Terms of use" lead="The terms on which we make this website available." />
+      <PageHero eyebrow="Legal" title="Terms of use" lead="The terms that apply when you use this website." />
       <section className="section section--surface">
         <div className="container container-narrow prose">
           <p className="meta">Last updated: July 2026</p>
@@ -19,39 +19,42 @@ export default function Terms() {
           <h2>About this site</h2>
           <p>
             This website represents Real Good Social and is operated by Real Good Ventures Pty Ltd.
-            It describes the purpose, activities, programmes and initiatives of Real Good Social,
-            and is provided for general information.
+            It describes the purpose, activities, programmes and initiatives of Real Good Social and
+            is provided for general information.
           </p>
 
           <h2>Development-stage information</h2>
           <p>
-            Real Good Social is an early-stage organisation. Initiatives are labelled with a
-            development stage — from Exploring to Operating — and descriptions reflect our intent and
-            progress at the time of writing. Nothing on this site should be read as a promise that a
-            programme, product, or service currently exists in a particular form.
+            Real Good Social develops initiatives at different stages of maturity. We use
+            development-stage labels — from Exploring to Operating — to distinguish early ideas,
+            research, designs, prototypes, pilots and operating capabilities.
+          </p>
+          <p>
+            Descriptions reflect our work and intentions at the time of publication and should not
+            be taken as a guarantee that a programme, product or service exists in a particular
+            form.
           </p>
 
           <h2>Use of content</h2>
           <p>
             Content on this site is owned by Real Good Ventures Pty Ltd unless stated otherwise. You
-            may read, share, and cite our published content with attribution. You may not
-            reproduce it in a way that misrepresents Real Good Social or implies endorsement we have
-            not given.
+            may read, share and cite published content with attribution. You may not reproduce it
+            in a way that misrepresents Real Good Social or implies endorsement that has not been
+            given.
           </p>
 
           <h2>Enquiries and submissions</h2>
           <p>
-            Information you send us through the contact form should be accurate and lawful. We may
-            decline or not respond to enquiries at our discretion. Submitting an enquiry does not
-            create a partnership, contract, or obligation between you and Real Good Ventures Pty
-            Ltd.
+            Information sent through the contact form should be accurate and lawful. Submitting an
+            enquiry does not create a partnership, contract or obligation between you and Real Good
+            Ventures Pty Ltd.
           </p>
 
           <h2>No warranty</h2>
           <p>
-            The site is provided “as is” without warranties of any kind. Real Good Ventures Pty Ltd
-            makes reasonable efforts to keep information current but does not guarantee it is
-            complete or error-free.
+            The site is provided “as is”. Real Good Ventures Pty Ltd takes reasonable steps to keep
+            information useful and current but does not guarantee that all information is complete
+            or error-free.
           </p>
 
           <h2>Contact</h2>

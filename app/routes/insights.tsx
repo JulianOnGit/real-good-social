@@ -10,7 +10,7 @@ export function meta(_: Route.MetaArgs) {
     {
       name: 'description',
       content:
-        'A restrained publication area from Real Good Social: project notes, research summaries, design principles, and progress updates.',
+        'Ideas, research, project notes and lessons from building ventures, systems and social infrastructure for public good.',
     },
   ];
 }
@@ -28,8 +28,8 @@ export default function Insights() {
     <>
       <PageHero
         eyebrow="Insights"
-        title="Notes on building for social good"
-        lead="A restrained publication area rather than a high-frequency blog. We prefer a small number of substantial pieces to frequent, low-value posts."
+        title="Ideas from the work"
+        lead="Notes, research and working ideas about how people build useful things together — and how better systems can expand what becomes possible."
       />
 
       <section className="section section--surface">

@@ -18,7 +18,7 @@ export function meta(_: Route.MetaArgs) {
     {
       name: 'description',
       content:
-        'Contact Real Good Social. Choose the purpose of your enquiry — partnership, project, research, contributing, funding, media, or general.',
+        'Contact Real Good Social about partnerships, initiatives, research, contributing, funding or other opportunities to work together.',
     },
   ];
 }
@@ -89,19 +89,18 @@ export default function Contact() {
   if (composed) {
     return (
       <>
-        <PageHero eyebrow="Contact" title="Your message is ready to send" />
+        <PageHero eyebrow="Contact" title="Your message is ready" />
         <section className="section section--surface">
           <div className="container container-narrow">
             <div className="callout callout--success" role="status">
-              <h2 className="mt-0">Check your email application</h2>
+              <h2 className="mt-0">Finish sending it from your email application</h2>
               <p>
-                We have opened a pre-filled message to <strong>{CONTACT_EMAIL}</strong> in your
-                email application. Press send there and it will reach us — nothing has left your
-                device yet.
+                We have opened a pre-filled message to <strong>{CONTACT_EMAIL}</strong>. Nothing
+                has been sent until you press send in your email application.
               </p>
               <p className="meta">
-                Nothing happened? Your browser may have no email application configured. You can
-                write to us directly at <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.
+                Nothing happened? You can email us directly at{' '}
+                <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.
               </p>
               <button className="btn btn--secondary" type="button" onClick={() => setComposed(false)}>
                 Write another message
@@ -117,8 +116,8 @@ export default function Contact() {
     <>
       <PageHero
         eyebrow="Contact"
-        title="Contact Real Good Social"
-        lead="Tell us the purpose of your enquiry and a little about what you have in mind. We read every message and respond by email."
+        title="Start a conversation"
+        lead="Tell us what you are working on, what problem you are trying to solve or where you think our work might connect."
       />
 
       <section className="section section--surface">
@@ -145,7 +144,7 @@ export default function Contact() {
             </div>
 
             <div className="field">
-              <label htmlFor="category">Purpose of your enquiry</label>
+              <label htmlFor="category">What would you like to talk about?</label>
               <select id="category" name="category" defaultValue={initialCategory} required>
                 {ENQUIRY_CATEGORIES.map((c) => (
                   <option key={c.value} value={c.value}>
@@ -172,8 +171,8 @@ export default function Contact() {
               Compose message
             </button>
             <p className="meta form-privacy">
-              This opens the message in your own email application — we use your details only to
-              respond to your enquiry. See our <Link to="/privacy">privacy notice</Link>.
+              This opens a message in your email application. Your details stay on your device until
+              you choose to send it. See our <Link to="/privacy">privacy notice</Link>.
             </p>
           </form>
 
@@ -185,7 +184,7 @@ export default function Contact() {
                 <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
               </dd>
               <dt>Based in</dt>
-              <dd>Australia — working with partners anywhere</dd>
+              <dd>Australia · working with people and organisations anywhere</dd>
             </dl>
             <hr className="divider" />
             <p className="muted">

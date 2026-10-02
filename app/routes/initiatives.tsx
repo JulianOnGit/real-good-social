@@ -11,7 +11,7 @@ export function meta(_: Route.MetaArgs) {
     {
       name: 'description',
       content:
-        'A small, honest portfolio of Real Good Social initiatives, each with a visible development stage from Exploring to Operating.',
+        'Explore the ventures, tools, research and social infrastructure currently being developed through Real Good Social.',
     },
   ];
 }
@@ -29,8 +29,8 @@ export default function Initiatives() {
     <>
       <PageHero
         eyebrow="Initiatives"
-        title="What we are currently developing"
-        lead="We present only the projects that are developed enough to communicate publicly. Each carries a visible stage so you can see how mature it really is."
+        title="What we are building"
+        lead="Some initiatives begin as questions. Others are prototypes, programmes or emerging ventures. Explore what they are trying to change, where they are now and what comes next."
       />
 
       <section className="section section--surface">
@@ -55,9 +55,7 @@ export default function Initiatives() {
           </div>
 
           <p className="muted" style={{ marginTop: '2rem', maxWidth: '60ch' }}>
-            An initial public portfolio of three to five initiatives is sufficient at this stage.
-            The wider body of Real Good Social’s work remains deliberately simplified until its
-            relationships can be explained clearly.
+            Development stages show where each initiative currently sits: {stageOrder.join(' · ')}
           </p>
         </div>
       </section>

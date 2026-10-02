@@ -2,6 +2,7 @@ export type InsightCategory = 'Ideas' | 'Projects' | 'Research' | 'Updates';
 
 export interface InsightParagraph {
   heading?: string;
+  /** One string per paragraph; `\n` inside a string is a line break. */
   body: string[];
 }
 
@@ -18,45 +19,54 @@ export interface Insight {
 export const insights: Insight[] = [
   {
     slug: 'building-practical-systems-for-social-good',
-    title: 'Building practical systems for social good',
+    title: 'Building better ways to do good',
     category: 'Ideas',
     date: '2026-06-30',
     readingMinutes: 6,
     summary:
-      'Why the gap between good intentions and effective action is a systems problem — and what an organisation can usefully do about it without overstating its reach.',
+      'Why worthwhile ideas so often stall between intention and implementation — and why building the missing systems can matter as much as the idea itself.',
     content: [
       {
         body: [
-          'A great deal of social effort is sincere, well-informed, and still ineffective. Not because people lack commitment, but because the systems around them are fragmented. Coordination is weak, institutional pathways are unclear, and the practical support needed to turn concern into durable action is often missing.',
-          'Real Good Social exists to work on that gap. Not by adding another campaign, but by developing the ventures, tools, and collaborations that make effective social action easier to initiate, coordinate, sustain, and scale.',
+          'A remarkable amount of social effort begins with people who already care deeply and understand the problems around them.',
+          'What is often missing is not concern. It is practical capacity.',
+          'A community organisation may know exactly what would help but lack the time or technical capability to build it. A researcher may have useful evidence that never reaches the people positioned to act on it. Two organisations may be trying to solve the same problem without a good mechanism for finding one another.',
+          'Real Good Social works on those missing pieces.',
         ],
       },
       {
-        heading: 'Good intentions are not the bottleneck',
+        heading: 'Good intentions are only the beginning',
         body: [
-          'It is tempting to frame social problems as a shortage of care. In practice, the binding constraint is usually structural. A community organisation knows exactly what its members need but cannot spare the capacity to build the tool that would help. A researcher has evidence that never reaches the people who could act on it. A promising idea stalls because no one owns the unglamorous work of turning it into an operating model.',
-          'These are not failures of goodwill. They are failures of systems — and systems can be designed, tested, and improved.',
+          'A worthwhile idea still needs somewhere to live.',
+          'It may need a team, a tool, a partnership, funding, a process, an operating model or an institution capable of carrying it forward.',
+          'Those things are sometimes treated as administrative details surrounding the “real” work.',
+          'We think they are part of the real work.',
         ],
       },
       {
-        heading: 'What a practical response looks like',
+        heading: 'Build capability, not just activity',
         body: [
-          'We think the useful unit of work is a durable capability, not a one-off intervention. A template that many partnerships can reuse. A piece of software that removes the same obstacle for thousands of people. A clear, honest way to describe how developed a venture actually is.',
-          'This is deliberately unglamorous. It favours reusable infrastructure over visible heroics, and long-term value over symbolic wins.',
+          'The most useful intervention is often something that makes future action easier.',
+          'A reusable partnership model. A piece of software that removes a recurring obstacle. A new organisation capable of carrying work forward. A common vocabulary that improves decisions across many projects.',
+          'These things may be less visible than a one-off campaign, but they can change what becomes possible afterwards.',
         ],
       },
       {
-        heading: 'Honesty about stage is part of the work',
+        heading: 'Ideas should become more real over time',
         body: [
-          'Early organisations are often pushed to sound more established than they are. We would rather be precise. Across this site, every initiative carries a visible development stage — from Exploring to Operating — so that partners and supporters can calibrate their expectations and their involvement.',
-          'Transparency about uncertainty is not a weakness to be managed. It is a feature of trustworthy institutions, and we intend to treat it as part of the Real Good Social brand.',
+          'We describe initiatives using six development stages: Exploring, Researching, Designing, Prototyping, Piloting and Operating.',
+          'The purpose is simple: an early question and an established service are both real, but they are real in different ways.',
+          'Clear stages make it easier to understand what exists now, what is still uncertain and where someone else might usefully contribute.',
         ],
       },
       {
-        heading: 'Where this goes',
+        heading: 'Where this leads',
         body: [
-          'Real Good Social is early. The portfolio is small and deliberately so. What we are building first is the foundation: a coherent purpose, a handful of concrete initiatives, and clear pathways for the partners, researchers, builders, and supporters who want to help.',
-          'If that describes you, we would welcome the conversation.',
+          'Real Good Social is being built around a broad proposition:',
+          'society gets better not only when people care more, but when people have better ways to turn care, knowledge and collective effort into action.',
+          'That creates a large design space.',
+          'New ventures. Better tools. Stronger communities. More effective partnerships. New forms of social infrastructure.',
+          'There is a great deal worth building.',
         ],
       },
     ],
@@ -68,25 +78,34 @@ export const insights: Insight[] = [
     date: '2026-07-10',
     readingMinutes: 4,
     summary:
-      'A short note on the Exploring-to-Operating vocabulary we use to describe development stage, and why a shared language for maturity matters.',
+      'Why a simple vocabulary for development stage can make early projects easier to understand, support and improve.',
     content: [
       {
         body: [
-          'When someone asks “is this real?”, they are usually asking a more precise question: how developed is it, and what can I reasonably expect if I get involved? A slogan cannot answer that. A stage can.',
+          'When someone asks whether a new initiative is “real”, they are usually asking several different questions.',
+          'Has anyone researched it?\nHas anything been designed?\nDoes a prototype exist?\nHas someone used it?\nIs it operating reliably?',
+          'Those distinctions matter.',
         ],
       },
       {
-        heading: 'A small, consistent vocabulary',
+        heading: 'A simple development vocabulary',
         body: [
-          'We label every initiative with one of six stages: Exploring, Researching, Designing, Prototyping, Piloting, and Operating. The point is not precision theatre. It is to give partners and supporters an honest signal of maturity and the kind of evidence that should accompany it.',
-          'An Exploring concept should be described as a question, not a promise. An Operating capability should be able to show results. Most of what a young organisation does sits somewhere in between — and saying so plainly builds more trust than polish ever will.',
+          'We currently use six stages:',
+          'Exploring. Researching. Designing. Prototyping. Piloting. Operating.',
+          'An Exploring initiative may still be a question.',
+          'A Prototyping initiative should have something tangible enough to test.',
+          'An Operating initiative should be able to demonstrate that a functioning capability actually exists.',
+          'The stages are not intended to reduce development to a rigid process. They provide a common language for describing where something stands.',
         ],
       },
       {
-        heading: 'Why it is worth the discipline',
+        heading: 'Why the distinction helps',
         body: [
-          'Shared vocabulary reduces the cost of every conversation. Funders can compare like with like. Partners can match their involvement to the stage. And the organisation itself is held to describing progress in terms of movement between stages rather than volume of activity.',
-          'This note accompanies our Stage Signals research, which is developing the framework in more depth.',
+          'Different stages need different kinds of support.',
+          'A research-stage initiative may need evidence or specialist critique. A prototype may need testers. A pilot may need implementation partners. An operating venture may need resources to grow.',
+          'Clearer language therefore does more than improve communication.',
+          'It helps connect the right kind of participation to the right moment in the life of an idea.',
+          'Stage Signals is our attempt to develop that vocabulary further.',
         ],
       },
     ],

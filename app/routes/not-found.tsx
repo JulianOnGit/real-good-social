@@ -14,16 +14,16 @@ export default function NotFound() {
     <section className="section section--surface">
       <div className="container container-narrow center" style={{ paddingBlock: '3rem' }}>
         <p className="eyebrow">404</p>
-        <h1>We couldn’t find that page</h1>
+        <h1>That page isn’t here</h1>
         <p className="lead mx-auto">
-          The page may have moved, or the link may be out of date. Let’s get you back on track.
+          It may have moved, changed or disappeared. There is plenty more to explore.
         </p>
         <div className="btn-row" style={{ justifyContent: 'center', marginTop: '1.5rem' }}>
           <Link to="/" className="btn">
             Return home
           </Link>
           <Link to="/initiatives" className="btn btn--secondary">
-            View our initiatives
+            Explore our initiatives
           </Link>
         </div>
       </div>

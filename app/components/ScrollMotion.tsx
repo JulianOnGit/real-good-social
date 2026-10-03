@@ -6,8 +6,11 @@ import { useLocation } from 'react-router';
  *
  * Nothing here is required for the page to be readable: the server renders all
  * content visible, and this only opts in once JS runs and the visitor hasn't
- * asked for reduced motion. Elements already on screen at mount are revealed in
- * the same frame they're hidden, so there is no flash of missing content.
+ * asked for reduced motion. Elements already well into the screen at mount are
+ * revealed in the same frame they're hidden, so there is no flash of missing
+ * content. Elements just peeking in at the bottom animate in straight after the
+ * page opens, so the first screen never shows an empty band waiting for a
+ * scroll.
  *
  * Two kinds of target:
  *   - Groups  — a list or grid. The *container* is observed, and when it comes
@@ -100,15 +103,15 @@ const STAGGER_MS = 90;
 const MAX_STAGGER_STEPS = 10;
 
 /**
- * How far up the screen something must come before it reveals.
- *
- * Mobile fires soon after an item starts occupying screen area — waiting until
- * it is well up the viewport leaves an awkward band of empty space below the
- * fold while you scroll toward it.
+ * How far up the screen something must come before it reveals: soon after it
+ * starts occupying screen area. Waiting until it is well up the viewport leaves
+ * an awkward band of empty space below the fold while you scroll toward it.
  */
-const ROOT_MARGIN_DESKTOP = '0px 0px -25% 0px';
-const ROOT_MARGIN_MOBILE = '0px 0px -12% 0px';
+const ROOT_MARGIN = '0px 0px -12% 0px';
+/** Above this line at mount: shown at once, without animating. */
 const ALREADY_IN_VIEW = 0.85;
+/** Anything else on screen before the first scroll animates in after this. */
+const PEEK_REVEAL_MS = 450;
 
 /** Longest reveal transition in motion.css, plus a little slack. */
 const REVEAL_MS = 810;
@@ -136,6 +139,7 @@ export default function ScrollMotion() {
      * cursor doesn't flicker into its hover state mid-flight.
      */
     const reveal = (el: HTMLElement) => {
+      if (el.classList.contains('is-revealed')) return;
       el.classList.add('is-revealed');
       const delay = Number.parseFloat(el.style.getPropertyValue('--reveal-delay')) || 0;
       const settle = () => el.classList.add('is-settled');
@@ -211,24 +215,48 @@ export default function ScrollMotion() {
     // Threshold stays at 0 and the delay comes from the negative bottom margin.
     // A percentage threshold would be unsafe: for anything taller than the
     // viewport the required fraction can never be visible, leaving it hidden.
+    const revealTarget = (target: HTMLElement) => {
+      observer.unobserve(target);
+      peekObserver.unobserve(target);
+      if (target.matches(GROUP_SELECTOR)) {
+        for (const item of Array.from(target.children)) reveal(item as HTMLElement);
+      } else {
+        reveal(target);
+      }
+    };
+
     const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) revealTarget(entry.target as HTMLElement);
+        }
+      },
+      { rootMargin: ROOT_MARGIN, threshold: 0 },
+    );
+
+    // Until the first scroll, anything on screen at all is revealed — including
+    // the start of the next section peeking in at the bottom — so the first
+    // screen never shows an empty band. This is an observer rather than a
+    // one-off measurement because the layout shifts when the web font arrives.
+    const mountedAt = performance.now();
+    const peekObserver = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
           if (!entry.isIntersecting) continue;
           const target = entry.target as HTMLElement;
-
-          if (target.matches(GROUP_SELECTOR)) {
-            for (const item of Array.from(target.children)) reveal(item as HTMLElement);
-          } else {
-            reveal(target);
-          }
-          observer.unobserve(target);
+          const wait = Math.max(0, PEEK_REVEAL_MS - (performance.now() - mountedAt));
+          timers.push(window.setTimeout(() => revealTarget(target), wait));
         }
       },
-      { rootMargin: chainGroups ? ROOT_MARGIN_DESKTOP : ROOT_MARGIN_MOBILE, threshold: 0 },
+      { threshold: 0 },
     );
+    const stopPeeking = () => peekObserver.disconnect();
+    window.addEventListener('scroll', stopPeeking, { once: true, passive: true });
 
-    for (const el of observed) observer.observe(el);
+    for (const el of observed) {
+      observer.observe(el);
+      peekObserver.observe(el);
+    }
 
     // With a deep trigger line, anything sitting inside the bottom band at
     // maximum scroll would never cross it. Reveal whatever is left once the
@@ -257,7 +285,9 @@ export default function ScrollMotion() {
 
     return () => {
       observer.disconnect();
+      peekObserver.disconnect();
       window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('scroll', stopPeeking);
       for (const timer of timers) window.clearTimeout(timer);
     };
   }, [pathname]);

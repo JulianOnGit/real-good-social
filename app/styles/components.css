@@ -180,9 +180,16 @@
 }
 
 /* --- Home hero --- */
+/* The hero fills the first screen, leaving a thin strip of the next section's
+   field visible at the bottom so it's clear the page continues. On short
+   screens its padding tightens so the strip still fits. */
 .hero {
+  --hero-peek: clamp(2.5rem, 7svh, 4.5rem);
   position: relative;
-  padding-block: clamp(3rem, 7vw, 5.5rem);
+  display: grid;
+  align-content: center;
+  min-height: calc(100svh - var(--header-h) - var(--hero-peek));
+  padding-block: clamp(2rem, min(7vw, 7svh), 5.5rem);
   overflow: hidden;
 }
 /* Faint structured field — a systems motif, kept almost subliminal. */
@@ -229,6 +236,15 @@
     order: -1;
     max-width: 300px;
     justify-self: start;
+  }
+}
+/* On phones the stacked diagram would push the buttons below the fold. */
+@media (max-width: 600px) {
+  .hero__grid {
+    gap: var(--space-l);
+  }
+  .hero__motif {
+    max-width: 220px;
   }
 }
 

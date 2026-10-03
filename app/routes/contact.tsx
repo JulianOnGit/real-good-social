@@ -32,21 +32,20 @@ export function meta({ location }: Route.MetaArgs) {
 function mailtoHref(fields: ContactFields): string {
   const categoryLabel = ENQUIRY_CATEGORY_LABELS[fields.category] ?? fields.category;
 
+  // mailto: bodies use CRLF line breaks (RFC 6068).
   const body = [
-    `Purpose:      ${categoryLabel}`,
-    `Name:         ${fields.name}`,
-    `Email:        ${fields.email}`,
+    `Purpose: ${categoryLabel}`,
+    `Name: ${fields.name}`,
+    `Email: ${fields.email}`,
     `Organisation: ${fields.organisation || '—'}`,
     '',
-    fields.message,
-  ].join('\n');
+    fields.message.replace(/\r?\n/g, '\r\n'),
+  ].join('\r\n');
+  const subject = `[${categoryLabel}] Enquiry from ${fields.name}`;
 
-  const params = new URLSearchParams({
-    subject: `[${categoryLabel}] Enquiry from ${fields.name}`,
-    body,
-  });
-
-  return `mailto:${CONTACT_EMAIL}?${params.toString()}`;
+  // Percent-encode by hand. URLSearchParams writes spaces as "+", which is only
+  // a space in web forms — mail clients show it as a literal plus sign.
+  return `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 }
 
 export default function Contact() {

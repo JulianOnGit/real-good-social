@@ -2,7 +2,7 @@
   "name": "real-good-social-website",
   "version": "2.0.0",
   "private": true,
-  "description": "Real Good Social — public website. React Router 7 (framework mode), prerendered to a static site for GitHub Pages.",
+  "description": "Real Good Social — public website. React Router 7 (framework mode), prerendered to a static site served from S3 and CloudFront.",
   "type": "module",
   "engines": {
     "node": ">=20"

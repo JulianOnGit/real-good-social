@@ -5,7 +5,7 @@ Australia. Built to the [design brief](./documentation/real-good-social-website-
 and the Real Good brand (blue-gradient heart mark, navy wordmark).
 
 - **Framework:** React Router 7 (framework mode), **prerendered to static HTML**.
-- **Hosting:** GitHub Pages — no server, no runtime, no environment variables.
+- **Hosting:** S3 + CloudFront (AWS account `realgoodsocial-website`) — no server, no runtime, no environment variables.
 - **Client:** React 18, hydrated. Per-route code splitting.
 - **Design system:** brand colours, Inter throughout, WCAG 2.2 AA intent. See [Design system](#design-system).
 
@@ -13,7 +13,7 @@ Every page is rendered to HTML at build time, so content is visible before (or
 without) client JS. Once JS loads, the client router takes over and navigation is
 instant.
 
-**Live:** <https://julianongit.github.io/real-good-social/>
+**Live:** <https://realgoodsocial.org>
 
 ## How the static build works
 
@@ -32,13 +32,12 @@ and insight detail pages from the same data the pages render — so a new entry 
 
 After the build, `scripts/finalise-static.mjs`:
 
-1. **Flattens** the output. Vite's `base` prefixes asset URLs *and* the router's
-   `basename` nests the prerendered HTML under a matching directory, so pages land
-   one level deeper than the assets they reference. Pages already serves the repo at
-   the base path, so the nested copy is lifted back to the root.
+1. **Flattens** the output, for subpath builds only. Vite's `base` prefixes asset URLs
+   *and* the router's `basename` nests the prerendered HTML under a matching directory,
+   so pages land one level deeper than the assets they reference; the nested copy is
+   lifted back to the root. The live site is served from `/`, where nothing is nested.
 2. Writes **`404.html`** from the prerendered catch-all route, so an unknown URL
    shows the site's own 404 page with a real 404 status.
-3. Writes **`.nojekyll`**, without which Pages drops files starting with `_`.
 
 ## Project layout
 
@@ -50,7 +49,7 @@ website-2/
 ├── scripts/
 │   └── finalise-static.mjs   # post-build: flatten, 404.html, .nojekyll
 ├── .github/workflows/
-│   └── deploy.yml            # build + publish to Pages on push to main
+│   └── deploy.yml            # build + publish to S3/CloudFront on push to main
 ├── app/
 │   ├── root.tsx              # document shell, chrome, ErrorBoundary
 │   ├── routes.ts             # route table
@@ -75,17 +74,14 @@ so the detail pages keep reading from `app/data/` exactly as before.
 
 ```bash
 npm install
-npm run dev            # http://localhost:5173/real-good-social/
+npm run dev            # http://localhost:5173/
 ```
-
-Note the base path in the dev URL: the dev server mounts the site there too, so
-development matches production.
 
 ### Build and preview
 
 ```bash
 npm run build          # → build/client, ready to serve as-is
-npm run preview        # serves build/client at the base path
+npm run preview        # serves build/client locally
 ```
 
 ### Type checking
@@ -97,23 +93,31 @@ npm run typecheck      # react-router typegen && tsc
 ## Deployment
 
 Pushing to `main` triggers [`.github/workflows/deploy.yml`](./.github/workflows/deploy.yml),
-which typechecks, builds, and publishes `build/client` to GitHub Pages. The repository's
-**Settings → Pages → Source** must be set to **GitHub Actions**.
+which typechecks, builds, uploads `build/client` to S3 and invalidates CloudFront.
 
-The base path is the repository name: the workflow passes it to the build as `BASE_PATH`,
-and `base-path.mjs` falls back to `/real-good-social` locally.
+| Piece | Value |
+|---|---|
+| AWS account | `realgoodsocial-website` (426845667337), `non-profit` OU |
+| Bucket | `realgoodsocial-website-426845667337` (ap-southeast-2, private, versioned) |
+| CloudFront | `E8A6C6DIIQFS8` → `d36kx1rons9bii.cloudfront.net` |
+| Deploy role | `github-deploy-realgoodsocial-website`, assumed via GitHub OIDC; trusts this repo's `main` only |
+| DNS | Namecheap: `@` ALIAS and `www` CNAME → the CloudFront domain |
+
+GitHub Actions holds no AWS keys. Hashed files in `assets/` are cached for a year; pages
+and `.data` files are revalidated by browsers and cached at CloudFront until the
+invalidation each deploy makes. Old asset files are left in place so open tabs keep
+working; the bucket keeps previous object versions for 30 days, so a bad deploy can be
+rolled back.
+
+A CloudFront Function (`realgoodsocial-viewer-request`) redirects `www` to the apex
+domain and maps `/about` to `about/index.html`. Missing paths return `404.html` with a
+404 status.
 
 ### Staging
 
-The [staging repository](https://github.com/JulianOnGit/real-good-social-staging) runs the
-same workflow, but its Pages site is currently switched off. To preview a branch there,
-re-enable Pages (**Settings → Pages → Source: GitHub Actions**), add it as a remote and
-push the branch to its `main`:
-
-```sh
-git remote add staging https://github.com/JulianOnGit/real-good-social-staging.git
-git push staging <branch>:main --force
-```
+The [staging repository](https://github.com/JulianOnGit/real-good-social-staging) has no
+AWS deployment: the deploy role only trusts this repository, so its workflow fails at the
+AWS sign-in step.
 
 ## The contact form
 

@@ -1,6 +1,6 @@
 import { Link, data } from 'react-router';
 import type { Route } from './+types/insight';
-import { canonicalUrl, pageMeta, SITE_NAME, SITE_URL } from '../data/seo';
+import { canonicalUrl, pageMeta, shareImageUrl, SITE_NAME, SITE_URL } from '../data/seo';
 import PageHero from '../components/PageHero';
 import CtaBand from '../components/CtaBand';
 import { Blocks } from '../components/Blocks';
@@ -40,7 +40,7 @@ export function meta({ data: loaded, location }: Route.MetaArgs) {
         headline: insight.title,
         url,
         mainEntityOfPage: url,
-        image: `${SITE_URL}/share-image.png`,
+        image: shareImageUrl(location.pathname),
         description: insightSummary(insight),
         articleSection: insight.category,
         author: { '@type': 'Person', name: author.name, jobTitle: author.role },

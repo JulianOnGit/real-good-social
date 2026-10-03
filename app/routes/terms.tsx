@@ -1,12 +1,15 @@
 import type { Route } from './+types/terms';
+import { pageMeta } from '../data/seo';
 import PageHero from '../components/PageHero';
 import { Blocks } from '../components/Blocks';
 
-export function meta(_: Route.MetaArgs) {
-  return [
-    { title: 'Terms — Real Good Social' },
-    { name: 'description', content: 'Terms of use for the Real Good Social website.' },
-  ];
+export function meta({ location }: Route.MetaArgs) {
+  return pageMeta({
+    title: 'Terms — Real Good Social',
+    description:
+      'Terms of use for the Real Good Social website: who operates it, how to read our initiatives and insights, and how our content may be shared or cited.',
+    pathname: location.pathname,
+  });
 }
 
 export default function Terms() {

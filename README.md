@@ -50,7 +50,8 @@ website-2/
 ├── react-router.config.ts    # ssr: false + the prerender URL list
 ├── vite.config.ts            # base + reactRouter() + tsconfig paths
 ├── scripts/
-│   └── finalise-static.mjs   # post-build: flatten, 404.html, .nojekyll
+│   ├── finalise-static.mjs   # post-build: flatten, 404.html, sitemap.xml
+│   └── share-images.mjs      # post-build: a link-preview card per page
 ├── .github/workflows/
 │   └── deploy.yml            # build + publish to S3/CloudFront on push to main
 ├── app/
@@ -67,7 +68,7 @@ website-2/
 │   ├── data/                 # initiatives, insights, contact constants + validation
 │   ├── assets/logo-mark.png  # hashed by Vite
 │   └── styles/               # tokens + patterns (index.css), components.css, motion.css
-└── public/                   # icons, logo.png, share-image.png, robots.txt
+└── public/                   # icons, logo.png, robots.txt
 ```
 
 Route `loader`s still exist and still run — at **build time**, during prerendering —
@@ -130,7 +131,12 @@ aws cloudfront publish-function --name realgoodsocial-viewer-request --if-match 
 
 - **Page metadata** — every route's `meta` goes through `pageMeta` in
   [`app/data/seo.ts`](./app/data/seo.ts): title, description, canonical URL (no trailing
-  slash), and Open Graph tags with the shared `public/share-image.png` (1200×630).
+  slash), and Open Graph tags for link previews.
+- **Link-preview cards** — after each build,
+  [`scripts/share-images.mjs`](./scripts/share-images.mjs) renders a 1200×630 card per page
+  into `share/` (e.g. `share/insights/<slug>.png`, `share/home.png`) from the page's own
+  eyebrow, heading and lead or byline, over the brand background and hero diagram. New
+  pages get one automatically; to change the design, edit the script.
 - **Structured data** — the home page describes the organisation and website (JSON-LD);
   each insight is an `Article`.
 - **`sitemap.xml`** — generated after each build from the prerendered pages, so new

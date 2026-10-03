@@ -113,6 +113,11 @@ invalidation each deploy makes. Old asset files are left in place so open tabs k
 working; the bucket keeps previous object versions for 30 days, so a bad deploy can be
 rolled back.
 
+Files under `documents/` in the bucket are uploaded by hand, not built from this
+repository: unlisted documents shared by direct link. The deploy leaves that prefix alone,
+and CloudFront serves it with `X-Robots-Tag: noindex` so search engines don't list it. They
+are not in the sitemap and nothing on the site links to them.
+
 A CloudFront Function (`realgoodsocial-viewer-request`, source in
 [`infra/cloudfront-viewer-request.js`](./infra/cloudfront-viewer-request.js)) redirects
 `www` to the apex domain and `/about/` to `/about`, and maps `/about` to

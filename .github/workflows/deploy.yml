@@ -53,11 +53,12 @@ jobs:
           --cache-control "public, max-age=31536000, immutable"
 
       # Pages and route data: browsers always revalidate, CloudFront caches
-      # until the invalidation below.
+      # until the invalidation below. `documents/` holds files uploaded by hand
+      # that are not part of the build, so --delete must leave it alone.
       - name: Upload pages
         run: >
           aws s3 sync build/client "s3://$S3_BUCKET"
-          --delete --exclude "assets/*"
+          --delete --exclude "assets/*" --exclude "documents/*"
           --cache-control "public, max-age=0, s-maxage=86400"
 
       - name: Invalidate CloudFront

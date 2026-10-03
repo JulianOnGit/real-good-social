@@ -26,7 +26,7 @@ env:
 jobs:
   deploy:
     # No `environment:` here — it would change the OIDC subject the deploy role
-    # trusts (repo:JulianOnGit/real-good-social:ref:refs/heads/main).
+    # trusts (repo:JulianOnGit@17049483/real-good-social@1305979570:ref:refs/heads/main).
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4

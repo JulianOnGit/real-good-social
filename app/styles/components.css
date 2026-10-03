@@ -232,19 +232,18 @@
   .hero__grid {
     grid-template-columns: 1fr;
   }
+  /* Stacked above the text, the diagram is centred and as large as the screen
+     allows: capped by height too, so on short phones the buttons and the strip
+     of the next section still fit on the first screen. */
   .hero__motif {
     order: -1;
-    max-width: 300px;
-    justify-self: start;
+    justify-self: center;
+    max-width: min(360px, 88%, 34svh);
   }
 }
-/* On phones the stacked diagram would push the buttons below the fold. */
 @media (max-width: 600px) {
   .hero__grid {
     gap: var(--space-l);
-  }
-  .hero__motif {
-    max-width: 220px;
   }
 }
 

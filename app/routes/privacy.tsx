@@ -1,12 +1,15 @@
 import type { Route } from './+types/privacy';
+import { pageMeta } from '../data/seo';
 import PageHero from '../components/PageHero';
 import { Blocks } from '../components/Blocks';
 
-export function meta(_: Route.MetaArgs) {
-  return [
-    { title: 'Privacy — Real Good Social' },
-    { name: 'description', content: 'How Real Good Social handles personal information.' },
-  ];
+export function meta({ location }: Route.MetaArgs) {
+  return pageMeta({
+    title: 'Privacy — Real Good Social',
+    description:
+      'How Real Good Social collects, uses, stores and protects personal information, including enquiries made through this website.',
+    pathname: location.pathname,
+  });
 }
 
 export default function Privacy() {

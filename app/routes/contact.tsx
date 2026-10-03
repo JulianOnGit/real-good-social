@@ -1,6 +1,7 @@
 import { useState, type FormEvent } from 'react';
 import { Link, useSearchParams } from 'react-router';
 import type { Route } from './+types/contact';
+import { pageMeta } from '../data/seo';
 import PageHero from '../components/PageHero';
 import {
   ENQUIRY_CATEGORIES,
@@ -12,15 +13,13 @@ import {
 } from '../data/contact';
 import { ABN, LEGAL_ENTITY } from '../data/legal';
 
-export function meta(_: Route.MetaArgs) {
-  return [
-    { title: 'Contact — Real Good Social' },
-    {
-      name: 'description',
-      content:
-        'Contact Real Good Social about partnerships, initiatives, research, contribution, funding or other opportunities.',
-    },
-  ];
+export function meta({ location }: Route.MetaArgs) {
+  return pageMeta({
+    title: 'Contact — Real Good Social',
+    description:
+      'Contact Real Good Social about partnerships, initiatives, research, contribution, funding or other opportunities.',
+    pathname: location.pathname,
+  });
 }
 
 /**

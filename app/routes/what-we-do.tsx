@@ -1,16 +1,15 @@
 import type { Route } from './+types/what-we-do';
+import { pageMeta } from '../data/seo';
 import PageHero from '../components/PageHero';
 import CtaBand from '../components/CtaBand';
 
-export function meta(_: Route.MetaArgs) {
-  return [
-    { title: 'What We Do — Real Good Social' },
-    {
-      name: 'description',
-      content:
-        'Real Good Social creates technology, ventures, communities and organisational systems that expand practical capacity for positive change.',
-    },
-  ];
+export function meta({ location }: Route.MetaArgs) {
+  return pageMeta({
+    title: 'What We Do — Real Good Social',
+    description:
+      'Real Good Social creates technology, ventures, communities and organisational systems that expand practical capacity for positive change.',
+    pathname: location.pathname,
+  });
 }
 
 interface Area {

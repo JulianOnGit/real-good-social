@@ -1,5 +1,6 @@
 import { Link, data } from 'react-router';
 import type { Route } from './+types/initiative';
+import { pageMeta } from '../data/seo';
 import PageHero from '../components/PageHero';
 import Stages from '../components/Stages';
 import CtaBand from '../components/CtaBand';
@@ -14,12 +15,13 @@ export async function loader({ params }: Route.LoaderArgs) {
   return { initiative };
 }
 
-export function meta({ data: loaded }: Route.MetaArgs) {
+export function meta({ data: loaded, location }: Route.MetaArgs) {
   if (!loaded?.initiative) return [{ title: 'Initiative — Real Good Social' }];
-  return [
-    { title: `${loaded.initiative.name} — Real Good Social` },
-    { name: 'description', content: loaded.initiative.summary },
-  ];
+  return pageMeta({
+    title: `${loaded.initiative.name} — Real Good Social`,
+    description: loaded.initiative.summary,
+    pathname: location.pathname,
+  });
 }
 
 export default function InitiativeDetail({ loaderData }: Route.ComponentProps) {

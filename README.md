@@ -44,6 +44,9 @@ After the build, `scripts/finalise-static.mjs`:
 ```
 website-2/
 ├── base-path.mjs             # single source of truth for the deploy path
+├── site.mjs                  # the site's public address (canonical URLs, sitemap)
+├── infra/
+│   └── cloudfront-viewer-request.js  # redirects + index.html rewrite (deployed by hand)
 ├── react-router.config.ts    # ssr: false + the prerender URL list
 ├── vite.config.ts            # base + reactRouter() + tsconfig paths
 ├── scripts/
@@ -64,7 +67,7 @@ website-2/
 │   ├── data/                 # initiatives, insights, contact constants + validation
 │   ├── assets/logo-mark.png  # hashed by Vite
 │   └── styles/               # tokens + patterns (index.css), components.css, motion.css
-└── public/                   # favicon.png, apple-touch-icon.png
+└── public/                   # icons, logo.png, share-image.png, robots.txt
 ```
 
 Route `loader`s still exist and still run — at **build time**, during prerendering —
@@ -109,9 +112,30 @@ invalidation each deploy makes. Old asset files are left in place so open tabs k
 working; the bucket keeps previous object versions for 30 days, so a bad deploy can be
 rolled back.
 
-A CloudFront Function (`realgoodsocial-viewer-request`) redirects `www` to the apex
-domain and maps `/about` to `about/index.html`. Missing paths return `404.html` with a
-404 status.
+A CloudFront Function (`realgoodsocial-viewer-request`, source in
+[`infra/cloudfront-viewer-request.js`](./infra/cloudfront-viewer-request.js)) redirects
+`www` to the apex domain and `/about/` to `/about`, and maps `/about` to
+`about/index.html`. Missing paths return `404.html` with a 404 status. CI does not deploy
+the function; after editing it, update and publish it with the AWS CLI:
+
+```sh
+ETAG=$(aws cloudfront describe-function --name realgoodsocial-viewer-request --query ETag --output text)
+ETAG=$(aws cloudfront update-function --name realgoodsocial-viewer-request --if-match "$ETAG" \
+  --function-config '{"Comment":"www and trailing-slash redirects; index.html rewrite","Runtime":"cloudfront-js-2.0"}' \
+  --function-code fileb://infra/cloudfront-viewer-request.js --query ETag --output text)
+aws cloudfront publish-function --name realgoodsocial-viewer-request --if-match "$ETAG"
+```
+
+## Search and link previews
+
+- **Page metadata** — every route's `meta` goes through `pageMeta` in
+  [`app/data/seo.ts`](./app/data/seo.ts): title, description, canonical URL (no trailing
+  slash), and Open Graph tags with the shared `public/share-image.png` (1200×630).
+- **Structured data** — the home page describes the organisation and website (JSON-LD);
+  each insight is an `Article`.
+- **`sitemap.xml`** — generated after each build from the prerendered pages, so new
+  initiatives and insights are listed automatically. `public/robots.txt` points to it.
+- **Site address** — [`site.mjs`](./site.mjs) holds `https://realgoodsocial.org` for both.
 
 ### Staging
 

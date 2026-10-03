@@ -1,20 +1,19 @@
 import { Link } from 'react-router';
 import type { Route } from './+types/partner';
+import { pageMeta } from '../data/seo';
 import PageHero from '../components/PageHero';
 import CtaBand from '../components/CtaBand';
 import InitiativeCard from '../components/InitiativeCard';
 import { initiatives } from '../data/initiatives';
 import type { CategoryValue } from '../data/contact';
 
-export function meta(_: Route.MetaArgs) {
-  return [
-    { title: 'Work With Us — Real Good Social' },
-    {
-      name: 'description',
-      content:
-        'Work with Real Good Social: share a problem, propose a partnership, contribute expertise or support an initiative.',
-    },
-  ];
+export function meta({ location }: Route.MetaArgs) {
+  return pageMeta({
+    title: 'Work With Us — Real Good Social',
+    description:
+      'Work with Real Good Social: share a problem, propose a partnership, contribute expertise or support an initiative.',
+    pathname: location.pathname,
+  });
 }
 
 /**

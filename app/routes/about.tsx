@@ -1,16 +1,15 @@
 import type { Route } from './+types/about';
+import { pageMeta } from '../data/seo';
 import PageHero from '../components/PageHero';
 import CtaBand from '../components/CtaBand';
 
-export function meta(_: Route.MetaArgs) {
-  return [
-    { title: 'About — Real Good Social' },
-    {
-      name: 'description',
-      content:
-        'Real Good Social builds practical systems that expand agency, strengthen collective capability and increase our capacity to create positive change.',
-    },
-  ];
+export function meta({ location }: Route.MetaArgs) {
+  return pageMeta({
+    title: 'About — Real Good Social',
+    description:
+      'Real Good Social builds practical systems that expand agency, strengthen collective capability and increase our capacity to create positive change.',
+    pathname: location.pathname,
+  });
 }
 
 const PRINCIPLES = [

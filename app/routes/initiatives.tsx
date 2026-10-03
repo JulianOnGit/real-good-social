@@ -1,19 +1,18 @@
 import { useState } from 'react';
 import type { Route } from './+types/initiatives';
+import { pageMeta } from '../data/seo';
 import PageHero from '../components/PageHero';
 import InitiativeCard from '../components/InitiativeCard';
 import CtaBand from '../components/CtaBand';
 import { initiatives, stageOrder, type Stage } from '../data/initiatives';
 
-export function meta(_: Route.MetaArgs) {
-  return [
-    { title: 'Initiatives — Real Good Social' },
-    {
-      name: 'description',
-      content:
-        'Explore the communities, services, research and social infrastructure being developed through Real Good Social.',
-    },
-  ];
+export function meta({ location }: Route.MetaArgs) {
+  return pageMeta({
+    title: 'Initiatives — Real Good Social',
+    description:
+      'Explore the communities, services, research and social infrastructure being developed through Real Good Social.',
+    pathname: location.pathname,
+  });
 }
 
 type Filter = 'All' | Stage;

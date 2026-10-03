@@ -6,7 +6,10 @@ import StatusMessage from '../components/StatusMessage';
 // server-side loader that could set it.
 
 export function meta(_: Route.MetaArgs) {
-  return [{ title: 'Page not found — Real Good Social' }];
+  return [
+    { title: 'Page not found — Real Good Social' },
+    { name: 'robots', content: 'noindex' },
+  ];
 }
 
 export default function NotFound() {

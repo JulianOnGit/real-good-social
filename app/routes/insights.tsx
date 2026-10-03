@@ -1,18 +1,17 @@
 import { useState } from 'react';
 import type { Route } from './+types/insights';
+import { pageMeta } from '../data/seo';
 import PageHero from '../components/PageHero';
 import { InsightTeaser } from '../components/InsightMeta';
 import { insights, hasTopic, INSIGHT_TOPICS, PUBLICATION } from '../data/insights';
 
-export function meta(_: Route.MetaArgs) {
-  return [
-    { title: 'Insights — Real Good Social' },
-    {
-      name: 'description',
-      content:
-        'Ideas, research and design questions emerging from Real Good’s work on agency, capability, communities, social infrastructure and positive social action.',
-    },
-  ];
+export function meta({ location }: Route.MetaArgs) {
+  return pageMeta({
+    title: 'Insights — Real Good Social',
+    description:
+      'Ideas, research and design questions emerging from Real Good’s work on agency, capability, communities, social infrastructure and positive social action.',
+    pathname: location.pathname,
+  });
 }
 
 export default function Insights() {

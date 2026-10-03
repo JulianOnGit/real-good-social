@@ -1,5 +1,6 @@
 import { Link, data } from 'react-router';
 import type { Route } from './+types/insight';
+import { canonicalUrl, pageMeta, SITE_NAME, SITE_URL } from '../data/seo';
 import PageHero from '../components/PageHero';
 import CtaBand from '../components/CtaBand';
 import { Blocks } from '../components/Blocks';
@@ -14,17 +15,21 @@ export async function loader({ params }: Route.LoaderArgs) {
   return { insight };
 }
 
-export function meta({ data: loaded }: Route.MetaArgs) {
+export function meta({ data: loaded, location }: Route.MetaArgs) {
   if (!loaded?.insight) return [{ title: 'Insight — Real Good Social' }];
   const { insight } = loaded;
   const author = insightAuthor(insight);
   const published = insight.date && isoDate(insight.date);
   const modified = insight.updated && isoDate(insight.updated);
+  const url = canonicalUrl(location.pathname);
   return [
-    { title: `${insight.title} — Real Good Social` },
-    { name: 'description', content: insightSummary(insight) },
+    ...pageMeta({
+      title: `${insight.title} — Real Good Social`,
+      description: insightSummary(insight),
+      pathname: location.pathname,
+      type: 'article',
+    }),
     { name: 'author', content: author.name },
-    { property: 'og:type', content: 'article' },
     ...(published ? [{ property: 'article:published_time', content: published }] : []),
     ...(modified ? [{ property: 'article:modified_time', content: modified }] : []),
     { property: 'article:section', content: insight.category },
@@ -33,10 +38,13 @@ export function meta({ data: loaded }: Route.MetaArgs) {
         '@context': 'https://schema.org',
         '@type': 'Article',
         headline: insight.title,
+        url,
+        mainEntityOfPage: url,
+        image: `${SITE_URL}/share-image.png`,
         description: insightSummary(insight),
         articleSection: insight.category,
         author: { '@type': 'Person', name: author.name, jobTitle: author.role },
-        publisher: { '@type': 'Organization', name: 'Real Good Social' },
+        publisher: { '@type': 'Organization', name: SITE_NAME, url: `${SITE_URL}/` },
         isPartOf: { '@type': 'Blog', name: PUBLICATION },
         ...(published && { datePublished: published }),
         ...(modified && { dateModified: modified }),

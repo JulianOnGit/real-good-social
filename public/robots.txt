@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://realgoodsocial.org/sitemap.xml

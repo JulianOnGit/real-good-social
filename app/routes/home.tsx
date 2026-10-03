@@ -1,18 +1,48 @@
 import { Link } from 'react-router';
 import type { Route } from './+types/home';
+import { pageMeta, SITE_NAME, SITE_URL } from '../data/seo';
+import { CONTACT_EMAIL } from '../data/contact';
 import InitiativeCard from '../components/InitiativeCard';
 import CtaBand from '../components/CtaBand';
 import { initiatives } from '../data/initiatives';
 import { InsightTeaser } from '../components/InsightMeta';
 import { insights } from '../data/insights';
 
-export function meta(_: Route.MetaArgs) {
+export function meta({ location }: Route.MetaArgs) {
+  const description =
+    'Real Good Social creates technology, ventures, communities and organisational systems that expand our collective capacity to create positive change.';
   return [
-    { title: 'Real Good Social — Building practical systems for social good' },
+    ...pageMeta({
+      title: 'Real Good Social — Building practical systems for social good',
+      description,
+      pathname: location.pathname,
+    }),
+    // Tells search engines who the site belongs to, for brand results and the
+    // knowledge panel. `public/logo.png` keeps a stable, unhashed address.
     {
-      name: 'description',
-      content:
-        'Real Good Social creates technology, ventures, communities and organisational systems that expand our collective capacity to create positive change.',
+      'script:ld+json': {
+        '@context': 'https://schema.org',
+        '@graph': [
+          {
+            '@type': 'Organization',
+            '@id': `${SITE_URL}/#organization`,
+            name: SITE_NAME,
+            url: `${SITE_URL}/`,
+            logo: `${SITE_URL}/logo.png`,
+            description,
+            email: CONTACT_EMAIL,
+            areaServed: 'AU',
+          },
+          {
+            '@type': 'WebSite',
+            '@id': `${SITE_URL}/#website`,
+            name: SITE_NAME,
+            url: `${SITE_URL}/`,
+            inLanguage: 'en-AU',
+            publisher: { '@id': `${SITE_URL}/#organization` },
+          },
+        ],
+      },
     },
   ];
 }

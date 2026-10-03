@@ -1,15 +1,14 @@
 import type { Route } from './+types/accessibility';
+import { pageMeta } from '../data/seo';
 import PageHero from '../components/PageHero';
 
-export function meta(_: Route.MetaArgs) {
-  return [
-    { title: 'Accessibility — Real Good Social' },
-    {
-      name: 'description',
-      content:
-        'Real Good Social aims to make its website accessible and usable across abilities, devices and technologies.',
-    },
-  ];
+export function meta({ location }: Route.MetaArgs) {
+  return pageMeta({
+    title: 'Accessibility — Real Good Social',
+    description:
+      'Real Good Social aims to make its website accessible and usable across abilities, devices and technologies.',
+    pathname: location.pathname,
+  });
 }
 
 export default function Accessibility() {

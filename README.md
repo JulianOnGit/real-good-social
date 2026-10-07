@@ -46,7 +46,8 @@ website-2/
 ├── base-path.mjs             # single source of truth for the deploy path
 ├── site.mjs                  # the site's public address (canonical URLs, sitemap)
 ├── infra/
-│   └── cloudfront-viewer-request.js  # redirects + index.html rewrite (deployed by hand)
+│   ├── cloudfront-viewer-request.js  # redirects + index.html rewrite (deployed by hand)
+│   └── response-headers-policy.json  # security headers for site pages (applied by hand)
 ├── react-router.config.ts    # ssr: false + the prerender URL list
 ├── vite.config.ts            # base + reactRouter() + tsconfig paths
 ├── scripts/
@@ -131,6 +132,15 @@ ETAG=$(aws cloudfront update-function --name realgoodsocial-viewer-request --if-
   --function-code fileb://infra/cloudfront-viewer-request.js --query ETag --output text)
 aws cloudfront publish-function --name realgoodsocial-viewer-request --if-match "$ETAG"
 ```
+
+Site pages are served with the security headers in
+[`infra/response-headers-policy.json`](./infra/response-headers-policy.json) (CloudFront
+response headers policy `realgoodsocial-security-headers`): a content security policy
+limiting scripts, styles, fonts and images to this origin, `Cross-Origin-Opener-Policy`,
+and HSTS with `includeSubDomains`, so every subdomain must be served over HTTPS. The
+policy allows inline scripts because React Router writes them into each page. CI does not
+deploy it; after editing the file, update the policy with
+`aws cloudfront update-response-headers-policy`. `documents/*` keeps its own policy.
 
 ## Search and link previews
 

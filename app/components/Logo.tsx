@@ -2,7 +2,11 @@ import { Link } from 'react-router';
 // Imported (not referenced from /public) so Vite emits a content-hashed URL —
 // this guarantees the browser fetches the current, transparent artwork rather
 // than any previously cached copy.
-import LOGO_MARK from '../assets/logo-mark.png';
+// Pre-scaled from `logo-mark.png` (the full-size source) for the default 34px
+// height at 1x/2x/3x pixel density, so no screen downloads more than it shows.
+import LOGO_MARK_1X from '../assets/logo-mark@1x.png';
+import LOGO_MARK_2X from '../assets/logo-mark@2x.png';
+import LOGO_MARK_3X from '../assets/logo-mark@3x.png';
 
 interface LogoProps {
   /** Rendered on a dark background — flips the wordmark to white. */
@@ -28,7 +32,8 @@ export default function Logo({
     <Link to="/" className="logo" aria-label="Real Good Social — home" onClick={onNavigate}>
       <img
         className="logo__mark"
-        src={LOGO_MARK}
+        src={LOGO_MARK_1X}
+        srcSet={`${LOGO_MARK_1X} 1x, ${LOGO_MARK_2X} 2x, ${LOGO_MARK_3X} 3x`}
         alt=""
         width={Math.round((size * 648) / 630)}
         height={size}

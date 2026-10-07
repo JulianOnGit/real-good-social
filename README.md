@@ -66,7 +66,7 @@ website-2/
 │   │   └── not-found.tsx                        # catch-all → 404.html
 │   ├── components/           # Header, Footer, Logo, PageHero, CtaBand, InitiativeCard, Stages, InsightMeta, StatusMessage
 │   ├── data/                 # initiatives, insights, contact constants + validation
-│   ├── assets/logo-mark.png  # hashed by Vite
+│   ├── assets/logo-mark.png  # full-size source; @1x/@2x/@3x copies are hashed by Vite
 │   └── styles/               # tokens + patterns (index.css), components.css, motion.css
 └── public/                   # icons, logo.png, robots.txt
 ```

@@ -58,6 +58,8 @@ const WORD_SELECTOR = '.statement';
 const DELIBERATE_WORDS = 4;
 const DELIBERATE_MS = 95;
 const FLOWING_MS = 17;
+/** How long one word takes to arrive. Matches the transition in motion.css. */
+const WORD_MS = 420;
 
 function wordDelay(index: number): number {
   if (index < DELIBERATE_WORDS) return index * DELIBERATE_MS;
@@ -95,6 +97,8 @@ function splitIntoWords(el: HTMLElement): boolean {
   el.textContent = '';
   el.appendChild(fragment);
   el.dataset.words = 'split';
+  // When the last word has landed, so its compositor layer can be released.
+  el.dataset.wordsMs = String(wordDelay(Math.max(0, index - 1)) + WORD_MS);
   el.classList.add('has-words');
   return true;
 }
@@ -146,11 +150,17 @@ export default function ScrollMotion() {
       // Two independent paths to settled, so hover can never be left disabled.
       timers.push(window.setTimeout(settle, delay + REVEAL_MS));
       el.addEventListener('transitionend', settle, { once: true });
+      // Words keep their own layers while they arrive (see motion.css); hand
+      // them back once the whole sentence is in place.
+      const wordsMs = Number.parseFloat(el.dataset.wordsMs ?? '');
+      if (!Number.isNaN(wordsMs)) {
+        timers.push(window.setTimeout(() => el.classList.add('is-words-done'), wordsMs + 100));
+      }
     };
 
     /** Already on screen at mount: no animation runs, so settle immediately. */
     const revealNow = (el: HTMLElement) => {
-      el.classList.add('is-revealed', 'is-settled');
+      el.classList.add('is-revealed', 'is-settled', 'is-words-done');
     };
 
     // --- Groups: prime the children, observe the container ---

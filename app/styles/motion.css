@@ -58,6 +58,14 @@
     transform: translate3d(0, 0.3em, 0);
   }
 
+  /* Each word gets its layer up front and keeps it until the sentence has
+     finished arriving. Without this the browser promotes the words one at a
+     time as their turn comes, repainting the whole section for each of them
+     mid-scroll, which stutters on phones. */
+  [data-motion='on'] .has-words:not(.is-words-done) .word {
+    will-change: transform, opacity;
+  }
+
   [data-motion='on'] .has-words.is-revealed .word {
     opacity: 1;
     transform: none;

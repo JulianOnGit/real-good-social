@@ -20,7 +20,7 @@ import { useLocation } from 'react-router';
  *   - Solos   — standalone blocks that reveal on their own.
  */
 
-const GROUP_SELECTOR = ['.ruled-list', '.ruled-grid'].join(',');
+const GROUP_SELECTOR = ['.ruled-list', '.ruled-grid', '.pathway-steps'].join(',');
 
 const SOLO_SELECTOR = [
   '[data-reveal]',

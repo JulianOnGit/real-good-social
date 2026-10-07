@@ -13,7 +13,8 @@
  *     page with a real 404 status.
  *  3. `sitemap.xml` — every prerendered page, so search engines find new
  *     initiatives and insights without a separate list to maintain. The 404
- *     page is left out.
+ *     page is left out, and so is any page marked `noindex` (see `index` in
+ *     app/data/seo.ts).
  *  4. Strip NUL bytes from the HTML. React 18's streaming renderer can emit one
  *     when a multi-byte character (e.g. "→") straddles its internal 2 KB write
  *     buffer; browsers show it as "�". NUL is never valid in HTML text.
@@ -43,8 +44,14 @@ await fs.rm(path.join(CLIENT_DIR, '__spa-fallback.html'), { force: true });
 
 // Pages are prerendered as <path>/index.html; list them by their canonical,
 // slash-free URL.
-const pageUrls = (await fs.readdir(CLIENT_DIR, { recursive: true }))
-  .filter((file) => path.basename(file) === 'index.html')
+const NOINDEX = /<meta name="robots" content="[^"]*noindex/;
+const pageFiles = [];
+for (const file of await fs.readdir(CLIENT_DIR, { recursive: true })) {
+  if (path.basename(file) !== 'index.html') continue;
+  const html = await fs.readFile(path.join(CLIENT_DIR, file), 'utf8');
+  if (!NOINDEX.test(html)) pageFiles.push(file);
+}
+const pageUrls = pageFiles
   .map((file) => {
     const dir = path.dirname(file).split(path.sep).join('/');
     return dir === '.' ? `${SITE_URL}/` : `${SITE_URL}/${dir}`;

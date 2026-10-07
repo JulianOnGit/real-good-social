@@ -1,3 +1,6 @@
+# Pages kept out of search for now (e.g. /services/pathways-support) are marked
+# `noindex` in their own HTML and left out of the sitemap. They are deliberately
+# not disallowed here: a crawler that cannot fetch a page never sees its noindex.
 User-agent: *
 Allow: /
 

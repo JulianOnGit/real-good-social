@@ -9,6 +9,7 @@ export const CONTACT_EMAIL = 'julian@realgoodnetwork.org';
 export const ENQUIRY_CATEGORIES = [
   { value: 'partnership', label: 'Partnership' },
   { value: 'communities', label: 'Real Good Communities' },
+  { value: 'pathways-support', label: 'Pathways Support' },
   { value: 'social-infrastructure', label: 'Social infrastructure' },
   { value: 'project', label: 'Project or initiative' },
   { value: 'research', label: 'Research' },

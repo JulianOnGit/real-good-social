@@ -719,3 +719,331 @@
   margin-top: auto;
   padding-top: var(--space-s);
 }
+
+/* --- Heading link: a title that links without looking like body-text link. --- */
+.plain-link {
+  color: inherit;
+  text-decoration: none;
+}
+.plain-link:hover {
+  color: var(--rg-blue);
+}
+
+/* =========================================================================
+   Service pages
+   ========================================================================= */
+
+/* Sections that in-page links scroll to: clear the sticky header, and take
+   focus without drawing a ring around the whole section. */
+section[id] {
+  scroll-margin-top: var(--header-h);
+}
+section[tabindex='-1']:focus {
+  outline: none;
+}
+
+/* A shorter field, for a compact block between full sections. */
+.section--compact {
+  padding-block: var(--space-xl);
+}
+
+/* --- Service hero: the page header with the service's motif beside it. --- */
+.service-hero {
+  overflow: hidden;
+}
+.service-hero__grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  align-items: center;
+  gap: clamp(2rem, 6vw, 4.5rem);
+}
+.service-hero__actions {
+  margin-top: var(--space-l);
+}
+.service-hero__note {
+  margin: var(--space-s) 0 0;
+}
+.pathway-motif {
+  display: block;
+  width: 100%;
+  max-width: 430px;
+  height: auto;
+  margin-inline: auto;
+}
+@media (max-width: 899px) {
+  .service-hero__grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-l);
+  }
+  .pathway-motif {
+    max-width: 340px;
+  }
+}
+@media (max-width: 599px) {
+  .service-hero__actions .btn {
+    width: 100%;
+  }
+}
+
+.split__actions {
+  margin-top: var(--space-m);
+}
+
+/* --- Dash list: short statements between hairlines, each led by a short
+   stroke of the pathway line. `--2` sets two columns where there is room. --- */
+.dash-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 var(--space-m);
+  border-top: 1px solid var(--rule-strong);
+}
+.dash-list > li {
+  position: relative;
+  margin-top: 0;
+  padding: 0.8rem 0 0.8rem 1.75rem;
+  border-bottom: 1px solid var(--rule-strong);
+  line-height: 1.45;
+  color: var(--text-strong);
+}
+.dash-list > li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: calc(0.8rem + 0.725em);
+  width: 0.9rem;
+  height: 1px;
+  background: var(--rg-blue);
+}
+@media (min-width: 600px) {
+  .dash-list--2 {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: var(--space-m);
+  }
+}
+
+/* --- Pathway steps: a process as points along a line. A column with the line
+   down the left on narrow screens; a row with the line across the top on wide
+   ones. The last point is filled, like the end of the hero's pathway. --- */
+.pathway-steps {
+  --dot: 15px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+}
+.pathway-steps > li {
+  position: relative;
+  margin-top: 0;
+  padding: 0 0 var(--space-l) 2.75rem;
+}
+.pathway-steps > li:last-child {
+  padding-bottom: 0;
+}
+.pathway-steps > li::before {
+  content: '';
+  position: absolute;
+  left: calc(var(--dot) / 2);
+  top: 0.4rem;
+  bottom: -0.4rem;
+  width: 1px;
+  background: var(--rg-blue);
+  opacity: 0.35;
+}
+.pathway-steps > li:last-child::before {
+  display: none;
+}
+.pathway-steps > li::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.15rem;
+  width: var(--dot);
+  height: var(--dot);
+  border-radius: 50%;
+  border: 1.5px solid var(--rg-blue);
+  background: var(--paper-alt);
+}
+.pathway-steps > li:last-child::after {
+  background: var(--rg-blue);
+  box-shadow: inset 0 0 0 3px var(--paper-alt);
+}
+.pathway-steps .ruled-list__num {
+  display: block;
+  margin-bottom: 0.5rem;
+  line-height: 1.4;
+}
+.pathway-steps h3 {
+  font-size: var(--step-1);
+  margin-bottom: 0.35rem;
+}
+.pathway-steps p {
+  margin-bottom: 0;
+  max-width: 52ch;
+}
+@media (min-width: 900px) {
+  .pathway-steps {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    column-gap: var(--space-m);
+  }
+  .pathway-steps > li {
+    padding: 2.25rem 0 0;
+  }
+  .pathway-steps > li::before {
+    left: var(--dot);
+    right: calc(-1 * var(--space-m));
+    top: calc(var(--dot) / 2);
+    bottom: auto;
+    width: auto;
+    height: 1px;
+  }
+  .pathway-steps > li::after {
+    top: 0;
+  }
+}
+
+/* --- Price: one large figure with its unit beside it. --- */
+.price {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  margin: 0;
+}
+.price__amount {
+  font-size: clamp(4.5rem, 14vw, 7rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.05em;
+  color: var(--text-strong);
+}
+
+/* --- Branch: one point connecting out to several, as a small tree. --- */
+.branch {
+  --branch-gap: 0.6rem;
+  margin-top: var(--space-l);
+}
+.branch__root {
+  display: inline-block;
+  background: var(--rg-ink);
+  border-color: var(--rg-ink);
+  color: #fff;
+}
+.branch ul {
+  list-style: none;
+  margin: 0 0 0 1.5rem;
+  padding: 0;
+}
+.branch li {
+  position: relative;
+  margin-top: 0;
+  padding: var(--branch-gap) 0 0 1.75rem;
+}
+.branch li .pill {
+  display: inline-block;
+}
+/* The elbow into each item, and the trunk continuing past it to the next. */
+.branch li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1.25rem;
+  height: calc(var(--branch-gap) + (100% - var(--branch-gap)) / 2);
+  border-left: 1px solid var(--rg-blue);
+  border-bottom: 1px solid var(--rg-blue);
+  border-bottom-left-radius: 8px;
+  opacity: 0.45;
+}
+.branch li:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  border-left: 1px solid var(--rg-blue);
+  opacity: 0.45;
+}
+
+/* --- Enquiry form: grouped fields and choices, on top of the contact form. --- */
+.field-group {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  min-width: 0;
+}
+.field-group legend {
+  padding: 0;
+  margin-bottom: 0.3rem;
+  font-weight: 600;
+  font-size: var(--step-ui);
+  color: var(--text-strong);
+}
+.field-group > .meta {
+  margin: 0 0 0.75rem;
+}
+.field-group > .field-error {
+  display: block;
+  margin-top: 0.45rem;
+}
+.field-group__fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-s);
+}
+@media (max-width: 599px) {
+  .field-group__fields {
+    grid-template-columns: 1fr;
+  }
+}
+.field-group .field label {
+  font-weight: 500;
+  font-size: var(--step--1);
+  color: var(--text);
+}
+.field [aria-invalid='true'] {
+  border-color: var(--error);
+}
+.choices {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.45rem;
+}
+.choice {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 44px;
+  padding: 0.5rem 0.95rem;
+  border: 1px solid var(--rule-input);
+  border-radius: var(--radius);
+  background: var(--surface);
+  font-size: var(--step-ui);
+  cursor: pointer;
+}
+.choice input {
+  width: 1.1rem;
+  height: 1.1rem;
+  margin: 0;
+  accent-color: var(--rg-blue);
+}
+.choice:has(input:checked) {
+  border-color: var(--rg-blue);
+}
+.btn:disabled {
+  opacity: 0.6;
+  cursor: progress;
+}
+.enquiry-confirmation {
+  margin: 0;
+}
+.enquiry-confirmation:focus {
+  outline: none;
+}
+.enquiry-confirmation .btn-row {
+  align-items: center;
+  gap: var(--space-s) var(--space-m);
+}
+.callout--question .text-link {
+  margin-top: 0.6rem;
+}

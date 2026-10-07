@@ -6,6 +6,8 @@ export default [
   route('what-we-do', 'routes/what-we-do.tsx'),
   route('initiatives', 'routes/initiatives.tsx'),
   route('initiatives/:slug', 'routes/initiative.tsx'),
+  route('services', 'routes/services.tsx'),
+  route('services/pathways-support', 'routes/pathways-support.tsx'),
   route('partner', 'routes/partner.tsx'),
   route('insights', 'routes/insights.tsx'),
   route('insights/:slug', 'routes/insight.tsx'),

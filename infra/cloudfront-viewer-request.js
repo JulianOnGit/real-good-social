@@ -4,7 +4,8 @@
 //
 //  1. www.realgoodsocial.org → realgoodsocial.org (301).
 //  2. /about/ → /about (301), so each page has one indexable URL.
-//  3. /about → about/index.html in S3, where the prerendered page lives.
+//  3. /pathways → /services/pathways-support (302), a short address for sharing.
+//  4. /about → about/index.html in S3, where the prerendered page lives.
 function querySuffix(querystring) {
   var parts = Object.keys(querystring).map(function (key) {
     var param = querystring[key];
@@ -31,6 +32,14 @@ function handler(event) {
 
   if (req.uri.length > 1 && req.uri.endsWith('/')) {
     return redirect(req.uri.replace(/\/+$/, '') + querySuffix(req.querystring));
+  }
+
+  if (req.uri === '/pathways') {
+    return {
+      statusCode: 302,
+      statusDescription: 'Found',
+      headers: { location: { value: '/services/pathways-support' + querySuffix(req.querystring) } },
+    };
   }
 
   if (req.uri === '/') {

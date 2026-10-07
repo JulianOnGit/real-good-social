@@ -178,9 +178,43 @@ for visitors with no mail client configured. Validation rules live in
 If enquiries need to arrive reliably, point the form at a form-handling service or
 restore a server-side action.
 
+### Interim policy: Pathways Support is not listed in search
+
+Set October 2026. While Pathways Support is in its introductory period it is shared by
+direct link and from within the site, not through search engines. So
+`/services/pathways-support` and the `/services` index are:
+
+- marked `<meta name="robots" content="noindex">`;
+- left out of `sitemap.xml`;
+- still public, linked from the site, and given a link-preview card for sharing.
+
+`robots.txt` does not disallow them, because a crawler that cannot fetch a page never sees
+its `noindex`. To lift the policy, set `indexable: true` on the service in
+[`app/data/services.ts`](./app/data/services.ts) and deploy; both pages then rejoin the
+sitemap and lose the tag.
+
+### Service enquiries
+
+Service pages (currently `/services/pathways-support`) use `EnquiryForm`, which validates
+with `app/data/enquiry.ts` and hands the result to `sendEnquiry` in
+[`app/services/enquiries.ts`](./app/services/enquiries.ts). Each enquiry carries
+`source`, `service` and `enquiry_type`, so it can be told apart from a general one.
+
+With no backend, `sendEnquiry` opens a pre-filled email like the contact form, and the page
+says the message is *ready to send*, not received. Set `ENQUIRY_ENDPOINT` in that file to
+post the enquiry as JSON instead; the page then confirms receipt. The endpoint must
+validate again and filter spam, and its origin must be added to `connect-src` in
+`infra/response-headers-policy.json`.
+
+`app/services/analytics.ts` names the page's funnel events. No analytics script is
+installed, so they go nowhere until one provides a `dataLayer`.
+
+`/pathways` redirects to the service page from the CloudFront function, so it only works
+once the function is published (see [Deployment](#deployment)).
+
 ## Pages
 
-Home · About · What We Do · Initiatives (+ a page per initiative) · Partner With Us ·
+Home · About · What We Do · Services (+ a page per service) · Initiatives (+ a page per initiative) · Partner With Us ·
 Insights (+ a page per article) · Contact · Privacy · Terms · Accessibility.
 
 ## Design system

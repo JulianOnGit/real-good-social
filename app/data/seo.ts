@@ -31,12 +31,25 @@ interface PageMeta {
   /** `location.pathname` from the route's `meta` args. */
   pathname: string;
   type?: 'website' | 'article';
+  /**
+   * `false` asks search engines not to list the page. It stays public and
+   * shareable by link, keeps its link-preview card, and is left out of
+   * sitemap.xml by scripts/finalise-static.mjs.
+   */
+  index?: boolean;
 }
 
-export function pageMeta({ title, description, pathname, type = 'website' }: PageMeta): MetaDescriptor[] {
+export function pageMeta({
+  title,
+  description,
+  pathname,
+  type = 'website',
+  index = true,
+}: PageMeta): MetaDescriptor[] {
   const url = canonicalUrl(pathname);
   return [
     { title },
+    ...(index ? [] : [{ name: 'robots', content: 'noindex' }]),
     { name: 'description', content: description },
     { tagName: 'link', rel: 'canonical', href: url },
     { property: 'og:site_name', content: SITE_NAME },

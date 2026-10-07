@@ -59,6 +59,15 @@ export default function InitiativeDetail({ loaderData }: Route.ComponentProps) {
         <div className="container container-narrow prose">
           <Sections sections={initiative.sections} />
 
+          {initiative.related && (
+            <aside className="callout callout--question">
+              <p className="callout__text">{initiative.related.text}</p>
+              <Link to={initiative.related.to} className="text-link">
+                {initiative.related.label}
+              </Link>
+            </aside>
+          )}
+
           <p className="section-foot">
             <Link to="/initiatives" className="text-link">
               Back to all initiatives

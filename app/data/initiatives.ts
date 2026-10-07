@@ -26,6 +26,8 @@ export interface Initiative {
   /** Lead line under the name on the initiative's own page. */
   tagline: string;
   sections: Section[];
+  /** A pointer to a related page, shown beneath the initiative's copy. */
+  related?: { text: string; to: string; label: string };
 }
 
 /** Every stage, in order — used to order the stage filter. */
@@ -51,6 +53,11 @@ export const initiatives: Initiative[] = [
     cardLink: 'Explore Real Good Communities',
     featured: true,
     tagline: 'Building a community that becomes more capable through participation',
+    related: {
+      text: 'Looking for more individual help working out what comes next?',
+      to: '/services/pathways-support',
+      label: 'Explore Pathways Support',
+    },
     sections: [
       {
         blocks: [
@@ -201,6 +208,11 @@ export const initiatives: Initiative[] = [
     cardLink: 'Explore Pathways Support',
     featured: true,
     tagline: 'Understanding the whole situation before deciding what kind of help is needed',
+    related: {
+      text: 'Pathways Support is available now as a one-to-one service, at no cost during its introductory period.',
+      to: '/services/pathways-support',
+      label: 'Learn about Pathways Support',
+    },
     sections: [
       {
         blocks: [

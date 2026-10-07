@@ -1,7 +1,9 @@
+import { Link } from 'react-router';
 import type { Route } from './+types/what-we-do';
 import { pageMeta } from '../data/seo';
 import PageHero from '../components/PageHero';
 import CtaBand from '../components/CtaBand';
+import { services, servicePath } from '../data/services';
 
 export function meta({ location }: Route.MetaArgs) {
   return pageMeta({
@@ -86,6 +88,26 @@ export default function WhatWeDo() {
                     {para}
                   </p>
                 ))}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      <section className="section section--alt" id="services">
+        <div className="container split">
+          <div className="split__aside">
+            <p className="eyebrow">Services</p>
+            <h2>Support for individuals</h2>
+          </div>
+          <ul className="ruled-list">
+            {services.map((s) => (
+              <li key={s.slug}>
+                <h3>{s.name}</h3>
+                <p className="muted">{s.summary}</p>
+                <Link to={servicePath(s.slug)} className="text-link">
+                  {s.cardLink}
+                </Link>
               </li>
             ))}
           </ul>

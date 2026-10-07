@@ -2,11 +2,11 @@ import { Link } from 'react-router';
 // Imported (not referenced from /public) so Vite emits a content-hashed URL —
 // this guarantees the browser fetches the current, transparent artwork rather
 // than any previously cached copy.
-// Pre-scaled from `logo-mark.png` (the full-size source) for the default 34px
+// Pre-scaled WebP copies of `logo-mark.png` (the full-size source) for the default 34px
 // height at 1x/2x/3x pixel density, so no screen downloads more than it shows.
-import LOGO_MARK_1X from '../assets/logo-mark@1x.png';
-import LOGO_MARK_2X from '../assets/logo-mark@2x.png';
-import LOGO_MARK_3X from '../assets/logo-mark@3x.png';
+import LOGO_MARK_1X from '../assets/logo-mark@1x.webp';
+import LOGO_MARK_2X from '../assets/logo-mark@2x.webp';
+import LOGO_MARK_3X from '../assets/logo-mark@3x.webp';
 
 interface LogoProps {
   /** Rendered on a dark background — flips the wordmark to white. */

@@ -47,7 +47,7 @@
   --error: #b64242;
 
   /* --- Type --- */
-  --font-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-sans: 'Inter Variable', 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
 
   --step--2: 0.75rem; /* labels */
   --step--1: 0.875rem; /* metadata, fine print */

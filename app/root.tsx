@@ -9,6 +9,10 @@ import {
 } from 'react-router';
 import type { Route } from './+types/root';
 
+// Inter is served from this site rather than Google Fonts, so the first paint
+// does not wait on a stylesheet from another origin.
+import '@fontsource-variable/inter/wght.css';
+import INTER_LATIN from '@fontsource-variable/inter/files/inter-latin-wght-normal.woff2?url';
 import './styles/index.css';
 import './styles/components.css';
 import './styles/motion.css';
@@ -21,12 +25,7 @@ import StatusMessage from './components/StatusMessage';
 export const links: Route.LinksFunction = () => [
   { rel: 'icon', href: `${import.meta.env.BASE_URL}favicon.png`, type: 'image/png' },
   { rel: 'apple-touch-icon', href: `${import.meta.env.BASE_URL}apple-touch-icon.png` },
-  { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
-  { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossOrigin: 'anonymous' },
-  {
-    rel: 'stylesheet',
-    href: 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap',
-  },
+  { rel: 'preload', href: INTER_LATIN, as: 'font', type: 'font/woff2', crossOrigin: 'anonymous' },
 ];
 
 export const meta: Route.MetaFunction = () => [

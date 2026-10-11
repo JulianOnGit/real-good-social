@@ -65,7 +65,7 @@ website-2/
 │   │   ├── partner.tsx  contact.tsx
 │   │   ├── privacy.tsx  terms.tsx  accessibility.tsx
 │   │   └── not-found.tsx                        # catch-all → 404.html
-│   ├── components/           # Header, Footer, Logo, PageHero, CtaBand, InitiativeCard, Stages, InsightMeta, StatusMessage
+│   ├── components/           # Header, Footer, Logo, PageHero, CtaBand, InitiativeCard, Stages, InsightMeta, InsightIllustration, ArticleSketch, StatusMessage
 │   ├── data/                 # initiatives, insights, contact constants + validation
 │   ├── assets/logo-mark.png  # full-size source; @1x/@2x/@3x WebP copies are hashed by Vite
 │   └── styles/               # tokens + patterns (index.css), components.css, motion.css
@@ -211,6 +211,43 @@ installed, so they go nowhere until one provides a `dataLayer`.
 
 `/pathways` redirects to the service page from the CloudFront function, so it only works
 once the function is published (see [Deployment](#deployment)).
+
+## Insights
+
+An insight is one entry in [`app/data/insights.ts`](./app/data/insights.ts): a slug, title,
+category and body. Nothing else is needed; the index card, article page, related list,
+link-preview card and sitemap entry all follow from it.
+
+Optional fields change how it looks:
+
+| Field | Effect | If left out |
+|---|---|---|
+| `summary`, `standfirst` | Card text; the standfirst is used where the insight is featured | First sentence of the body |
+| `accent` | `blue`, `green` or `gold`: the colour of the picture and in-article accents | Picked from the slug |
+| `motif` | Which abstract drawing to use (`network`, `pathways`, `overlap`, `arches`, `steps`, `weave`, `lens`, `ring`, `separate`, `chain`) | Picked from the category |
+| `image` | A picture in place of the drawing (`src`, `width`, `height`, and `alt` if it informs) | The drawing |
+
+The drawings live in `InsightIllustration`. They are decoration, hidden from screen readers.
+
+The body is a list of blocks (`app/data/content.ts`). Besides paragraphs and lists, two are
+meant for articles, to be used sparingly:
+
+- `{ highlight: '…' }` gives one sentence emphasis where it stands. Use the article's own
+  sentence, once or twice at most; many articles need none.
+- `{ diagram: 'sequence' | 'comparison', parts: [...], caption }` sets out a few short
+  parts as numbered steps or side by side. Use it to restate something the text already
+  says, not to add to it.
+  A part of a comparison may carry a `glyph`, a small pictogram above its title.
+- `{ sketch: '…', caption }` is a small abstract drawing from `ArticleSketch` (`loop`,
+  `reach`, `bridge`, `combine`, `mesh`, `widen`, `share`, `apart`, `gather`, `structure`). It sits in the margin beside the following paragraph on wide
+  screens and as a band between paragraphs on narrow ones. Each shows one idea from the
+  article, usually as a before and after, with its parts labelled. Caption it with the
+  article's own words, and place it just before the paragraph that makes the point.
+
+Words the author set in `**bold**` get a stroke of the accent colour beneath them.
+
+Related insights at the foot of an article are those sharing the most filter topics, then
+the next ones in the list.
 
 ## Pages
 

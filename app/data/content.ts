@@ -5,13 +5,59 @@
  * - a paragraph — `**bold**` and `*italic*` are honoured, `\n` is a line break;
  * - a bulleted list;
  * - a list of titled items (a title with a sentence beneath it);
- * - a callout, set apart from the text, with an optional label.
+ * - a callout, set apart from the text, with an optional label;
+ * - a highlight: a sentence of the text itself given emphasis, in place;
+ * - a diagram: a few short parts set out as a sequence or side by side;
+ * - a sketch: a small abstract drawing with a caption, set in the margin
+ *   where there is room.
  */
 export type Block =
   | string
   | { list: string[] }
   | { items: { title: string; text: string }[] }
-  | { callout: string; label?: string };
+  | { callout: string; label?: string }
+  | { highlight: string }
+  | Diagram
+  | { sketch: SketchName; caption?: string };
+
+/** The drawings in `ArticleSketch`. */
+export type SketchName =
+  | 'loop'
+  | 'reach'
+  | 'bridge'
+  | 'combine'
+  | 'mesh'
+  | 'widen'
+  | 'share'
+  | 'apart'
+  | 'gather'
+  | 'structure';
+export type GlyphName = 'dependency' | 'loop' | 'shared' | 'leverage';
+
+/**
+ * A simple figure built from short parts: `sequence` numbers them in order,
+ * `comparison` sets them side by side. For restating something the text
+ * already says; it is not a place for new material.
+ */
+export interface Diagram {
+  diagram: 'sequence' | 'comparison';
+  /** `glyph` puts a small pictogram above a part. */
+  parts: { title: string; text?: string; glyph?: GlyphName }[];
+  caption?: string;
+}
+
+/** The words in a block, for counting and searching. */
+export function blockText(block: Block): string {
+  if (typeof block === 'string') return block;
+  if ('list' in block) return block.list.join(' ');
+  if ('items' in block) return block.items.map((i) => `${i.title} ${i.text}`).join(' ');
+  if ('highlight' in block) return block.highlight;
+  if ('sketch' in block) return block.caption ?? '';
+  if ('diagram' in block) {
+    return [...block.parts.map((p) => `${p.title} ${p.text ?? ''}`), block.caption ?? ''].join(' ');
+  }
+  return block.callout;
+}
 
 /** A run of blocks under an optional heading. */
 export interface Section {

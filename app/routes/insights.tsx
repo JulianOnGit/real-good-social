@@ -2,7 +2,7 @@ import { useState } from 'react';
 import type { Route } from './+types/insights';
 import { pageMeta } from '../data/seo';
 import PageHero from '../components/PageHero';
-import { InsightTeaser } from '../components/InsightMeta';
+import { InsightCard } from '../components/InsightMeta';
 import { insights, hasTopic, INSIGHT_TOPICS, PUBLICATION } from '../data/insights';
 
 export function meta({ location }: Route.MetaArgs) {
@@ -19,6 +19,9 @@ export default function Insights() {
   const present = INSIGHT_TOPICS.filter((t) => insights.some((i) => hasTopic(i, t)));
   const filters = ['All', ...present];
   const visible = filter === 'All' ? insights : insights.filter((i) => hasTopic(i, filter));
+  // With everything showing, the most recent insight leads; a filtered list is just the list.
+  const latest = filter === 'All' ? visible[0] : undefined;
+  const rest = latest ? visible.slice(1) : visible;
 
   return (
     <>
@@ -29,7 +32,7 @@ export default function Insights() {
       />
 
       <section className="section">
-        <div className="container container-narrow">
+        <div className="container">
           <div className="filter-bar" role="group" aria-label="Filter insights by topic">
             {filters.map((f) => (
               <button
@@ -44,10 +47,12 @@ export default function Insights() {
             ))}
           </div>
 
-          <ul className="ruled-list">
-            {visible.map((i) => (
+          {latest && <InsightCard insight={latest} featured />}
+
+          <ul className="insight-grid">
+            {rest.map((i) => (
               <li key={i.slug}>
-                <InsightTeaser insight={i} />
+                <InsightCard insight={i} />
               </li>
             ))}
           </ul>

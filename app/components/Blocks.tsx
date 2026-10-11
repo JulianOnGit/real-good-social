@@ -1,5 +1,6 @@
 import { Fragment } from 'react';
-import type { Block, Section } from '../data/content';
+import type { Block, Diagram, Section } from '../data/content';
+import { Glyph, Sketch } from './ArticleSketch';
 
 const EMAIL = /([^\s@]+@[^\s@]+\.[a-z]+)/i;
 const EMPHASIS = /(\*\*[^*]+\*\*|\*[^*]+\*)/;
@@ -52,7 +53,42 @@ export function Text({ text }: { text: string }) {
   );
 }
 
-/** Renders blocks of copy as paragraphs, lists and callouts. */
+/**
+ * A simple figure: numbered points along a line, or parts side by side. Drawn
+ * with lists and CSS, so it reads in order without any image.
+ */
+function DiagramFigure({ diagram, parts, caption }: Diagram) {
+  return (
+    <figure className={`diagram diagram--${diagram}`}>
+      {diagram === 'sequence' ? (
+        <ol className="diagram__parts">
+          {parts.map((part, i) => (
+            <li key={part.title}>
+              <span className="diagram__num" aria-hidden="true">
+                {i + 1}
+              </span>
+              <span className="diagram__title">{part.title}</span>
+              {part.text && <span className="diagram__text">{part.text}</span>}
+            </li>
+          ))}
+        </ol>
+      ) : (
+        <dl className="diagram__parts">
+          {parts.map((part) => (
+            <div key={part.title}>
+              {part.glyph && <Glyph name={part.glyph} />}
+              <dt className="diagram__title">{part.title}</dt>
+              {part.text && <dd className="diagram__text">{part.text}</dd>}
+            </div>
+          ))}
+        </dl>
+      )}
+      {caption && <figcaption>{caption}</figcaption>}
+    </figure>
+  );
+}
+
+/** Renders blocks of copy as paragraphs, lists, callouts, highlights, diagrams and sketches. */
 export function Blocks({ blocks }: { blocks: Block[] }) {
   return (
     <>
@@ -88,6 +124,26 @@ export function Blocks({ blocks }: { blocks: Block[] }) {
               ))}
             </dl>
           );
+        }
+        if ('highlight' in block) {
+          return (
+            <p key={i} className="highlight">
+              <Text text={block.highlight} />
+            </p>
+          );
+        }
+        if ('sketch' in block) {
+          return (
+            <figure key={i} className="sketch">
+              <div className="sketch__art">
+                <Sketch name={block.sketch} />
+              </div>
+              {block.caption && <figcaption>{block.caption}</figcaption>}
+            </figure>
+          );
+        }
+        if ('diagram' in block) {
+          return <DiagramFigure key={i} {...block} />;
         }
         return (
           <aside key={i} className="callout callout--question">

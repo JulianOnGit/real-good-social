@@ -1,11 +1,19 @@
 import { Link, data } from 'react-router';
 import type { Route } from './+types/insight';
 import { canonicalUrl, pageMeta, shareImageUrl, SITE_NAME, SITE_URL } from '../data/seo';
-import PageHero from '../components/PageHero';
 import CtaBand from '../components/CtaBand';
 import { Blocks } from '../components/Blocks';
-import { InsightByline } from '../components/InsightMeta';
-import { getInsight, insightAuthor, insightSummary, isoDate, PUBLICATION } from '../data/insights';
+import InsightIllustration from '../components/InsightIllustration';
+import { InsightByline, RelatedInsights } from '../components/InsightMeta';
+import {
+  getInsight,
+  insightAccent,
+  insightAuthor,
+  insightSummary,
+  isoDate,
+  PUBLICATION,
+  relatedInsights,
+} from '../data/insights';
 
 export async function loader({ params }: Route.LoaderArgs) {
   const insight = getInsight(params.slug);
@@ -58,33 +66,44 @@ export default function InsightDetail({ loaderData }: Route.ComponentProps) {
 
   return (
     <>
-      <PageHero
-        eyebrow={PUBLICATION}
-        eyebrowTo="/insights"
-        title={insight.title}
-        variant="article"
-      >
-        <InsightByline insight={insight} />
-      </PageHero>
+      {/* The link-preview cards are built from this header's eyebrow, h1 and byline. */}
+      <section className="page-hero page-hero--article">
+        <div className="container article-hero">
+          <div className="article-hero__text">
+            <p className="eyebrow">
+              <Link to="/insights">{PUBLICATION}</Link>
+            </p>
+            <h1>{insight.title}</h1>
+            <InsightByline insight={insight} />
+          </div>
+          <InsightIllustration insight={insight} className="article-hero__art" eager />
+        </div>
+      </section>
 
       <section className="section">
-        <article className="container container-narrow prose article-body">
+        <article
+          className="container container-narrow prose article-body"
+          data-accent={insightAccent(insight)}
+        >
           <Blocks blocks={insight.body} />
 
-          <hr />
-          <p className="meta">
-            {PUBLICATION} explores questions, observations and working models that emerge from
-            our projects and research. We use these ideas to sharpen how we understand problems,
-            design interventions and learn from practice. Where the evidence is still developing,
-            we present the thinking as provisional and open to refinement.
-          </p>
-          <p className="section-foot">
-            <Link to="/insights" className="text-link">
-              Back to all insights
-            </Link>
-          </p>
+          <footer className="article-end">
+            <p className="meta">
+              {PUBLICATION} explores questions, observations and working models that emerge from
+              our projects and research. We use these ideas to sharpen how we understand problems,
+              design interventions and learn from practice. Where the evidence is still developing,
+              we present the thinking as provisional and open to refinement.
+            </p>
+            <p className="section-foot">
+              <Link to="/insights" className="text-link">
+                Back to all insights
+              </Link>
+            </p>
+          </footer>
         </article>
       </section>
+
+      <RelatedInsights insights={relatedInsights(insight.slug)} />
 
       <CtaBand />
     </>

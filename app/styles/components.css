@@ -1480,3 +1480,112 @@ section[tabindex='-1']:focus {
 .callout--question .text-link {
   margin-top: 0.6rem;
 }
+
+/* =========================================================================
+   Foundational working paper
+   ========================================================================= */
+
+/* --- Paper citation: its label and title above the link to it. --- */
+.paper-cite__label {
+  margin: var(--space-m) 0 0.4rem;
+}
+.paper-cite__title {
+  font-style: italic;
+  margin-bottom: var(--space-s);
+}
+
+/* --- Paper contents: the chapters between hairlines, each with its number,
+   held beside the text on wide screens. --- */
+.paper-contents ol {
+  list-style: none;
+  padding: 0;
+  margin: var(--space-s) 0 var(--space-m);
+  border-top: 1px solid var(--rule-strong);
+}
+.paper-contents li {
+  margin: 0;
+  border-bottom: 1px solid var(--rule-strong);
+}
+.paper-contents li a {
+  display: grid;
+  grid-template-columns: 2rem minmax(0, 1fr);
+  padding-block: 0.6rem;
+  font-size: var(--step-ui);
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--text-strong);
+  text-decoration: none;
+}
+.paper-contents li a:hover {
+  color: var(--rg-blue);
+}
+.paper-contents__num {
+  font-variant-numeric: tabular-nums;
+  color: var(--rg-blue);
+}
+@media (min-width: 900px) {
+  .paper-contents {
+    max-height: calc(100vh - var(--header-h) - var(--space-xl));
+    overflow-y: auto;
+  }
+}
+
+/* --- Paper body: numbered chapters and sections. --- */
+.paper-body > section:first-child > h2 {
+  margin-top: 0;
+}
+.paper-body section[id] {
+  scroll-margin-top: calc(var(--header-h) + var(--space-s));
+}
+.paper-body__num {
+  margin-right: 0.6em;
+  font-variant-numeric: tabular-nums;
+  color: var(--rg-blue);
+}
+
+/* =========================================================================
+   Print
+   Pages print as documents: no site chrome, no scroll-reveal states, and the
+   address of each link beside it.
+   ========================================================================= */
+@media print {
+  .site-header,
+  .site-footer,
+  .skip-link,
+  .cta-band,
+  .paper-contents,
+  .hero__motif,
+  .btn-row {
+    display: none !important;
+  }
+  body {
+    background: #fff;
+    font-size: 11pt;
+  }
+  .section,
+  .page-hero {
+    padding-block: 1.5rem;
+    background: none;
+    border: 0;
+  }
+  .split {
+    display: block;
+  }
+  /* Anything still waiting for its scroll reveal would print blank. */
+  [data-motion='on'] .will-reveal,
+  [data-motion='on'] .has-words .word {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  :is(h1, h2, h3, h4) {
+    break-after: avoid;
+  }
+  :is(figure, .callout, .highlight, li, dl > div) {
+    break-inside: avoid;
+  }
+  .article-body a[href^='http']::after {
+    content: ' (' attr(href) ')';
+    font-size: 0.85em;
+    word-break: break-all;
+  }
+}

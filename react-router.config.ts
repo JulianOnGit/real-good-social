@@ -15,6 +15,7 @@ export default {
     return [
       '/',
       '/about',
+      '/about/what-is-good',
       '/what-we-do',
       '/initiatives',
       ...initiatives.map((i) => `/initiatives/${i.slug}`),

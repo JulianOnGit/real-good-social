@@ -114,24 +114,41 @@ const BESIDE_TEXT = '(min-width: 900px)';
  * time, the part being read, so the list stays short enough to sit beside the
  * text; any part can be opened or closed by hand.
  */
-function Contents({ paper, current }: { paper: Paper; current: string | null }) {
+function Contents({
+  paper,
+  current,
+  overlay = false,
+  onNavigate,
+}: {
+  paper: Paper;
+  current: string | null;
+  /** The list lies over the page, in the panel beneath the reading strip. */
+  overlay?: boolean;
+  /** Called when the reader chooses a section. */
+  onNavigate?: () => void;
+}) {
   const entries = paperContents(paper);
   const reading = entries.findIndex(
     (entry) => 'chapters' in entry && entry.chapters.some((chapter) => chapter.id === current),
   );
   const [open, setOpen] = useState(-1);
   // Follow the reader into each new part, leaving a part opened by hand alone
-  // until then. Only where the list is held beside the text: on narrow screens
-  // it lies above the text, and a change in its height there would move the
-  // page under the reader, and with it the part being read, back and forth.
+  // until then. Only where the list takes no room in the page, over it or held
+  // beside the text: on narrow screens the list in the page lies above the
+  // text, and a change in its height there would move the page under the
+  // reader, and with it the part being read, back and forth.
   useEffect(() => {
-    if (reading >= 0 && window.matchMedia(BESIDE_TEXT).matches) setOpen(reading);
-  }, [reading]);
+    if (reading >= 0 && (overlay || window.matchMedia(BESIDE_TEXT).matches)) setOpen(reading);
+  }, [reading, overlay]);
 
   const link = (section: PaperSection) => (
     // A router link: a plain anchor makes a history entry the router doesn't
     // know, and it answers by restoring the old scroll position.
-    <Link to={`#${section.id}`} aria-current={section.id === current || undefined}>
+    <Link
+      to={`#${section.id}`}
+      aria-current={section.id === current || undefined}
+      onClick={onNavigate}
+    >
       <span className="paper-contents__num">{section.number}</span>
       {section.title}
     </Link>
@@ -207,6 +224,22 @@ export default function Publication({ loaderData }: Route.ComponentProps) {
   const { field, current } = useReadingPosition(paper);
   const reading = paper.sections.find((section) => section.id === current);
 
+  // The contents panel beneath the reading strip. It closes with the strip, at
+  // the top of the paper, and on Escape.
+  const [panelOpen, setPanelOpen] = useState(false);
+  const stripShown = Boolean(reading);
+  useEffect(() => {
+    if (!stripShown) setPanelOpen(false);
+  }, [stripShown]);
+  useEffect(() => {
+    if (!panelOpen) return;
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setPanelOpen(false);
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [panelOpen]);
+
   return (
     <>
       {/* The link-preview card is built from this header's eyebrow, h1 and lead. */}
@@ -273,10 +306,37 @@ export default function Publication({ loaderData }: Route.ComponentProps) {
               {reading?.number && <span className="paper-contents__num">{reading.number}</span>}
               <span className="paper-position__title">{reading?.title}</span>
             </p>
-            <Link to="#contents" className="paper-position__back">
-              Contents
-            </Link>
+            <button
+              type="button"
+              className="paper-position__toggle"
+              aria-expanded={panelOpen}
+              aria-controls="paper-position-contents"
+              onClick={() => setPanelOpen((was) => !was)}
+            >
+              {panelOpen ? 'Close' : 'Contents'}
+            </button>
           </div>
+          {/* The contents open beneath the strip, over the text, so the reader
+              keeps their place; choosing a section or touching the page closes them. */}
+          {panelOpen && (
+            <>
+              <div className="paper-position__scrim" onClick={() => setPanelOpen(false)} />
+              <nav
+                className="paper-position__panel paper-contents"
+                id="paper-position-contents"
+                aria-label="Contents"
+              >
+                <div className="container">
+                  <Contents
+                    paper={paper}
+                    current={current}
+                    overlay
+                    onNavigate={() => setPanelOpen(false)}
+                  />
+                </div>
+              </nav>
+            </>
+          )}
         </div>
 
         <div className="container split">

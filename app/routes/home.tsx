@@ -66,6 +66,22 @@ const WORK_AREAS = [
   },
 ];
 
+/** The three senses of good the site keeps apart: what is achieved, how, and what makes more of it possible. */
+const GOOD = [
+  {
+    title: 'Good outcomes',
+    body: 'People living meaningful lives, with worthwhile relationships and stronger communities.',
+  },
+  {
+    title: 'Good action',
+    body: 'Responsible ways of bringing those outcomes about.',
+  },
+  {
+    title: 'Good systems',
+    body: 'The capabilities and systems that make further good possible.',
+  },
+];
+
 const PROCESS = [
   { n: '01', title: 'Understand the problem', body: 'Start from the real situation and let the response follow from it.' },
   { n: '02', title: 'Develop a practical response', body: 'Design something concrete that can be built and tested.' },
@@ -149,25 +165,24 @@ export default function Home() {
       </section>
 
       <section className="section">
-        <div className="container split">
-          <div className="split__aside">
-            <p className="eyebrow">What we mean by good</p>
-            <h2>Good begins with the possibility of living well.</h2>
-          </div>
-          <div className="split__body">
-            <p>
-              For us, good means more than good intentions or isolated acts of kindness. It means
-              people having greater opportunities to live meaningful, fulfilling lives, build
-              worthwhile relationships and contribute to stronger communities and a better society.
-            </p>
-            <p>
-              We work to make those outcomes possible today, while building the capabilities and
-              systems that can support further good tomorrow.
-            </p>
+        <div className="container">
+          <div className="section-head section-head--row">
+            <div>
+              <p className="eyebrow">What we mean by good</p>
+              <h2>Good begins with the possibility of living well.</h2>
+            </div>
             <Link to="/about#what-we-mean-by-good" className="text-link">
               Explore our philosophy
             </Link>
           </div>
+          <ul className="ruled-grid ruled-grid--3">
+            {GOOD.map((g) => (
+              <li key={g.title}>
+                <h3>{g.title}</h3>
+                <p className="muted">{g.body}</p>
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 

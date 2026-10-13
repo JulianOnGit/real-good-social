@@ -66,22 +66,6 @@ const WORK_AREAS = [
   },
 ];
 
-/** What good covers: what is achieved, how, and what makes more of it possible. The word itself is left to the section's heading. */
-const GOOD = [
-  {
-    title: 'Outcomes',
-    body: 'People living meaningful lives, with worthwhile relationships and stronger communities.',
-  },
-  {
-    title: 'Action',
-    body: 'Responsible ways of bringing those outcomes about.',
-  },
-  {
-    title: 'Systems',
-    body: 'The capabilities and structures that make more of them possible.',
-  },
-];
-
 const PROCESS = [
   { n: '01', title: 'Understand the problem', body: 'Start from the real situation and let the response follow from it.' },
   { n: '02', title: 'Develop a practical response', body: 'Design something concrete that can be built and tested.' },
@@ -165,24 +149,20 @@ export default function Home() {
       </section>
 
       <section className="section">
-        <div className="container">
-          <div className="section-head section-head--row">
-            <div>
-              <p className="eyebrow">Our philosophy</p>
-              <h2>Good begins with the possibility of living well.</h2>
-            </div>
+        <div className="container split">
+          <div className="split__aside">
+            <p className="eyebrow">Our philosophy</p>
+            <h2>Good begins with the possibility of living well.</h2>
+          </div>
+          <div className="split__body">
+            <p className="lead">
+              We work to make that possible for more people today, while building the capabilities
+              and systems that will support it tomorrow.
+            </p>
             <Link to="/about#what-we-mean-by-good" className="text-link">
               Explore our thinking
             </Link>
           </div>
-          <ul className="ruled-grid ruled-grid--3">
-            {GOOD.map((g) => (
-              <li key={g.title}>
-                <h3>{g.title}</h3>
-                <p className="muted">{g.body}</p>
-              </li>
-            ))}
-          </ul>
         </div>
       </section>
 

@@ -106,6 +106,9 @@ function useReadingPosition(paper: Paper) {
   return { field, current };
 }
 
+/** The width from which the contents list is held beside the text (see `.split`). */
+const BESIDE_TEXT = '(min-width: 900px)';
+
 /**
  * The contents list. A paper divided into parts shows one part's chapters at a
  * time, the part being read, so the list stays short enough to sit beside the
@@ -117,9 +120,12 @@ function Contents({ paper, current }: { paper: Paper; current: string | null }) 
     (entry) => 'chapters' in entry && entry.chapters.some((chapter) => chapter.id === current),
   );
   const [open, setOpen] = useState(-1);
-  // Follow the reader into each new part, leaving a part opened by hand alone until then.
+  // Follow the reader into each new part, leaving a part opened by hand alone
+  // until then. Only where the list is held beside the text: on narrow screens
+  // it lies above the text, and a change in its height there would move the
+  // page under the reader, and with it the part being read, back and forth.
   useEffect(() => {
-    if (reading >= 0) setOpen(reading);
+    if (reading >= 0 && window.matchMedia(BESIDE_TEXT).matches) setOpen(reading);
   }, [reading]);
 
   const link = (section: PaperSection) => (

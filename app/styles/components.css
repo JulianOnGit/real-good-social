@@ -1612,17 +1612,52 @@ section[tabindex='-1']:focus {
     white-space: nowrap;
     text-overflow: ellipsis;
   }
-  .paper-position__back {
+  .paper-position__toggle {
     flex: none;
+    /* A larger target than the word itself. */
+    margin: -0.7rem calc(-1 * var(--space-s)) -0.7rem 0;
+    padding: 0.7rem var(--space-s);
+    border: 0;
+    background: none;
+    font: inherit;
     font-size: var(--step--2);
     font-weight: 600;
     letter-spacing: 0.13em;
     text-transform: uppercase;
-    text-decoration: none;
     color: var(--text-muted);
+    cursor: pointer;
   }
-  .paper-position__back:hover {
+  .paper-position__toggle:hover,
+  .paper-position__toggle[aria-expanded='true'] {
     color: var(--rg-blue);
+  }
+  /* The contents, opened beneath the strip and over the text. The list scrolls
+     within the panel when it is taller than the window. */
+  .paper-position__panel {
+    max-height: calc(100vh - var(--header-h) - 4.5rem);
+    max-height: calc(100dvh - var(--header-h) - 4.5rem);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    background: var(--paper);
+    border-bottom: 1px solid var(--rule-strong);
+    box-shadow: var(--shadow-md);
+  }
+  .paper-position__panel ol {
+    margin: 0;
+    border-top: 0;
+  }
+  .paper-position__panel > .container > ol > li:last-child {
+    border-bottom: 0;
+  }
+  .paper-position:has(.paper-position__panel) .paper-position__bar {
+    background: var(--paper);
+  }
+  /* Dims the text behind the panel; touching it closes the contents. */
+  .paper-position__scrim {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background: rgba(20, 33, 61, 0.28);
   }
   /* Headings linked to from the contents clear the strip as well as the header. */
   .paper .paper-body section[id] {

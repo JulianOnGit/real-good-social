@@ -1519,6 +1519,116 @@ section[tabindex='-1']:focus {
 .paper-contents li a:hover {
   color: var(--rg-blue);
 }
+/* The part being read: its title in blue, and a short stroke on the hairline
+   beneath it, as at the end of an article. */
+.paper-contents li a {
+  position: relative;
+  transition: color 0.2s var(--ease);
+}
+.paper-contents li a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 1.5rem;
+  height: 3px;
+  background: var(--rg-blue);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s var(--ease-out);
+}
+.paper-contents li a[aria-current] {
+  color: var(--rg-blue);
+}
+.paper-contents li a[aria-current]::after {
+  transform: scaleX(1);
+}
+.paper-contents {
+  scroll-margin-top: calc(var(--header-h) + var(--space-m));
+}
+
+/* --- Reading position: on narrow screens, a strip beneath the header naming
+   the part being read, with a line along its foot that fills as the paper is
+   read. It takes no room in the page, so showing it moves nothing. --- */
+.paper-position {
+  display: none;
+}
+@media (max-width: 899px) {
+  .paper-position {
+    display: block;
+    position: sticky;
+    top: var(--header-h);
+    z-index: 40;
+    height: 0;
+    /* Lift out of the section's top padding, to sit against the header. */
+    margin-top: calc(-1 * var(--space-2xl));
+    margin-bottom: var(--space-2xl);
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(-0.5rem);
+    transition: opacity 0.25s var(--ease), transform 0.25s var(--ease),
+      visibility 0s 0.25s;
+  }
+  .paper-position[data-shown] {
+    visibility: visible;
+    opacity: 1;
+    transform: none;
+    transition-delay: 0s;
+  }
+  .paper-position__bar {
+    position: relative;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--space-s);
+    padding-block: 0.7rem;
+    background: color-mix(in srgb, var(--paper) 92%, transparent);
+    backdrop-filter: saturate(180%) blur(12px);
+    border-bottom: 1px solid var(--rule-strong);
+  }
+  .paper-position__bar::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -1px;
+    width: 100%;
+    height: 2px;
+    background: var(--rg-blue);
+    transform: scaleX(var(--progress, 0));
+    transform-origin: left;
+  }
+  .paper-position__part {
+    display: flex;
+    gap: 0.6rem;
+    min-width: 0;
+    margin: 0;
+    font-size: var(--step--1);
+    font-weight: 600;
+    line-height: 1.4;
+    color: var(--text-strong);
+  }
+  .paper-position__title {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  .paper-position__back {
+    flex: none;
+    font-size: var(--step--2);
+    font-weight: 600;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--text-muted);
+  }
+  .paper-position__back:hover {
+    color: var(--rg-blue);
+  }
+  /* Headings linked to from the contents clear the strip as well as the header. */
+  .paper .paper-body section[id] {
+    scroll-margin-top: calc(var(--header-h) + 3.75rem);
+  }
+}
 .paper-contents__num {
   font-variant-numeric: tabular-nums;
   color: var(--rg-blue);
@@ -1554,6 +1664,7 @@ section[tabindex='-1']:focus {
   .skip-link,
   .cta-band,
   .paper-contents,
+  .paper-position,
   .hero__motif,
   .btn-row {
     display: none !important;

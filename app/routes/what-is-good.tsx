@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router';
 import type { Route } from './+types/what-is-good';
 import { canonicalUrl, pageMeta, shareImageUrl, SITE_URL } from '../data/seo';
@@ -33,8 +34,60 @@ export function meta({ location }: Route.MetaArgs) {
   ];
 }
 
+/** How far below the sticky header a part's heading must rise to count as being read. */
+const READING_LINE = 80;
+
+/**
+ * Follows the reader through the paper: returns the part now being read (none
+ * above the first), and keeps `--progress` on the article's section at the
+ * fraction of the text already above the reading line.
+ */
+function useReadingPosition() {
+  const field = useRef<HTMLElement>(null);
+  const [current, setCurrent] = useState<string | null>(null);
+
+  useEffect(() => {
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      const article = field.current?.querySelector('article');
+      if (!field.current || !article) return;
+      const header = document.querySelector<HTMLElement>('.site-header');
+      const line = (header?.offsetHeight ?? 0) + READING_LINE;
+
+      let reading: string | null = null;
+      for (const section of paper.sections) {
+        const top = document.getElementById(section.id)?.getBoundingClientRect().top;
+        if (top === undefined || top > line) break;
+        reading = section.id;
+      }
+      setCurrent(reading);
+
+      const { top, height } = article.getBoundingClientRect();
+      const progress = Math.min(1, Math.max(0, (line - top) / height));
+      field.current.style.setProperty('--progress', progress.toFixed(4));
+    };
+    const onScroll = () => {
+      frame ||= requestAnimationFrame(update);
+    };
+
+    update();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onScroll);
+    };
+  }, []);
+
+  return { field, current };
+}
+
 export default function WhatIsGood() {
   const pdfHref = `${import.meta.env.BASE_URL}${PAPER_PDF}`;
+  const { field, current } = useReadingPosition();
+  const reading = paper.sections.find((section) => section.id === current);
 
   return (
     <>
@@ -72,19 +125,39 @@ export default function WhatIsGood() {
         </dl>
       </PageHero>
 
-      <section className="section">
+      <section className="section paper" ref={field}>
+        {/* On narrow screens the contents list scrolls away, so the part being
+            read is named in a strip beneath the header instead. */}
+        <div className="paper-position" data-shown={reading ? '' : undefined}>
+          <div className="container paper-position__bar">
+            <p className="paper-position__part">
+              {reading?.number && <span className="paper-contents__num">{reading.number}</span>}
+              <span className="paper-position__title">{reading?.title}</span>
+            </p>
+            <Link to="#contents" className="paper-position__back">
+              Contents
+            </Link>
+          </div>
+        </div>
+
         <div className="container split">
-          <nav className="split__aside paper-contents" aria-labelledby="paper-contents">
+          <nav
+            className="split__aside paper-contents"
+            id="contents"
+            aria-labelledby="paper-contents"
+          >
             <h2 className="label" id="paper-contents">
               Contents
             </h2>
             <ol>
               {paper.sections.map((section) => (
                 <li key={section.id}>
-                  <a href={`#${section.id}`}>
+                  {/* A router link: a plain anchor makes a history entry the router
+                      doesn't know, and it answers by restoring the old scroll position. */}
+                  <Link to={`#${section.id}`} aria-current={section.id === current || undefined}>
                     <span className="paper-contents__num">{section.number}</span>
                     {section.title}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ol>

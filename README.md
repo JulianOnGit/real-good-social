@@ -67,10 +67,11 @@ website-2/
 │   │   ├── privacy.tsx  terms.tsx  accessibility.tsx
 │   │   └── not-found.tsx                        # catch-all → 404.html
 │   ├── components/           # Header, Footer, Logo, PageHero, CtaBand, InitiativeCard, Stages, InsightMeta, InsightIllustration, ArticleSketch, StatusMessage
+│   ├── content/              # the working paper's Markdown
 │   ├── data/                 # initiatives, insights, contact constants + validation
 │   ├── assets/logo-mark.png  # full-size source; @1x/@2x/@3x WebP copies are hashed by Vite
 │   └── styles/               # tokens + patterns (index.css), components.css, motion.css
-└── public/                   # icons, logo.png, robots.txt
+└── public/                   # icons, logo.png, robots.txt, papers/ (the working paper's PDF)
 ```
 
 Route `loader`s still exist and still run — at **build time**, during prerendering —
@@ -253,15 +254,18 @@ the next ones in the list.
 ## The foundational working paper
 
 *Good, Flourishing and the Systems That Make It Possible* is published at
-`/about/what-is-good` from [`app/data/paper.ts`](./app/data/paper.ts): its title, version,
-date, status and sections. A section is a heading and a list of blocks, as in an insight,
-with optional subsections; the table of contents and section anchors are made from the
-headings. To publish a revision, edit that file alone: the About page reads the title and
-version from it.
+`/about/what-is-good`. The page is built from the paper's own Markdown,
+[`app/content/what-is-good.md`](./app/content/what-is-good.md), read by
+[`app/data/paper.ts`](./app/data/paper.ts): the cover gives the title, subtitle,
+publisher, author, version and date; `# 1. Chapter` headings become the contents list and
+`## 1.1 Section` headings the sections within each. A paragraph that is bold from start to
+finish is set as a key statement.
 
-While `sections` is empty the page says the text is being prepared, is marked `noindex`
-and is left out of `sitemap.xml`. Printing the page, or saving it as a PDF from the print
-dialog, gives the paper without the site's header, footer and contents list.
+To publish a revision, replace that Markdown file and the typeset copy at
+`public/papers/good-flourishing-and-the-systems-that-make-it-possible.pdf`, which the page
+offers as a download. Nothing else needs editing: the About page reads the title and
+version from the paper. Printing the page gives the text without the site's header, footer
+and contents list.
 
 ## The good an initiative seeks to create
 

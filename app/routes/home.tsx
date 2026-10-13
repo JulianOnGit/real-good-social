@@ -66,19 +66,19 @@ const WORK_AREAS = [
   },
 ];
 
-/** The three senses of good the site keeps apart: what is achieved, how, and what makes more of it possible. */
+/** What good covers: what is achieved, how, and what makes more of it possible. The word itself is left to the section's eyebrow. */
 const GOOD = [
   {
-    title: 'Good outcomes',
+    title: 'Outcomes',
     body: 'People living meaningful lives, with worthwhile relationships and stronger communities.',
   },
   {
-    title: 'Good action',
+    title: 'Action',
     body: 'Responsible ways of bringing those outcomes about.',
   },
   {
-    title: 'Good systems',
-    body: 'The capabilities and systems that make further good possible.',
+    title: 'Systems',
+    body: 'The capabilities and structures that make more of them possible.',
   },
 ];
 
@@ -169,7 +169,7 @@ export default function Home() {
           <div className="section-head section-head--row">
             <div>
               <p className="eyebrow">What we mean by good</p>
-              <h2>Good begins with the possibility of living well.</h2>
+              <h2>It begins with the possibility of living well.</h2>
             </div>
             <Link to="/about#what-we-mean-by-good" className="text-link">
               Explore our philosophy

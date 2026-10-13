@@ -4,7 +4,7 @@ import { pageMeta } from '../data/seo';
 import PageHero from '../components/PageHero';
 import CtaBand from '../components/CtaBand';
 import { services, servicePath } from '../data/services';
-import { PAPER_PATH } from '../data/paper';
+import { INTRODUCTION_PATH } from '../data/paper';
 
 export function meta({ location }: Route.MetaArgs) {
   return pageMeta({
@@ -127,7 +127,7 @@ export default function WhatWeDo() {
             {FOUNDATION.body.map((para) => (
               <p key={para}>{para}</p>
             ))}
-            <Link to={PAPER_PATH} className="text-link">
+            <Link to={INTRODUCTION_PATH} className="text-link">
               Read our foundational philosophy
             </Link>
           </div>

@@ -1,6 +1,7 @@
 import type { Config } from '@react-router/dev/config';
 import { initiatives } from './app/data/initiatives';
 import { insights } from './app/data/insights';
+import { papers, paperPath } from './app/data/paper';
 import { services, servicePath } from './app/data/services';
 import { BASE_PATH } from './base-path.mjs';
 
@@ -16,6 +17,8 @@ export default {
       '/',
       '/about',
       '/about/what-is-good',
+      '/publications',
+      ...papers.map((p) => paperPath(p.slug)),
       '/what-we-do',
       '/initiatives',
       ...initiatives.map((i) => `/initiatives/${i.slug}`),

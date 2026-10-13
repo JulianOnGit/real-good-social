@@ -3,7 +3,7 @@ import type { Route } from './+types/about';
 import { pageMeta } from '../data/seo';
 import PageHero from '../components/PageHero';
 import CtaBand from '../components/CtaBand';
-import { paper, paperLabel, PAPER_PATH } from '../data/paper';
+import { currentPaper, INTRODUCTION_PATH, paperLabel, paperPath } from '../data/paper';
 
 export function meta({ location }: Route.MetaArgs) {
   return pageMeta({
@@ -65,6 +65,9 @@ export default function About() {
                 Good therefore concerns both the outcomes people experience and the conditions that
                 make those outcomes possible.
               </p>
+              <Link to={INTRODUCTION_PATH} className="text-link">
+                What is good? An introduction to our philosophy
+              </Link>
             </div>
           </div>
 
@@ -188,9 +191,9 @@ export default function About() {
               difficult trade-offs, and how these ideas inform the organisations and systems we
               build.
             </p>
-            <p className="label paper-cite__label">{paperLabel}</p>
-            <h3 className="paper-cite__title">{paper.title}</h3>
-            <Link to={PAPER_PATH} className="text-link">
+            <p className="label paper-cite__label">{paperLabel(currentPaper)}</p>
+            <h3 className="paper-cite__title">{currentPaper.title}</h3>
+            <Link to={paperPath(currentPaper.slug)} className="text-link">
               Read the foundational paper
             </Link>
           </div>

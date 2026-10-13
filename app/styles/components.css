@@ -1633,10 +1633,25 @@ section[tabindex='-1']:focus {
   font-variant-numeric: tabular-nums;
   color: var(--rg-blue);
 }
+/* Beside the text the list must fit the height of the window, so its rows are
+   set closer; on a short window it scrolls as a last resort. */
 @media (min-width: 900px) {
   .paper-contents {
     max-height: calc(100vh - var(--header-h) - var(--space-xl));
     overflow-y: auto;
+    scrollbar-width: thin;
+  }
+  .paper-contents li a,
+  .paper-contents summary {
+    padding-block: 0.4rem;
+  }
+  .paper-contents ol {
+    margin-bottom: var(--space-s);
+  }
+  .paper-contents .paper-contents__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-xs) var(--space-m);
   }
 }
 
@@ -1651,6 +1666,99 @@ section[tabindex='-1']:focus {
   margin-right: 0.6em;
   font-variant-numeric: tabular-nums;
   color: var(--rg-blue);
+}
+
+/* --- Parts: a label above the chapter that opens each. --- */
+/* In the contents a part is a row that opens onto its chapters. */
+.paper-contents summary {
+  display: grid;
+  grid-template-columns: 2rem minmax(0, 1fr) auto;
+  align-items: baseline;
+  padding-block: 0.6rem;
+  font-size: var(--step-ui);
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--text-strong);
+  cursor: pointer;
+  list-style: none;
+  transition: color 0.2s var(--ease);
+}
+.paper-contents summary::-webkit-details-marker {
+  display: none;
+}
+.paper-contents summary:hover,
+.paper-contents details[data-reading] > summary {
+  color: var(--rg-blue);
+}
+.paper-contents summary::after {
+  content: '';
+  width: 0.45rem;
+  height: 0.45rem;
+  margin-inline: 0.5rem 0.25rem;
+  border-right: 1.5px solid var(--text-muted);
+  border-bottom: 1.5px solid var(--text-muted);
+  transform: translateY(-0.2rem) rotate(45deg);
+  transition: transform 0.2s var(--ease);
+}
+.paper-contents details[open] > summary::after {
+  transform: translateY(0.05rem) rotate(-135deg);
+}
+.paper-contents details ol {
+  margin: 0;
+  border-top: 1px solid var(--rule);
+}
+.paper-contents details li {
+  border-bottom-color: var(--rule);
+}
+.paper-contents details li:last-child {
+  border-bottom: 0;
+}
+.paper-contents details li a {
+  grid-template-columns: 2rem 2rem minmax(0, 1fr);
+  font-weight: 400;
+}
+.paper-contents details li a::before {
+  content: '';
+}
+.article-body .paper-body__part {
+  margin: var(--space-2xl) 0 0;
+  padding-top: var(--space-m);
+  border-top: 1px solid var(--rule-strong);
+  font-size: var(--step--2);
+  line-height: 1.4;
+  color: var(--rg-blue);
+}
+.paper-body__part + h2 {
+  margin-top: var(--space-s);
+}
+
+/* --- Onward links: the PDF and related publications, one to a line. --- */
+.paper-contents__links,
+.paper-end,
+.publications-foot {
+  display: grid;
+  gap: var(--space-s);
+  justify-items: start;
+}
+.publications-foot {
+  margin-top: var(--space-l);
+}
+.article-body .paper-end .paper-cite__label {
+  margin-top: 0;
+  font-size: var(--step--2);
+  line-height: 1.4;
+}
+.article-body .paper-end :is(.paper-cite__title, .meta) {
+  margin-bottom: 0.3rem;
+}
+
+/* --- Editorial notice on a superseded paper. --- */
+.page-hero .paper-notice {
+  margin-bottom: 0;
+}
+.paper-notice p:last-child {
+  max-width: var(--measure);
+  margin-bottom: 0;
 }
 
 /* =========================================================================

@@ -4,6 +4,8 @@ export default [
   index('routes/home.tsx'),
   route('about', 'routes/about.tsx'),
   route('about/what-is-good', 'routes/what-is-good.tsx'),
+  route('publications', 'routes/publications.tsx'),
+  route('publications/:slug', 'routes/publication.tsx'),
   route('what-we-do', 'routes/what-we-do.tsx'),
   route('initiatives', 'routes/initiatives.tsx'),
   route('initiatives/:slug', 'routes/initiative.tsx'),

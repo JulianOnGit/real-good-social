@@ -134,9 +134,9 @@ export default function WhatIsGood() {
               {reading?.number && <span className="paper-contents__num">{reading.number}</span>}
               <span className="paper-position__title">{reading?.title}</span>
             </p>
-            <a href="#contents" className="paper-position__back">
+            <Link to="#contents" className="paper-position__back">
               Contents
-            </a>
+            </Link>
           </div>
         </div>
 
@@ -152,10 +152,12 @@ export default function WhatIsGood() {
             <ol>
               {paper.sections.map((section) => (
                 <li key={section.id}>
-                  <a href={`#${section.id}`} aria-current={section.id === current || undefined}>
+                  {/* A router link: a plain anchor makes a history entry the router
+                      doesn't know, and it answers by restoring the old scroll position. */}
+                  <Link to={`#${section.id}`} aria-current={section.id === current || undefined}>
                     <span className="paper-contents__num">{section.number}</span>
                     {section.title}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ol>

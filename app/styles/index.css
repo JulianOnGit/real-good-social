@@ -482,28 +482,29 @@ time,
   justify-content: center;
 }
 
-/* Arrow link. No underline: on an inline-flex link it stops short of the
-   arrow and looks broken. The colour deepens and the arrow nudges instead. */
+/* Arrow link. No underline: it would run on under the arrow and look broken.
+   The colour deepens and the arrow nudges instead. The arrow is part of the
+   text, joined to the last word by a no-break space, so when the link wraps it
+   stays beside that word and never starts a line of its own. */
 .text-link {
-  display: inline-flex;
-  align-items: baseline;
-  gap: 0.45rem;
+  display: inline-block;
   font-weight: 600;
   font-size: var(--step-ui);
   color: var(--rg-blue);
   text-decoration: none;
-  width: fit-content;
 }
 .text-link::after {
-  content: '→';
-  transition: transform 0.18s var(--ease);
+  content: '\00a0→';
+  position: relative;
+  left: 0.2rem;
+  transition: left 0.18s var(--ease);
 }
 .text-link:hover {
   color: var(--rg-blue-deep);
   text-decoration: none;
 }
 .text-link:hover::after {
-  transform: translateX(4px);
+  left: calc(0.2rem + 4px);
 }
 
 /* =========================================================================

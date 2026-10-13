@@ -151,21 +151,16 @@ export default function Home() {
       <section className="section">
         <div className="container split">
           <div className="split__aside">
-            <p className="eyebrow">What we mean by good</p>
+            <p className="eyebrow">Our philosophy</p>
             <h2>Good begins with the possibility of living well.</h2>
           </div>
           <div className="split__body">
-            <p>
-              For us, good means more than good intentions or isolated acts of kindness. It means
-              people having greater opportunities to live meaningful, fulfilling lives, build
-              worthwhile relationships and contribute to stronger communities and a better society.
-            </p>
-            <p>
-              We work to make those outcomes possible today, while building the capabilities and
-              systems that can support further good tomorrow.
+            <p className="lead">
+              We work to make that possible for more people today, while building the capabilities
+              and systems that will support it tomorrow.
             </p>
             <Link to="/about#what-we-mean-by-good" className="text-link">
-              Explore our philosophy
+              Explore our thinking
             </Link>
           </div>
         </div>

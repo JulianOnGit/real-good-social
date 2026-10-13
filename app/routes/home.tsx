@@ -66,7 +66,7 @@ const WORK_AREAS = [
   },
 ];
 
-/** What good covers: what is achieved, how, and what makes more of it possible. The word itself is left to the section's eyebrow. */
+/** What good covers: what is achieved, how, and what makes more of it possible. The word itself is left to the section's heading. */
 const GOOD = [
   {
     title: 'Outcomes',
@@ -168,11 +168,11 @@ export default function Home() {
         <div className="container">
           <div className="section-head section-head--row">
             <div>
-              <p className="eyebrow">What we mean by good</p>
-              <h2>It begins with the possibility of living well.</h2>
+              <p className="eyebrow">Our philosophy</p>
+              <h2>Good begins with the possibility of living well.</h2>
             </div>
             <Link to="/about#what-we-mean-by-good" className="text-link">
-              Explore our philosophy
+              Explore our thinking
             </Link>
           </div>
           <ul className="ruled-grid ruled-grid--3">

@@ -60,18 +60,19 @@ website-2/
 │   ├── routes.ts             # route table
 │   ├── routes/               # one module per page (meta + loader + component)
 │   │   ├── home.tsx  about.tsx  what-we-do.tsx
-│   │   ├── what-is-good.tsx                     # the foundational working paper
+│   │   ├── what-is-good.tsx                     # the introduction to the philosophy
+│   │   ├── publications.tsx  publication.tsx    # working papers: list + reader
 │   │   ├── initiatives.tsx  initiative.tsx      # list + detail
 │   │   ├── insights.tsx  insight.tsx
 │   │   ├── partner.tsx  contact.tsx
 │   │   ├── privacy.tsx  terms.tsx  accessibility.tsx
 │   │   └── not-found.tsx                        # catch-all → 404.html
 │   ├── components/           # Header, Footer, Logo, PageHero, CtaBand, InitiativeCard, Stages, InsightMeta, InsightIllustration, ArticleSketch, StatusMessage
-│   ├── content/              # the working paper's Markdown
+│   ├── content/              # the working papers' Markdown
 │   ├── data/                 # initiatives, insights, contact constants + validation
 │   ├── assets/logo-mark.png  # full-size source; @1x/@2x/@3x WebP copies are hashed by Vite
 │   └── styles/               # tokens + patterns (index.css), components.css, motion.css
-└── public/                   # icons, logo.png, robots.txt, papers/ (the working paper's PDF)
+└── public/                   # icons, logo.png, robots.txt, papers/ (the working papers' PDFs)
 ```
 
 Route `loader`s still exist and still run — at **build time**, during prerendering —
@@ -251,21 +252,32 @@ Words the author set in `**bold**` get a stroke of the accent colour beneath the
 Related insights at the foot of an article are those sharing the most filter topics, then
 the next ones in the list.
 
-## The foundational working paper
+## The philosophy of good: introduction and working papers
 
-*Good, Flourishing and the Systems That Make It Possible* is published at
-`/about/what-is-good`. The page is built from the paper's own Markdown,
-[`app/content/what-is-good.md`](./app/content/what-is-good.md), read by
-[`app/data/paper.ts`](./app/data/paper.ts): the cover gives the title, subtitle,
-publisher, author, version and date; `# 1. Chapter` headings become the contents list and
-`## 1.1 Section` headings the sections within each. A paragraph that is bold from start to
-finish is set as a key statement.
+Three pages set out what Real Good means by good, each with its own purpose and canonical URL:
 
-To publish a revision, replace that Markdown file and the typeset copy at
-`public/papers/good-flourishing-and-the-systems-that-make-it-possible.pdf`, which the page
-offers as a download. Nothing else needs editing: the About page reads the title and
-version from the paper. Printing the page gives the text without the site's header, footer
-and contents list.
+| Page | What it is |
+|---|---|
+| `/about/what-is-good` | A short introduction for general readers, written in [`app/routes/what-is-good.tsx`](./app/routes/what-is-good.tsx). It links to the current paper and is not a copy of it. |
+| `/publications/nature-and-actualisation-of-good` | *Real Good: On the Nature and Actualisation of Good*, the current foundational working paper. |
+| `/publications/good-flourishing-and-the-systems-that-make-it-possible` | The earlier paper, kept as a superseded working paper with an editorial notice pointing to its successor. |
+
+`/publications` lists the papers, the current one first. Papers are listed in
+[`app/data/paper.ts`](./app/data/paper.ts), which reads each one's own Markdown from
+`app/content/`: the cover gives the title, subtitle, author, publisher, version and date;
+headings numbered `1. Chapter` become the contents list, `1.1 Section` headings the sections
+within each, and `PART I — NAME` headings the labels that group the chapters. A paragraph that is bold from start to finish is set as a key statement. The
+Markdown is published as written; the site adds only the slug, PDF, status and search text.
+
+To publish a revision of a paper, replace its Markdown file and its typeset copy in
+`public/papers/`, which the page offers as a download. The About page and the introduction
+read the current paper's title and version from the paper. Printing a paper's page gives
+the text without the site's header, footer and contents list.
+
+To publish a new paper that replaces the current one, add it as the first entry in `papers`
+and give the paper it replaces `status: 'Superseded working paper'` and `supersededBy`. The
+earlier paper keeps its address, text, version and date, and gains the notice. Then revise
+the introduction if the philosophy has changed.
 
 ## The good an initiative seeks to create
 
@@ -277,7 +289,7 @@ them as aims; keep results for when there is evidence.
 
 ## Pages
 
-Home · About (+ the foundational working paper) · What We Do · Services (+ a page per service) · Initiatives (+ a page per initiative) · Partner With Us ·
+Home · About (+ What Is Good?) · Publications (+ a page per working paper) · What We Do · Services (+ a page per service) · Initiatives (+ a page per initiative) · Partner With Us ·
 Insights (+ a page per article) · Contact · Privacy · Terms · Accessibility.
 
 ## Design system

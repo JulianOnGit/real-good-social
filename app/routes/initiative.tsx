@@ -5,6 +5,7 @@ import PageHero from '../components/PageHero';
 import Stages from '../components/Stages';
 import CtaBand from '../components/CtaBand';
 import { Sections } from '../components/Blocks';
+import IntendedGood from '../components/IntendedGood';
 import { getInitiative } from '../data/initiatives';
 
 export async function loader({ params }: Route.LoaderArgs) {
@@ -58,6 +59,8 @@ export default function InitiativeDetail({ loaderData }: Route.ComponentProps) {
       <section className="section">
         <div className="container container-narrow prose">
           <Sections sections={initiative.sections} />
+
+          {initiative.good && <IntendedGood good={initiative.good} stages={initiative.stages} />}
 
           {initiative.related && (
             <aside className="callout callout--question">

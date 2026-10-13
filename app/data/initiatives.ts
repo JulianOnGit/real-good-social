@@ -26,8 +26,27 @@ export interface Initiative {
   /** Lead line under the name on the initiative's own page. */
   tagline: string;
   sections: Section[];
+  /** "The good we seek to create", shown beneath the initiative's copy. */
+  good?: IntendedGood;
   /** A pointer to a related page, shown beneath the initiative's copy. */
   related?: { text: string; to: string; label: string };
+}
+
+/**
+ * What an initiative is meant to achieve, in a sentence each. These are
+ * intentions: write them as aims, and keep results for when there is evidence.
+ */
+export interface IntendedGood {
+  /** The beneficial outcomes it is meant to bring about. */
+  outcomes: string;
+  /** The people or communities expected to benefit. */
+  beneficiaries: string;
+  /** The capabilities or conditions it aims to strengthen. */
+  strengthens: string;
+  /** How its effects could be examined. */
+  evaluation: string;
+  /** Limitations or risks worth stating. */
+  limits?: string;
 }
 
 /** Every stage, in order — used to order the stage filter. */
@@ -53,6 +72,18 @@ export const initiatives: Initiative[] = [
     cardLink: 'Explore Real Good Communities',
     featured: true,
     tagline: 'Building a community that becomes more capable through participation',
+    good: {
+      outcomes:
+        'Stronger social connection, participation and belonging, with more people able to give and find mutual support.',
+      beneficiaries:
+        'People who take part, beginning in Canberra, and the organisations and wider community they are connected to.',
+      strengthens:
+        'Relationships, shared knowledge of who knows and can do what, and the community’s ability to organise activity for itself.',
+      evaluation:
+        'Whether people form useful relationships, knowledge becomes easier to find, participants start activities themselves and the network builds lasting connections with organisations outside it.',
+      limits:
+        'Attendance alone shows little, and a community that depends on its central organisers has not yet become more capable.',
+    },
     related: {
       text: 'Looking for more individual help working out what comes next?',
       to: '/services/pathways-support',
@@ -133,6 +164,18 @@ export const initiatives: Initiative[] = [
     cardLink: 'Explore the Collaborative',
     featured: true,
     tagline: 'Developing the systems that make social capability easier to build',
+    good: {
+      outcomes:
+        'Stronger social systems, better coordination and durable infrastructure for beneficial action.',
+      beneficiaries:
+        'Communities, and the organisations and institutions that design, fund or steward work with them.',
+      strengthens:
+        'The ability to tell different kinds of social change apart, and to design for, compare and evaluate them.',
+      evaluation:
+        'Whether its models help us notice something useful, design something better or understand more clearly what the work is producing, tested first in Real Good Communities.',
+      limits:
+        'The capability architecture is a working model. It has value only where it proves useful in practice, and it may need to change.',
+    },
     sections: [
       {
         blocks: [
@@ -208,6 +251,18 @@ export const initiatives: Initiative[] = [
     cardLink: 'Explore Pathways Support',
     featured: true,
     tagline: 'Understanding the whole situation before deciding what kind of help is needed',
+    good: {
+      outcomes:
+        'Greater personal agency: a clearer understanding of one’s situation, a wider view of what is possible and practical steps towards a better life.',
+      beneficiaries:
+        'People dealing with several interacting problems at once, where no single service fits the whole situation.',
+      strengthens:
+        'A person’s ability to see how the parts of their situation depend on one another, set priorities and act on them.',
+      evaluation:
+        'Whether people come away with a clearer picture of their situation, can name their next steps, and go on to take them.',
+      limits:
+        'Pathways Support works alongside specialist professional services and does not replace them. A clearer view of a situation does not by itself remove the constraints within it.',
+    },
     related: {
       text: 'Pathways Support is available now as a one-to-one service, at no cost during its introductory period.',
       to: '/services/pathways-support',
@@ -261,6 +316,18 @@ export const initiatives: Initiative[] = [
     cardLink: 'Explore the Care Collective',
     featured: true,
     tagline: 'Building more capability for care around a community',
+    good: {
+      outcomes:
+        'More people receiving everyday care, guidance and practical support, and reaching specialist help when they need it.',
+      beneficiaries:
+        'Members of Real Good Communities who could use support, and those who want to offer it.',
+      strengthens:
+        'A community’s capability for mutual care: people who can welcome, listen, guide and organise, and who know where their role ends.',
+      evaluation:
+        'Whether people find support earlier, whether contributors are equipped for their roles, and whether referrals reach appropriate specialist services.',
+      limits:
+        'Community care is not specialist practice. The boundary between the two, and the safeguarding it requires, has to be worked out before the Collective operates.',
+    },
     sections: [
       {
         blocks: [

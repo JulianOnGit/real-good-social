@@ -1480,3 +1480,102 @@ section[tabindex='-1']:focus {
 .callout--question .text-link {
   margin-top: 0.6rem;
 }
+
+/* =========================================================================
+   Foundational working paper
+   ========================================================================= */
+
+/* --- Paper citation: its label and title above the link to it. --- */
+.paper-cite__label {
+  margin: var(--space-m) 0 0.4rem;
+}
+.paper-cite__title {
+  font-style: italic;
+  margin-bottom: var(--space-s);
+}
+
+/* --- Paper contents: the sections as a numbered list, held beside the text
+   on wide screens. --- */
+.paper-contents ol {
+  list-style: none;
+  padding: 0;
+  margin: var(--space-s) 0 0;
+  border-top: 1px solid var(--rule-strong);
+  counter-reset: paper-section;
+}
+.paper-contents li {
+  margin: 0;
+  border-bottom: 1px solid var(--rule-strong);
+  counter-increment: paper-section;
+}
+.paper-contents a {
+  display: grid;
+  grid-template-columns: 2.25rem minmax(0, 1fr);
+  padding-block: 0.7rem;
+  font-size: var(--step-ui);
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--text-strong);
+  text-decoration: none;
+}
+.paper-contents a::before {
+  content: counter(paper-section, decimal-leading-zero);
+  font-variant-numeric: tabular-nums;
+  color: var(--rg-blue);
+}
+.paper-contents a:hover {
+  color: var(--rg-blue);
+}
+@media (min-width: 900px) {
+  .paper-contents {
+    max-height: calc(100vh - var(--header-h) - var(--space-xl));
+    overflow-y: auto;
+  }
+}
+
+/* =========================================================================
+   Print
+   Pages print as documents: no site chrome, no scroll-reveal states, and the
+   address of each link beside it.
+   ========================================================================= */
+@media print {
+  .site-header,
+  .site-footer,
+  .skip-link,
+  .cta-band,
+  .paper-contents,
+  .hero__motif,
+  .btn-row {
+    display: none !important;
+  }
+  body {
+    background: #fff;
+    font-size: 11pt;
+  }
+  .section,
+  .page-hero {
+    padding-block: 1.5rem;
+    background: none;
+    border: 0;
+  }
+  .split {
+    display: block;
+  }
+  /* Anything still waiting for its scroll reveal would print blank. */
+  [data-motion='on'] .will-reveal,
+  [data-motion='on'] .has-words .word {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  :is(h1, h2, h3, h4) {
+    break-after: avoid;
+  }
+  :is(figure, .callout, .highlight, li, dl > div) {
+    break-inside: avoid;
+  }
+  .article-body a[href^='http']::after {
+    content: ' (' attr(href) ')';
+    font-size: 0.85em;
+    word-break: break-all;
+  }
+}

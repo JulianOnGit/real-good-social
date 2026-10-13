@@ -4,6 +4,7 @@ import { pageMeta } from '../data/seo';
 import PageHero from '../components/PageHero';
 import CtaBand from '../components/CtaBand';
 import { services, servicePath } from '../data/services';
+import { PAPER_PATH } from '../data/paper';
 
 export function meta({ location }: Route.MetaArgs) {
   return pageMeta({
@@ -59,6 +60,7 @@ const FOUNDATION: Area = {
   body: [
     'We develop practical frameworks around agency, capability, community, social infrastructure, flourishing, power and organisational systems.',
     'They help us ask better questions, design better interventions and identify what needs to be tested.',
+    'Our foundational philosophy explores what makes outcomes beneficial and how people, communities and institutions can develop the capacity to bring about further good.',
   ],
 };
 
@@ -125,6 +127,9 @@ export default function WhatWeDo() {
             {FOUNDATION.body.map((para) => (
               <p key={para}>{para}</p>
             ))}
+            <Link to={PAPER_PATH} className="text-link">
+              Read our foundational philosophy
+            </Link>
           </div>
         </div>
       </section>

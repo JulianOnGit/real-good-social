@@ -149,6 +149,29 @@ export default function Home() {
       </section>
 
       <section className="section">
+        <div className="container split">
+          <div className="split__aside">
+            <p className="eyebrow">What we mean by good</p>
+            <h2>Good begins with the possibility of living well.</h2>
+          </div>
+          <div className="split__body">
+            <p>
+              For us, good means more than good intentions or isolated acts of kindness. It means
+              people having greater opportunities to live meaningful, fulfilling lives, build
+              worthwhile relationships and contribute to stronger communities and a better society.
+            </p>
+            <p>
+              We work to make those outcomes possible today, while building the capabilities and
+              systems that can support further good tomorrow.
+            </p>
+            <Link to="/about#what-we-mean-by-good" className="text-link">
+              Explore our philosophy
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      <section className="section section--alt">
         <div className="container">
           <div className="section-head section-head--row">
             <div>
@@ -169,7 +192,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="section section--alt">
+      <section className="section">
         <div className="container split">
           <div className="split__aside">
             <p className="eyebrow">How we work</p>
@@ -189,7 +212,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="section">
+      <section className="section section--alt">
         <div className="container split">
           <div className="split__aside">
             <p className="eyebrow">Who we work with</p>
@@ -214,7 +237,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="section section--alt">
+      <section className="section">
         <div className="container container-narrow">
           <p className="eyebrow">Latest insight</p>
           <InsightTeaser insight={latest} featured />

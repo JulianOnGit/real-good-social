@@ -60,6 +60,7 @@ website-2/
 │   ├── routes.ts             # route table
 │   ├── routes/               # one module per page (meta + loader + component)
 │   │   ├── home.tsx  about.tsx  what-we-do.tsx
+│   │   ├── what-is-good.tsx                     # the foundational working paper
 │   │   ├── initiatives.tsx  initiative.tsx      # list + detail
 │   │   ├── insights.tsx  insight.tsx
 │   │   ├── partner.tsx  contact.tsx
@@ -249,9 +250,30 @@ Words the author set in `**bold**` get a stroke of the accent colour beneath the
 Related insights at the foot of an article are those sharing the most filter topics, then
 the next ones in the list.
 
+## The foundational working paper
+
+*Good, Flourishing and the Systems That Make It Possible* is published at
+`/about/what-is-good` from [`app/data/paper.ts`](./app/data/paper.ts): its title, version,
+date, status and sections. A section is a heading and a list of blocks, as in an insight,
+with optional subsections; the table of contents and section anchors are made from the
+headings. To publish a revision, edit that file alone: the About page reads the title and
+version from it.
+
+While `sections` is empty the page says the text is being prepared, is marked `noindex`
+and is left out of `sitemap.xml`. Printing the page, or saving it as a PDF from the print
+dialog, gives the paper without the site's header, footer and contents list.
+
+## The good an initiative seeks to create
+
+An initiative in [`app/data/initiatives.ts`](./app/data/initiatives.ts) may carry a `good`
+entry: its intended outcomes, who it is for, what it aims to strengthen, how that could be
+examined and, optionally, its limits and risks, in a sentence each. The initiative's page
+then shows them under "The good we seek to create", with the initiative's stage. Write
+them as aims; keep results for when there is evidence.
+
 ## Pages
 
-Home · About · What We Do · Services (+ a page per service) · Initiatives (+ a page per initiative) · Partner With Us ·
+Home · About (+ the foundational working paper) · What We Do · Services (+ a page per service) · Initiatives (+ a page per initiative) · Partner With Us ·
 Insights (+ a page per article) · Contact · Privacy · Terms · Accessibility.
 
 ## Design system
